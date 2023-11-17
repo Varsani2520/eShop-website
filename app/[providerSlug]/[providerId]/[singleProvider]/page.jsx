@@ -22,9 +22,16 @@ import { emphasize, styled } from "@mui/material/styles";
 import HomeIcon from "@mui/icons-material/Home";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import { addToCartItem, incrementTotal } from "@/app/action/action";
+import { useDispatch, useSelector } from "react-redux";
 const page = () => {
-  
+  const carts = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
+  function hello(item) {
+    dispatch(addToCartItem(item));
+    toast.success("add to cart success");
+    dispatch(incrementTotal(item));
+  }
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor =
       theme.palette.mode === "light"
@@ -103,7 +110,7 @@ const page = () => {
                       <Box sx={{ mt: 5 }}>
                         <Button
                           variant="outlined"
-                          
+                          onClick={() => hello(response)}
                         >
                           Add to Cart
                         </Button>

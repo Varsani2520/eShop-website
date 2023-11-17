@@ -17,14 +17,27 @@ import {
 } from "@mui/material";
 
 import { ToastContainer, toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 const page = () => {
+  const carts = useSelector((state) => state.cart.cartItems);
+  const cartCount = useSelector((state) => state.cart.cartCount);
+  const dispatch=useDispatch()
   const [cart, setCart] = useState(0);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    // setCart(carts.length);
+    setCart(carts.length);
     setLoading(false);
   }, []);
+  function updateCartCountAction(count) {
+    dispatch(updateCartCount(count));
+  }
 
+  function rmv(item) {
+    dispatch(removeToCartItem(item));
+
+    const updatedCartCount = cartCount - 1; 
+    updateCartCountAction(updatedCartCount);
+  }
   return (
     <div>
       <ToastContainer />
@@ -44,32 +57,39 @@ const page = () => {
             </CardContent>
           </Card>
         ) : (
+          carts.map((cart)=>(
+
           <Card>
-            <img
-              src="https://w7.pngwing.com/pngs/277/965/png-transparent-empty-cart-illustration-thumbnail.png"
-              alt="empty cart img"
-            />
+            {carts.length === 0 ? (
+              <img
+                src="https://w7.pngwing.com/pngs/277/965/png-transparent-empty-cart-illustration-thumbnail.png"
+                alt="empty cart img"
+              />
+            ) : (
+              <Grid container spacing={2} mt={5}>
+                <Grid item xs={6} md={4} key={cart.id}>
+                  <CardMedia
+                    image={cart.img}
+                    width={300}
+                    height={140}
+                    component="img"
+                    alt="img"
+                  />
+                </Grid>
+                <Grid item xs={6} md={2}>
+                  <CardHeader>Name:{cart.name}</CardHeader>
+                  <CardContent>
+                    <Typography>Price:{cart.price}</Typography>
+                    <Typography>Quantity:1</Typography>
+                    <Button>REMOVE</Button>
+                  </CardContent>
+                </Grid>
+              </Grid>
+            )}
+
             {/* option */}
-            <Grid container spacing={2} mt={5}>
-              <Grid item xs={6} md={4} key={cart.id}>
-                <CardMedia
-                  image={cart.img}
-                  width={300}
-                  height={140}
-                  component="img"
-                  alt="img"
-                />
-              </Grid>
-              <Grid item xs={6} md={2}>
-                <CardHeader>Name:{cart.name}</CardHeader>
-                <CardContent>
-                  <Typography>Price:{cart.price}</Typography>
-                  <Typography>Quantity:1</Typography>
-                  <Button >REMOVE</Button>
-                </CardContent>
-              </Grid>
-            </Grid>
           </Card>
+          ))
         )}
       </Box>
     </div>
