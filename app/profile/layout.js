@@ -37,7 +37,7 @@ const layout = ({ children }) => {
   return (
     <Container>
       <Grid container spacing={2}>
-        <Grid md={6}>
+        <Grid item md={6}>
           <Card sx={{ maxWidth: 345 }}>
             <CardHeader
               avatar={
@@ -62,9 +62,11 @@ const layout = ({ children }) => {
           </Card>
           <Card>
             <Typography>My Booking</Typography>
+            <Typography> Notification</Typography>
+            <Typography> Likes</Typography>
           </Card>
         </Grid>
-        <Grid>{children}</Grid>
+        <Grid item md={6}>{children}</Grid>
       </Grid>
     </Container>
   );

@@ -29,10 +29,10 @@ const layout = ({ children }) => {
       </Box>
       <Container>
         <Grid container spacing={3}>
-          <Grid xs={12} md={6}>
+          <Grid item xs={12} md={6}>
             {children}
           </Grid>
-          <Grid xs={12} md={6}>
+          <Grid item xs={12} md={6}>
             <Card>
               <CardHeader>Price Details</CardHeader>
               <CardContent>

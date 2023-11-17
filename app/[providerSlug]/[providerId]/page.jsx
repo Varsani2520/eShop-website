@@ -62,7 +62,7 @@ const page = () => {
   async function Desc() {
     try {
       const response = await ProviderService(providerSlug);
-      console.log("inside card",providerSlug);
+      console.log("inside card", providerSlug);
       setdesc(response);
       setLoading(false);
     } catch (error) {
@@ -78,13 +78,13 @@ const page = () => {
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
-              <Link href="/">
+              <a href="/" >
                 <StyledBreadcrumb
                   component="a"
                   label="Home"
                   icon={<HomeIcon fontSize="large" />}
                 />
-              </Link>
+              </a>
               <StyledBreadcrumb
                 component="a"
                 href="/about"
@@ -102,8 +102,8 @@ const page = () => {
         <Container>
           <Grid container spacing={2}>
             {loading
-              ? Array.from({ length: 6 }).map((index) => (
-                  <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+              ? Array.from({ length: 3 }).map((index) => (
+                  <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
                     <Box>
                       <Card sx={{ maxWidth: 345 }}>
                         <Skeleton
@@ -119,45 +119,46 @@ const page = () => {
                     </Box>
                   </Grid>
                 ))
-              : desc.map((response) => {
+              : desc.map((response, index) => {
                   if (providerSlug == response.provider_id)
                     return (
-                      <div key={response.provider_id}>
-                        <Grid item key={response.id}>
-                          <Card sx={{ maxWidth: 350 }} key={response.id}>
-                            <CardHeader
-                              title={response.name}
-                              sx={{ background: "#b7bfee" }}
-                            />
-                            <CardMedia
-                              sx={{ cursor: "pointer" }}
-                              component="img"
-                              image={response.img}
-                              alt={response.alt}
-                              onClick={e=>router.push(`${response.provider_id}/${response.id}`)}
-                              key={response.id}
-                            />
+                      <Grid item key={response.provider_id + "_" + response.id}>
+                        <Card sx={{ maxWidth: 350 }}>
+                          <CardHeader
+                            title={response.name}
+                            sx={{ background: "#b7bfee" }}
+                          />
+                          <CardMedia
+                            sx={{ cursor: "pointer" }}
+                            component="img"
+                            image={response.img}
+                            alt={response.alt}
+                            onClick={(e) =>
+                              router.push(
+                                `${response.provider_id}/${response.id}`
+                              )
+                            }
+                          />
 
-                            <CardActions disableSpacing>
-                              <IconButton aria-label="add to favorites">
-                                <Checkbox
-                                  {...label}
-                                  icon={<FavoriteBorder />}
-                                  checkedIcon={<Favorite />}
-                                />
-                              </IconButton>
-                              <IconButton aria-label="bookmark">
-                                <Checkbox
-                                  {...label}
-                                  icon={<BookmarkBorderIcon />}
-                                  checkedIcon={<BookmarkIcon />}
-                                />
-                              </IconButton>
-                            </CardActions>
-                          </Card>
-                          <br />
-                        </Grid>
-                      </div>
+                          <CardActions disableSpacing>
+                            <IconButton aria-label="add to favorites">
+                              <Checkbox
+                                {...label}
+                                icon={<FavoriteBorder />}
+                                checkedIcon={<Favorite />}
+                              />
+                            </IconButton>
+                            <IconButton aria-label="bookmark">
+                              <Checkbox
+                                {...label}
+                                icon={<BookmarkBorderIcon />}
+                                checkedIcon={<BookmarkIcon />}
+                              />
+                            </IconButton>
+                          </CardActions>
+                        </Card>
+                        <br />
+                      </Grid>
                     );
                 })}
           </Grid>

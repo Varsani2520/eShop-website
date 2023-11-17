@@ -35,14 +35,14 @@ const settings = [
 ];
 
 function App() {
-  const [cart, setCart] = useState(0);
-  const carts = useSelector((state) => state.cart.cartItems);
-  console.log(carts, "cart msg");
-  useEffect(() => {
-    if (carts) {
-      setCart(carts.length);
-    }
-  }, [carts]);
+  // const [cart, setCart] = useState(0);
+  // const carts = useSelector((state) => state.cart.cartItems);
+  // console.log(carts, "cart msg");
+  // useEffect(() => {
+  //   if (carts) {
+  //     setCart(carts.length);
+  //   }
+  // }, [carts]);
   const session = useSession();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -161,7 +161,7 @@ function App() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Badge badgeContent={cart} color="error">
+            <Badge  color="error">
               <IconButton
                 color="primary"
                 aria-label="add to shopping cart"
