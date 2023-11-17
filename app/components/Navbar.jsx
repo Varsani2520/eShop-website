@@ -18,7 +18,8 @@ import { useState, useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useSelector } from "react-redux";
 import { Badge } from "@mui/material";
-import { Login } from "@mui/icons-material";
+import { useSession } from "next-auth/react";
+import { deepOrange } from "@mui/material/colors";
 const pages = [
   { label: "Home", link: "/" },
   { label: "About", link: "/about" },
@@ -30,6 +31,7 @@ const settings = [
   { label: "Account", link: "/account" },
   { label: "Dashboard", link: "/dashboard" },
   { label: "Logout", link: "/logout" },
+  { label: "sign up", link: "/signup" },
 ];
 
 function App() {
@@ -37,11 +39,11 @@ function App() {
   const carts = useSelector((state) => state.cart.cartItems);
   console.log(carts, "cart msg");
   useEffect(() => {
-    if(carts){
-
+    if (carts) {
       setCart(carts.length);
     }
   }, [carts]);
+  const session = useSession();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -142,7 +144,11 @@ function App() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Link href={page.link} style={{ textDecoration: "none" }}  key={page.label}>
+              <Link
+                href={page.link}
+                style={{ textDecoration: "none" }}
+                key={page.label}
+              >
                 <Button
                   key={page.label}
                   onClick={handleCloseNavMenu}
@@ -166,7 +172,15 @@ function App() {
             </Badge>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp"  />
+                {session.status == "authenticated" ? (
+                  <Avatar
+                    sx={{ bgcolor: deepOrange[500] }}
+                    alt="Remy Sharp"
+                    
+                  />
+                ) : (
+                  <Avatar />
+                )}
               </IconButton>
             </Tooltip>
             <Menu

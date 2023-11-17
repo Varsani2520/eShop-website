@@ -1,22 +1,26 @@
-import { Inter } from 'next/font/google'
+import { Inter } from "next/font/google";
 // import './globals.css'
-import Navbar from './components/Navbar'
-import { StoreProvider } from './storeProvider'
+import Navbar from "./components/Navbar";
+import { StoreProvider } from "./storeProvider";
+import AuthProvider from "@/component/AuthProvider/AuthProvider";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'eShop',
-}
+  title: "eShop",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>
-          <Navbar/>{children}
+        <AuthProvider>
+          <StoreProvider>
+            <Navbar />
+            {children}
           </StoreProvider>
-          </body>
+        </AuthProvider>
+      </body>
     </html>
-  )
+  );
 }

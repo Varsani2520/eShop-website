@@ -5,6 +5,8 @@ export const connectDatabase = () => {
   try {
     mongoose.connect(MONGO_URL, {
       dbName: "erequirement",
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
     console.log("database connected successfully");
   } catch (error) {
