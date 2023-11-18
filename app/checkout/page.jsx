@@ -18,8 +18,14 @@ import {
 
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementTotal, incrementTotal, removeToCartItem } from "../action/action";
-import { counterReducer } from "../reducer/counter";
+import {
+  decrementQuantityItem,
+  decrementTotal,
+  incrementQuantityItem,
+  incrementTotal,
+  removeToCartItem,
+} from "../action/action";
+
 const page = () => {
   const carts = useSelector((state) => state.cart.cartItems);
   const cartCount = useSelector((state) => state.cart.cartCount);
@@ -40,12 +46,20 @@ const page = () => {
     const updatedCartCount = cartCount - 1;
     updateCartCountAction(updatedCartCount);
   }
-  function decrement(cart){
-    dispatch(decrementTotal(cart))
+  function decrement(cart) {
+    dispatch(decrementTotal(cart));
   }
-  function increment(cart){
-    dispatch(incrementTotal(cart))
+  function increment(cart) {
+    dispatch(incrementTotal(cart));
   }
+
+  const handleIncrement = (cart) => {
+    dispatch(incrementQuantityItem(cart)); // Dispatch the incrementQuantity action
+  };
+
+  const handleDecrement = (cart) => {
+    dispatch(decrementQuantityItem(cart));
+  };
   return (
     <div>
       <ToastContainer />
@@ -86,14 +100,16 @@ const page = () => {
                   <Grid item xs={6} md={2}>
                     <CardHeader>Name:{cart.name}</CardHeader>
                     <CardContent>
-                      <Typography>Price:{cart.price}</Typography>
+                      <Typography>
+                        Price:{cart.price * cart.quantity}
+                      </Typography>
                       <Typography>
                         Quantity:
-                        
-                          <Button onClick={()=>decrement(cart)}>-</Button>1<Button onClick={()=>increment(cart)}>+</Button>
-                        
+                        <Button onClick={() => handleDecrement(cart)}>-</Button>
+                        {cart.quantity}
+                        <Button onClick={() => handleIncrement(cart)}>+</Button>
                       </Typography>
-                      <Button onClick={()=>rmv(cart)}>REMOVE</Button>
+                      <Button onClick={() => rmv(cart)}>REMOVE</Button>
                     </CardContent>
                   </Grid>
                 </Grid>

@@ -1,0 +1,5 @@
+redux reducer -> id, default qty-1 , qty++ or qty--, >10 toast(max limt)
+store : {
+    serviceId: 1,
+    qty: 4
+}
