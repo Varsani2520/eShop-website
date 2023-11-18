@@ -18,10 +18,12 @@ import {
 
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
+import { decrementTotal, incrementTotal, removeToCartItem } from "../action/action";
+import { counterReducer } from "../reducer/counter";
 const page = () => {
   const carts = useSelector((state) => state.cart.cartItems);
   const cartCount = useSelector((state) => state.cart.cartCount);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const [cart, setCart] = useState(0);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -35,8 +37,14 @@ const page = () => {
   function rmv(item) {
     dispatch(removeToCartItem(item));
 
-    const updatedCartCount = cartCount - 1; 
+    const updatedCartCount = cartCount - 1;
     updateCartCountAction(updatedCartCount);
+  }
+  function decrement(cart){
+    dispatch(decrementTotal(cart))
+  }
+  function increment(cart){
+    dispatch(incrementTotal(cart))
   }
   return (
     <div>
@@ -57,38 +65,42 @@ const page = () => {
             </CardContent>
           </Card>
         ) : (
-          carts.map((cart)=>(
-
-          <Card>
-            {carts.length === 0 ? (
-              <img
-                src="https://w7.pngwing.com/pngs/277/965/png-transparent-empty-cart-illustration-thumbnail.png"
-                alt="empty cart img"
-              />
-            ) : (
-              <Grid container spacing={2} mt={5}>
-                <Grid item xs={6} md={4} key={cart.id}>
-                  <CardMedia
-                    image={cart.img}
-                    width={300}
-                    height={140}
-                    component="img"
-                    alt="img"
-                  />
+          carts.map((cart) => (
+            <Card key={cart.id}>
+              {carts.length === 0 ? (
+                <img
+                  src="https://w7.pngwing.com/pngs/277/965/png-transparent-empty-cart-illustration-thumbnail.png"
+                  alt="empty cart img"
+                />
+              ) : (
+                <Grid container spacing={2} mt={5}>
+                  <Grid item xs={6} md={4}>
+                    <CardMedia
+                      image={cart.img}
+                      width={300}
+                      height={140}
+                      component="img"
+                      alt="img"
+                    />
+                  </Grid>
+                  <Grid item xs={6} md={2}>
+                    <CardHeader>Name:{cart.name}</CardHeader>
+                    <CardContent>
+                      <Typography>Price:{cart.price}</Typography>
+                      <Typography>
+                        Quantity:
+                        
+                          <Button onClick={()=>decrement(cart)}>-</Button>1<Button onClick={()=>increment(cart)}>+</Button>
+                        
+                      </Typography>
+                      <Button onClick={()=>rmv(cart)}>REMOVE</Button>
+                    </CardContent>
+                  </Grid>
                 </Grid>
-                <Grid item xs={6} md={2}>
-                  <CardHeader>Name:{cart.name}</CardHeader>
-                  <CardContent>
-                    <Typography>Price:{cart.price}</Typography>
-                    <Typography>Quantity:1</Typography>
-                    <Button>REMOVE</Button>
-                  </CardContent>
-                </Grid>
-              </Grid>
-            )}
+              )}
 
-            {/* option */}
-          </Card>
+              {/* option */}
+            </Card>
           ))
         )}
       </Box>
