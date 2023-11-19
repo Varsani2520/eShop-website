@@ -1,5 +1,6 @@
 import { addToCart, decrementQuantity, incrementQuantity, removeToCart } from "../reducer/cart";
 import { decrement, increment } from "../reducer/counter";
+import { addToFavourite, removeToFavourite } from "../reducer/favourite";
 
 export const addToCartItem = (item) => ({
   type: addToCart,
@@ -23,3 +24,11 @@ export const incrementTotal = () => ({
 export const decrementTotal = () => ({
   type: decrement,
 });
+// favroute
+
+export const addToFavouriteItem=()=>({
+  type:addToFavourite,payload:'pending'
+})
+export const removeToFavouriteItem=()=>({
+  type:removeToFavourite,payload:'pending'
+})

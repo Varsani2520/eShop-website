@@ -13,7 +13,10 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import Skeleton from "@mui/material/Skeleton";
 import { useRouter } from "next/navigation";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addToFavouriteItem, incrementTotal } from "../action/action";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const HomeCard = () => {
   const [card, setCard] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,7 +27,20 @@ const HomeCard = () => {
     console.log(result);
     setLoading(false);
   }
-
+  const favs = useSelector((state) => state.favourite.cartItems);
+  const dispatch=useDispatch()
+  function fav(item){
+    const isItemInFav = favs.some((cartItems) => cartItems.id === item.id);
+    if (isItemInFav) {
+      toast.warning("Item already in the cart");
+    } else {
+      // Item is not in the cart, proceed to add it
+      dispatch(addToFavouriteItem(item));
+      toast.success("Added to cart successfully");
+      dispatch(incrementTotal(item));
+    }
+  }
+  
   useEffect(() => {
     fetchCards();
   }, []);
@@ -33,6 +49,7 @@ const HomeCard = () => {
     <>
     
     <Container>
+      <ToastContainer/>
       <Box sx={{ display: "flex" }}>
         <Grid container spacing={2}>
           {loading
@@ -58,9 +75,7 @@ const HomeCard = () => {
                   <Box>
                     <Card
                       sx={{ maxWidth: 345 }}
-                      onClick={() =>
-                        router.push(`${response.id}/${response.slug}`)
-                      }
+                      
                     >
                       <CardHeader
                         title={response.title}
@@ -72,6 +87,9 @@ const HomeCard = () => {
                         image={response.image}
                         alt={response.alt}
                         sx={{ cursor: "pointer" }}
+                        onClick={() =>
+                          router.push(`${response.id}/${response.slug}`)
+                        }
                       />
                       <CardContent>
                         <Typography variant="body2" color="text.secondary">
@@ -79,10 +97,10 @@ const HomeCard = () => {
                         </Typography>
                       </CardContent>
                       <CardActions disableSpacing>
-                        <Checkbox
+                        <Checkbox onClick={()=>fav(response)} 
                           inputProps={{ "aria-label": "Favorite" }}
                           icon={<FavoriteBorder />}
-                          checkedIcon={<Favorite color="secondary" />}
+                          checkedIcon={<Favorite color="secondary"/>}
                         />
                         <Checkbox
                           inputProps={{ "aria-label": "Bookmark" }}

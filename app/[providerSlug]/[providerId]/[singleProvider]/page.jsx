@@ -24,13 +24,23 @@ import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { addToCartItem, incrementTotal } from "@/app/action/action";
 import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
+
 const page = () => {
   const carts = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
   function hello(item) {
-    dispatch(addToCartItem(item));
-    toast.success("add to cart success");
-    dispatch(incrementTotal(item));
+    // Check if the item is already in the cart
+    const isItemInCart = carts.some((cartItems) => cartItems.id === item.id);
+
+    if (isItemInCart) {
+      toast.warning("Item already in the cart");
+    } else {
+      // Item is not in the cart, proceed to add it
+      dispatch(addToCartItem(item));
+      toast.success("Added to cart successfully");
+      dispatch(incrementTotal(item));
+    }
   }
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor =
@@ -95,12 +105,12 @@ const page = () => {
       <Container>
         <Box sx={{ mt: 10 }}>
           {hlo.map((response) => {
-            if(singleProvider==response.id)
+            if (singleProvider == response.id)
               return (
                 <Box key={response.id}>
-                  <Grid  container spacing={2}>
+                  <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
-                      <Card sx={{ maxWidth: 500,mt:10 }}>
+                      <Card sx={{ maxWidth: 500, mt: 10 }}>
                         <CardMedia
                           sx={{ height: 400 }}
                           image={response.img}
@@ -114,7 +124,9 @@ const page = () => {
                         >
                           Add to Cart
                         </Button>
-                        <Button variant="outlined">Buy Now</Button>
+                        <Link href="/checkout">
+                          <Button variant="outlined">Buy Now</Button>
+                        </Link>
                       </Box>
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -160,7 +172,9 @@ const page = () => {
                       <Card sx={{ mt: "10%" }}>
                         <CardContent>
                           <Typography variant="h5">
-                            <CardHeader sx={{background:'hotpink'}}>Reviews:</CardHeader>
+                            <CardHeader sx={{ background: "hotpink" }}>
+                              Reviews:
+                            </CardHeader>
                             {response.review}
                           </Typography>
                         </CardContent>

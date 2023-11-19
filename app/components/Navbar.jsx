@@ -14,12 +14,14 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "next/link";
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { useState, useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useSelector } from "react-redux";
 import { Badge } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { deepOrange } from "@mui/material/colors";
+import { FavoriteBorderTwoTone } from "@mui/icons-material";
 const pages = [
   { label: "Home", link: "/" },
   { label: "About", link: "/about" },
@@ -36,13 +38,18 @@ const settings = [
 
 function App() {
   const [cart, setCart] = useState(0);
+  const [fav, setFav] = useState(0);
   const carts = useSelector((state) => state.cart.cartItems);
+  const favs = useSelector((state) => state.favourite.cartItems);
   
   useEffect(() => {
     if (carts) {
       setCart(carts.length);
     }
-  }, [carts]);
+    if(favs){
+      setFav(favs.length)
+    }
+  }, [carts,favs]);
   const session = useSession();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -63,7 +70,7 @@ function App() {
   };
 
   return (
-    <AppBar position="static" sx={{ background: "white", color: "black" }}>
+    <AppBar position="fixed" sx={{ background: "rgba(255, 255, 255, 0.8)", color: "black", zIndex: 1000 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -170,6 +177,16 @@ function App() {
                 <AddShoppingCartIcon />
               </IconButton>
             </Badge>
+            <Badge color="error" badgeContent={fav}>
+
+            <IconButton 
+                color="primary"
+                aria-label="add to shopping cart"
+                href="/profile/favourites"
+                >
+                <FavoriteBorderOutlinedIcon />
+              </IconButton>
+                </Badge>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {session.status == "authenticated" ? (

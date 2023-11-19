@@ -1,75 +1,125 @@
-"use client";
-import { styled } from "@mui/material/styles";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Card, Grid } from "@mui/material";
+"use client"
 import React from "react";
-import { Container } from "postcss";
+import {
+  Avatar,
+  Button,
+  Card,
+  Container,
+  Grid,
+  Typography,
+  Box,
+  Divider,
+} from "@mui/material";
 
-const layout = ({ children }) => {
-  const ExpandMore = styled((props) => {
-    const [expanded, setExpanded] = React.useState(false);
-
-    const handleExpandClick = () => {
-      setExpanded(!expanded);
-    };
-
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  }));
+const Layout = ({ children }) => {
   return (
     <Container>
-      <Grid container spacing={2}>
-        <Grid item md={6}>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardHeader
-              avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  R
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
-              title="Shrimp and Chorizo Paella"
-              subheader="September 14, 2016"
-            />
-            <CardMedia
-              component="img"
-              height="194"
-              image="/static/images/cards/paella.jpg"
-              alt="Paella dish"
-            />
+      <Grid container justifyContent="center" spacing={2}>
+        <Grid item md={4}>
+          <Card
+            sx={{
+              backgroundColor: "#f0f0f0",
+              marginTop: 4,
+              position: "relative",
+              padding: 3,
+            }}
+          >
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <Button
+                variant="outlined"
+                color="primary"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  margin: 8,
+                }}
+              >
+                Edit
+              </Button>
+              <Avatar
+                src=""
+                alt="User Avatar"
+                sx={{ width: 120, height: 120, marginBottom: 2 }}
+              />
+              <Typography variant="h6" sx={{ fontSize: 20, color: "#333" }}>
+                Name
+              </Typography>
+              <Typography variant="body2" sx={{ fontSize: 16, color: "#666" }}>
+                Address
+              </Typography>
+              <Typography variant="body2" sx={{ fontSize: 16, color: "#666" }}>
+                Email
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ marginTop: 2, "&:hover": { backgroundColor: "#0069d9" } }}
+              >
+                Logout
+              </Button>
+            </Box>
           </Card>
-          <Card>
-            <Typography>My Booking</Typography>
-            <Typography> Notification</Typography>
-            <Typography> Likes</Typography>
+          <Divider />
+          <Card sx={{ background: "#f0f0f0", padding: 3 }}>
+            <div style={linkStyle}>
+              <Button variant="outlined" color="primary"onClick={()=>'/profile/bookings'}>
+                My Booking
+              </Button>
+            </div>
+            <Divider />
+            <div style={linkStyle}>
+              <Button variant="outlined" color="primary"onClick={()=>'/profile/bookmark'}>
+                Bookmark
+              </Button>
+            </div>
+            <Divider />
+            <div style={linkStyle}>
+              <Button variant="outlined" color="primary"onClick={()=>'/profile/favourites'}>
+                Favourites
+              </Button>
+            </div>
+            <Divider />
+            <div style={linkStyle}>
+              <Button variant="outlined" color="primary"onClick={()=>'/profile/notifications'}>
+                Notification
+              </Button>
+            </div>
+            <Divider />
+            <div style={linkStyle}>
+              <Button variant="outlined" color="secondary" onClick={()=>'/profile/delete-account'}>
+                Delete Account
+              </Button>
+            </div>
           </Card>
         </Grid>
-        <Grid item md={6}>{children}</Grid>
+        <Grid item md={8}>
+          <Card
+            sx={{
+              backgroundColor: "#f0f0f0",
+              marginTop: 4,
+              padding: 3,
+            }}
+          >
+            {children}
+          </Card>
+        </Grid>
       </Grid>
     </Container>
   );
 };
 
-export default layout;
+const linkStyle = {
+  color: "#0069d9",
+  fontSize: 16,
+  cursor: "pointer",
+  justifyContent: "center", // Center the button text
+  margin: "8px", // Apply margin
+  padding: "8px", // Apply padding
+  "&:hover": {
+    textDecoration: "underline",
+    backgroundColor: "#f9f9f9", // Apply hover effect
+  },
+};
+
+export default Layout;

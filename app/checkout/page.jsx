@@ -36,9 +36,6 @@ const page = () => {
     setCart(carts.length);
     setLoading(false);
   }, []);
-  function updateCartCountAction(count) {
-    dispatch(updateCartCount(count));
-  }
 
   function rmv(item) {
     dispatch(removeToCartItem(item));
@@ -60,6 +57,7 @@ const page = () => {
   const handleDecrement = (cart) => {
     dispatch(decrementQuantityItem(cart));
   };
+
   return (
     <div>
       <ToastContainer />
