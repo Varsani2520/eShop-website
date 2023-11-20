@@ -33,14 +33,14 @@ const settings = [
   { label: "Account", link: "/account" },
   { label: "Dashboard", link: "/dashboard" },
   { label: "Logout", link: "/logout" },
-  { label: "sign up", link: "/signup" },
+  
 ];
 
 function App() {
   const [cart, setCart] = useState(0);
   const [fav, setFav] = useState(0);
   const carts = useSelector((state) => state.cart.cartItems);
-  const favs = useSelector((state) => state.favourite.cartItems);
+  const favs = useSelector((state) => state.favourite.favouriteItems);
   
   useEffect(() => {
     if (carts) {
@@ -196,7 +196,7 @@ function App() {
                     
                   />
                 ) : (
-                  <Avatar />
+                  <Avatar/>
                 )}
               </IconButton>
             </Tooltip>

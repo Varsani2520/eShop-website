@@ -1,0 +1,7 @@
+const jwt=require('jsonwebtoken')
+const createToken=async()=>{
+ const token=await jwt.sign({_id:"655aea73a0ebccf8fbe3566c"},"myname is",{expiresIn:" 2 seconds"})
+ 
+ console.log(token);
+}
+createToken()

@@ -60,8 +60,7 @@ const page = () => {
     try {
       const response=await contactuserService(contact);
       console.log("Raw response",response);
-      const result=await response.json()
-      console.log("parse json",result);
+      
       toast.success("success");
     } catch (error) {
       toast.error("no");

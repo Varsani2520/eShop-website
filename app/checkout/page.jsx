@@ -35,13 +35,13 @@ const page = () => {
   useEffect(() => {
     setCart(carts.length);
     setLoading(false);
-  }, []);
+  }, [carts]);
 
   function rmv(item) {
     dispatch(removeToCartItem(item));
-
+toast.success('remove item success')
     const updatedCartCount = cartCount - 1;
-    updateCartCountAction(updatedCartCount);
+    
   }
   function decrement(cart) {
     dispatch(decrementTotal(cart));
@@ -57,7 +57,9 @@ const page = () => {
   const handleDecrement = (cart) => {
     dispatch(decrementQuantityItem(cart));
   };
-
+  function updateCartCountAction(count) {
+    dispatch(updateCartCount(count));
+  }
   return (
     <div>
       <ToastContainer />

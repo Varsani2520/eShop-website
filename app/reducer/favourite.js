@@ -1,5 +1,5 @@
 const initialStage = {
-  cartItems: [],
+  favouriteItems: [],
   status: "pending",
 };
 export const addToFavourite = "add";
@@ -10,18 +10,18 @@ export const favouriteReducer = (state = initialStage, action) => {
     case addToFavourite:
       return {
         ...state,
-        cartItems: [...state.cartItems,action.payload],
+        favouriteItems: [...state.favouriteItems,action.payload],
         status: "pending",
       };
 
     case removeToFavourite:
-      const updatedFav = state.cartItems.filter(
+      const updatedFav = state.favouriteItems.filter(
         (item) => item.id !== action.payload.id
       );
       return {
         ...state,
         
-        cartItems: updatedFav,
+        favouriteItems: updatedFav,
         status: "pending",
       };
       default:

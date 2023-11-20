@@ -27,10 +27,10 @@ const HomeCard = () => {
     console.log(result);
     setLoading(false);
   }
-  const favs = useSelector((state) => state.favourite.cartItems);
+  const favs = useSelector((state) => state.favourite.favouriteItems);
   const dispatch=useDispatch()
   function fav(item){
-    const isItemInFav = favs.some((cartItems) => cartItems.id === item.id);
+    const isItemInFav = favs.some((favouriteItems) => favouriteItems.id === item.id);
     if (isItemInFav) {
       toast.warning("Item already in the cart");
     } else {
