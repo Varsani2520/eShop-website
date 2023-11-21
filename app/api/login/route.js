@@ -27,7 +27,7 @@ export async function POST(request) {
       return NextResponse.json({ msg: "enter vaild information" });
     }
   } catch (error) {
-    return NextResponse.json({ message: "falied to login", success: "false" });
     dispatch(loginUserFailure("failed to login"));
+    return NextResponse.json({ message: "falied to login", success: "false" });
   }
 }

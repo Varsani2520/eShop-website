@@ -49,14 +49,15 @@ const LoginPage = () => {
       console.log(error);
     }
   }
-  useEffect(() => {
-    if (session.status === "authenticated") {
-      router.push("/");
-    }
-    if (session.status === "unauthenticated") {
-      router.push("/signup");
-    }
-  }, [session, router]);
+  // useEffect(() => {
+  //   if (session.status === "authenticated") {
+  //     router.push("/");
+  //   }
+  //   if (session.status === "unauthenticated") {
+  //     router.push("/signup");
+  //   }
+  // }, [session, router]);
+
   return (
     <div>
       <ToastContainer />

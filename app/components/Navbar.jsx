@@ -39,7 +39,8 @@ function App() {
   const [likes, setLikes] = useState(0);
   const carts = useSelector((state) => state.cart.cartItems);
   const favs = useSelector((state) => state.likes.favouriteItems);
-  const user = useSelector((state) => state.auth.authUser)
+  
+  
   console.log(user);
   useEffect(() => {
     if (carts) {

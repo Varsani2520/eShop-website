@@ -14,7 +14,7 @@ import { loginUserFailure, loginUserSuccess } from "../action/action";
 import Link from "next/link";
 
 const page = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -30,12 +30,12 @@ const page = () => {
       const response = await loginservice(login.username, login.password);
       console.log(response);
 
+      dispatch(loginUserSuccess(response));
       toast.success(response.msg);
-      dispatch(loginUserSuccess(response))
       router.push("/");
     } catch (error) {
       toast.error("loggedIn fail");
-      dispatch(loginUserFailure)
+      dispatch(loginUserFailure);
       console.log(error);
     }
   }
@@ -100,7 +100,7 @@ const page = () => {
                 color="primary"
                 type="submit"
                 sx={{ mt: "1rem", fontSize: "1.2rem" }}
->
+              >
                 Login
               </Button>
               dont have account?
