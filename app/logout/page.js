@@ -9,7 +9,7 @@ const LogoutPage = () => {
 
   const handleLogout = async () => {
     // Sign out the user
-    await signOut({ redirect: false });
+    // await signOut({ redirect: false });
 
     // Redirect to the signup page
     router.push("/signup");

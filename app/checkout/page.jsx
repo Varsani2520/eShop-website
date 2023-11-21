@@ -20,15 +20,14 @@ import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decrementQuantityItem,
-  decrementTotal,
+  decrementTotalCard,
   incrementQuantityItem,
-  incrementTotal,
   removeToCartItem,
 } from "../action/action";
 
 const page = () => {
   const carts = useSelector((state) => state.cart.cartItems);
-  const cartCount = useSelector((state) => state.cart.cartCount);
+
   const dispatch = useDispatch();
   const [cart, setCart] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -39,15 +38,10 @@ const page = () => {
 
   function rmv(item) {
     dispatch(removeToCartItem(item));
-toast.success('remove item success')
-    const updatedCartCount = cartCount - 1;
-    
-  }
-  function decrement(cart) {
-    dispatch(decrementTotal(cart));
-  }
-  function increment(cart) {
-    dispatch(incrementTotal(cart));
+    dispatch(decrementTotalCard())
+    toast.success("remove item success");
+
+
   }
 
   const handleIncrement = (cart) => {
@@ -57,9 +51,7 @@ toast.success('remove item success')
   const handleDecrement = (cart) => {
     dispatch(decrementQuantityItem(cart));
   };
-  function updateCartCountAction(count) {
-    dispatch(updateCartCount(count));
-  }
+
   return (
     <div>
       <ToastContainer />

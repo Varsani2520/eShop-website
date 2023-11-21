@@ -2,6 +2,7 @@ import { connectDatabase } from "@/app/database/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { signupUser } from "@/app/modal/signupUser";
+import { loginUserFailure } from "@/app/action/action";
 connectDatabase();
 // post method
 export async function POST(request) {
@@ -20,12 +21,13 @@ export async function POST(request) {
         msg: "user logedIn successfully",
       });
     }
-    if(!checkpasswordCon){
-      return NextResponse.json({msg:'enter valid password'})
+    if (!checkpasswordCon) {
+      return NextResponse.json({ msg: "enter valid password" });
     } else {
       return NextResponse.json({ msg: "enter vaild information" });
     }
   } catch (error) {
     return NextResponse.json({ message: "falied to login", success: "false" });
+    dispatch(loginUserFailure("failed to login"));
   }
 }

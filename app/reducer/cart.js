@@ -3,12 +3,14 @@ import { toast } from "react-toastify";
 const initialStage = {
   cartItems: [],
   status: "pending",
+  count: 0,
 };
 export const addToCart = "add";
 export const removeToCart = "remove";
 export const incrementQuantity = "incQuantity";
 export const decrementQuantity = "decQuantity";
-
+export const incrementcartcount = "incrementcartcount";
+export const decrementcartcount = "decrementcartcount";
 export const cartReducer = (state = initialStage, action) => {
   switch (action.type) {
     case addToCart:
@@ -16,6 +18,7 @@ export const cartReducer = (state = initialStage, action) => {
         ...state,
         cartItems: [...state.cartItems, action.payload],
         status: "pending",
+        count: state.count + 1,
       };
     case removeToCart:
       const updatedCart = state.cartItems.filter(
@@ -25,6 +28,7 @@ export const cartReducer = (state = initialStage, action) => {
         ...state,
         cartItems: updatedCart,
         status: "pending",
+        count: state.count - 1,
       };
     case incrementQuantity:
       if (action.payload.quantity >= 5) {
@@ -55,6 +59,16 @@ export const cartReducer = (state = initialStage, action) => {
             : item
         ),
         status: "pending",
+      };
+    case incrementcartcount:
+      return {
+        ...state,
+        count: state.count + 1,
+      };
+    case decrementcartcount:
+      return {
+        ...state,
+        count: state.count - 1,
       };
     default:
       return state;

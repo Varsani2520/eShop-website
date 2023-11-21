@@ -9,6 +9,8 @@ import { Grid, TextField } from "@mui/material";
 import { signupservice } from "../service/signupservice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import GoogleIcon from "@mui/icons-material/Google";
+import Link from "next/link";
 
 const LoginPage = () => {
   const session = useSession();
@@ -47,14 +49,14 @@ const LoginPage = () => {
       console.log(error);
     }
   }
-  // useEffect(() => {
-  //   if (session.status === "authenticated") {
-  //     router.push("/");
-  //   }
-  //   if (session.status === "unauthenticated") {
-  //     router.push("/signup");
-  //   }
-  // }, [session, router]);
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      router.push("/");
+    }
+    if (session.status === "unauthenticated") {
+      router.push("/signup");
+    }
+  }, [session, router]);
   return (
     <div>
       <ToastContainer />
@@ -62,111 +64,96 @@ const LoginPage = () => {
       <Box sx={{ mt: "2rem" }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-          <img
-            src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7865.jpg?size=626&ext=jpg&ga=GA1.1.248855276.1696004271&semt=ais"
-            alt="signup Image"
-            style={{ width: "100%" }}
-          />
-        </Grid>
-        <Grid
+            <img
+              src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7865.jpg?size=626&ext=jpg&ga=GA1.1.248855276.1696004271&semt=ais"
+              alt="signup Image"
+              style={{ width: "100%" }}
+            />
+          </Grid>
+          <Grid
             item
             xs={12}
             md={6}
             sx={{ display: "flex", alignItems: "center" }}
-          >         
-            
-            
-            <form
-              onSubmit={handleSubmit}
-             
-            ><Typography component="h1" variant="h4" mb={4}>
-            Sign Up
-          </Typography>
-          
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => signIn("google")}
-              sx={{ mb: 2 }}
-            >
-              sign up with Google
-            </Button>
-          
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => signIn("github")}
-              sx={{ mb: 2 }}
-            >
-              sign up with Github
-            </Button>
-                <TextField
-                  label="Username"
-                  variant="outlined"
-                  fullWidth
-                  onChange={(e) =>
-                    setSignup({
-                      ...signup,
-                      username: e.target.value,
-                    })
-                  }
-                  value={signup.username}
-                  margin="normal"
-                />
-              
-                <TextField
-                  label="Password"
-                  fullWidth
-                  type="password"
-                  variant="outlined"
-                  onChange={(e) =>
-                    setSignup({
-                      ...signup,
-                      password: e.target.value,
-                    })
-                  }
-                  value={signup.password}
-                  margin="normal"
-                />
-              
-                <TextField
-                  label="name"
-                  fullWidth
-                  variant="outlined"
-                  onChange={(e) =>
-                    setSignup({
-                      ...signup,
-                      name: e.target.value,
-                    })
-                  }
-                  value={signup.name}
-                  margin="normal"
-                />
-              
-                <TextField
-                  label="address"
-                  variant="outlined"
-                  onChange={(e) =>
-                    setSignup({
-                      ...signup,
-                      address: e.target.value,
-                    })
-                  }
-                  value={signup.address}
-                  margin="normal"
-                />
-              
+          >
+            <form onSubmit={handleSubmit}>
+              <Typography component="h1" variant="h4" mb={4}>
+                Sign Up
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => signIn("google")}
+                sx={{ mb: 2 }}
+                startIcon={<GoogleIcon />}
+              >
+                sign up with Google
+              </Button>
+              or
+              <TextField
+                label="Username"
+                variant="outlined"
+                fullWidth
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    username: e.target.value,
+                  })
+                }
+                value={signup.username}
+                margin="normal"
+              />
+              <TextField
+                label="Password"
+                fullWidth
+                type="password"
+                variant="outlined"
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    password: e.target.value,
+                  })
+                }
+                value={signup.password}
+                margin="normal"
+              />
+              <TextField
+                label="name"
+                fullWidth
+                variant="outlined"
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    name: e.target.value,
+                  })
+                }
+                value={signup.name}
+                margin="normal"
+              />
+              <TextField
+                label="address"
+                variant="outlined"
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    address: e.target.value,
+                  })
+                }
+                value={signup.address}
+                margin="normal"
+              />
               <Button
                 variant="contained"
                 color="primary"
                 type="submit"
-                sx={{ mt: "1rem", fontSize: "1.2rem" }}>
+                sx={{ mt: "1rem", fontSize: "1.2rem" }}
+              >
                 Create Account
               </Button>
+              already have an Account? <Link href="/login">Login</Link>
             </form>
-          
+          </Grid>
         </Grid>
-      </Grid>
       </Box>
     </div>
   );

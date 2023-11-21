@@ -22,7 +22,7 @@ import { emphasize, styled } from "@mui/material/styles";
 import HomeIcon from "@mui/icons-material/Home";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { addToCartItem, incrementTotal } from "@/app/action/action";
+import { addToCartItem, incrementTotalCard } from "@/app/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 
@@ -30,6 +30,7 @@ const page = () => {
   const carts = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
   function hello(item) {
+    console.log("htis is cart");
     // Check if the item is already in the cart
     const isItemInCart = carts.some((cartItems) => cartItems.id === item.id);
 
@@ -37,9 +38,10 @@ const page = () => {
       toast.warning("Item already in the cart");
     } else {
       // Item is not in the cart, proceed to add it
+
       dispatch(addToCartItem(item));
+      dispatch(incrementTotalCard());
       toast.success("Added to cart successfully");
-      dispatch(incrementTotal(item));
     }
   }
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {

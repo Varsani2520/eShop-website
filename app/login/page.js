@@ -7,7 +7,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import GoogleIcon from "@mui/icons-material/Google";
+import { Box, Grid } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { loginUserFailure, loginUserSuccess } from "../action/action";
+import Link from "next/link";
+
 const page = () => {
+  const dispatch=useDispatch()
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -22,10 +29,13 @@ const page = () => {
     try {
       const response = await loginservice(login.username, login.password);
       console.log(response);
+
       toast.success(response.msg);
+      dispatch(loginUserSuccess(response))
       router.push("/");
     } catch (error) {
       toast.error("loggedIn fail");
+      dispatch(loginUserFailure)
       console.log(error);
     }
   }
@@ -38,68 +48,67 @@ const page = () => {
   //   }
   // }, [session, router]);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "20px",
-      }}
-    >
+    <div>
       <ToastContainer />
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Username"
-          variant="outlined"
-          onChange={(e) =>
-            setLogin({
-              ...login,
-              username: e.target.value,
-            })
-          }
-          value={login.username}
-          margin="normal"
-        />
-        <TextField
-          label="Password"
-          type="password"
-          variant="outlined"
-          onChange={(e) =>
-            setLogin({
-              ...login,
-              password: e.target.value,
-            })
-          }
-          value={login.password}
-          margin="normal"
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          style={{ marginTop: "20px" }}
-        >
-          Login
-        </Button>
-        or
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => signIn("google")}
-          sx={{ mt: 2 }}
-        >
-          Login with Google
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => signIn("github")}
-          sx={{ mt: 2 }}
-        >
-          Login with Github
-        </Button>
-      </form>
+
+      <Box sx={{ mt: "2rem" }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <img
+              src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7865.jpg?size=626&ext=jpg&ga=GA1.1.248855276.1696004271&semt=ais"
+              alt="signup Image"
+              style={{ width: "100%" }}
+            />
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{ display: "flex", alignItems: "center" }}
+          >
+            <form onSubmit={handleSubmit}>
+              <h2>Login</h2>
+              <TextField
+                label="Username"
+                fullWidth
+                variant="outlined"
+                onChange={(e) =>
+                  setLogin({
+                    ...login,
+                    username: e.target.value,
+                  })
+                }
+                value={login.username}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="Password"
+                type="password"
+                variant="outlined"
+                onChange={(e) =>
+                  setLogin({
+                    ...login,
+                    password: e.target.value,
+                  })
+                }
+                value={login.password}
+                margin="normal"
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{ mt: "1rem", fontSize: "1.2rem" }}
+>
+                Login
+              </Button>
+              dont have account?
+              <Link href="/signup">Sign up</Link>
+            </form>
+          </Grid>
+        </Grid>
+      </Box>
     </div>
   );
 };
