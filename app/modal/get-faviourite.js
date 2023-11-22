@@ -1,9 +1,13 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema } from "mongoose";
+import { favouriteReducer } from "../reducer/favourite";
 
 const getFavioriteModal = Schema({
-  token:token
+  token: token,
+  favdata: favouriteReducer,
+  status: "pending",
 });
 
 // modal
 export const faviorite =
-  mongoose.models.get-faviourite || mongoose.model("get-faviourite", getFavioriteModal);
+  mongoose.models.getFaviourite ||
+  mongoose.model("getFaviourite", getFavioriteModal);

@@ -14,4 +14,4 @@ const signupuserModal = new mongoose.Schema({
 
 // modal
 export const signupUser =
-  mongoose.models.sign || mongoose.model("sign", signupuserModal);
+  mongoose.models.signup || mongoose.model("signup", signupuserModal);
