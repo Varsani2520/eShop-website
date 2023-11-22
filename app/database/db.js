@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
-import { MONGO_URL } from "../config";
 
 export const connectDatabase = () => {
   try {
-    mongoose.connect(MONGO_URL, {
+    mongoose.connect(process.env.MONGO_URL ,{
       dbName: "erequirement",
       useNewUrlParser: true,
       useUnifiedTopology: true,

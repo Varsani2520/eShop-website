@@ -1,8 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const getFavioriteModal = Schema({
-  id: Number,
-  message: String,
+  token:token
 });
 
 // modal

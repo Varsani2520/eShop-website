@@ -3,3 +3,18 @@ store : {
     serviceId: 1,
     qty: 4
 }
+
+
+-----------------------
+for place order
+
+you need token, from redux all services and status : {"pending", "completeed"...}
+create model for this all stuff..
+
+on payment succes pass all this inforamtion to your services api
+
+model 
+service
+redux data
+token
+status

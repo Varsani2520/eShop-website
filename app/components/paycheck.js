@@ -1,6 +1,5 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
-import { public_key } from "../config";
 
 const Paycheck = () => {
   const onToken = (token) => {
@@ -18,7 +17,7 @@ const Paycheck = () => {
       amount={100}
       panelLabel="Stripe payment"
       token={onToken}
-      stripeKey={public_key}
+      stripeKey={process.env.KEY}
     />
   );
 };
