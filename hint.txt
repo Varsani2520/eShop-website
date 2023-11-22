@@ -3,7 +3,7 @@ store : {
     serviceId: 1,
     qty: 4
 }
-
+complited:true
 
 -----------------------
 for place order
