@@ -9,7 +9,7 @@ import { Grid, TextField } from "@mui/material";
 import { signupservice } from "../service/signupservice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import GoogleIcon from "@mui/icons-material/Google";
+
 import Link from "next/link";
 
 const LoginPage = () => {
@@ -81,7 +81,7 @@ const LoginPage = () => {
               <Typography component="h1" variant="h4" mb={4}>
                 Sign Up
               </Typography>
-              <Button
+              {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={() => signIn("google")}
@@ -89,7 +89,7 @@ const LoginPage = () => {
                 startIcon={<GoogleIcon />}
               >
                 sign up with Google
-              </Button>
+              </Button> */}
               or
               <TextField
                 label="Username"

@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import GoogleIcon from "@mui/icons-material/Google";
 import { Box, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { loginUserFailure, loginUserSuccess } from "../action/action";
@@ -39,14 +38,7 @@ const page = () => {
       console.log(error);
     }
   }
-  // useEffect(() => {
-  //   if (session.status === "authenticated") {
-  //     router.push("/");
-  //   }
-  //   if (session.status === "unauthenticated") {
-  //     router.push("/signup");
-  //   }
-  // }, [session, router]);
+  
   return (
     <div>
       <ToastContainer />
