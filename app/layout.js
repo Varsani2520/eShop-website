@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
-
 import { StoreProvider } from "./storeProvider";
+
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "erequirements",
