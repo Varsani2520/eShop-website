@@ -38,9 +38,9 @@ function App() {
   const [likes, setLikes] = useState(0);
   const carts = useSelector((state) => state.cart.cartItems);
   const favs = useSelector((state) => state.likes.favouriteItems);
-  const user = useSelector((state) => state.auth.authUser)
+  const user = useSelector((state) => state.auth.authUser.data)
 
-  console.log(user);
+  
   useEffect(() => {
     if (carts) {
       setCart(carts.length);
@@ -200,8 +200,8 @@ function App() {
                   </IconButton>
                 </Tooltip>
               ) : (
-                <><Link href="/signup" >Sign up</Link >
-                  <Link href="/login" >Login</Link >
+                <><Button href="/signup" >Sign up</Button >
+                  <Button href="/login" >Login</Button >
                 </>
               )
             }

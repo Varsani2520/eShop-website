@@ -3,6 +3,7 @@ import {
   LOGIN_USER_SUCCESS,
   LOGOUT_USER,
 } from "../reducer/authenticate";
+import { addToBookmark, removeToBookmark } from "../reducer/bookmark";
 import {
   addToCart,
   decrementQuantity,
@@ -68,4 +69,14 @@ export const loginUserFailure = () => ({
 });
 export const logoutuser = () => ({
   type: LOGOUT_USER,
+});
+
+// bookamrk item
+export const bookmarkitem = (Items) => ({
+  type: addToBookmark,
+  payload: Items,
+});
+export const bookmarkitemremove = (Items) => ({
+  type: removeToBookmark,
+  payload: Items,
 });

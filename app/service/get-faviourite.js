@@ -1,8 +1,8 @@
 import { httpAxios } from "../httpAxios";
 
-export async function getFavioriteService({token}) {
+export async function FavioriteService(token, data) {
   const result = await httpAxios
-    .post("api/get-faviorite",{token:token})
-    .then((response) => response.data);
+    .post("api/faviorite", { token: token, data: data })
+    .then((response) => response);
   return result;
 }

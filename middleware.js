@@ -1,9 +1,6 @@
-export function middleware({ state, utils }) {
-  const user = state.auth.authUser;
-  if (!user) {
-    utils.redirect("/signup");
-  }
+export function middleware() {
+  console.log("hello");
 }
 export const config = {
-  matcher: "/profile",
+  matcher: "/",
 };

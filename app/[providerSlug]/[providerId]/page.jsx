@@ -29,8 +29,10 @@ import {
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { addToFavouriteItem, incrementTotalfav } from "@/app/action/action";
+import { addToFavouriteItem, bookmarkitem, incrementTotalfav } from "@/app/action/action";
 import 'react-toastify/dist/ReactToastify.css'
+import { FavioriteService } from "@/app/service/get-faviourite";
+
 const page = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const { providerSlug } = useParams();
@@ -74,20 +76,34 @@ const page = () => {
     }
   }
   const favourites = useSelector((state) => state.likes.favouriteItems);
+  const bookmaarkItem = useSelector((state) => state.bookmark.bookmarkItems);
+
+  const token = useSelector((state) => state.auth.authUser.data.token);
   const dispatch = useDispatch();
   function fav(item) {
-    console.log("htis is fav");
 
     const isItemInFav = favourites.some(
       (favouriteItems) => favouriteItems.id === item.id
     );
     if (isItemInFav) {
-      toast.warning("Item already in the cart");
+      toast.warning("Your Items is already in your WishList");
     } else {
       // Item is not in the cart, proceed to add it
+      console.log(item);
       dispatch(addToFavouriteItem(item));
       dispatch(incrementTotalfav());
+      FavioriteService(token, item)
       toast.success("Added to favourite successfully");
+    }
+  }
+  function bookmark(item) {
+    const isItemInBook = bookmaarkItem.some((bookmarkItems) => bookmarkItems.id === item.id)
+    if (isItemInBook) {
+      toast.warning("item is already in your bookmark")
+    }
+    else {
+      dispatch(bookmarkitem(item))
+      toast.success("Bookmark Successfully")
     }
   }
   useEffect(() => {
@@ -95,7 +111,7 @@ const page = () => {
   }, []);
   return (
     <div>
-      <ToastContainer/>
+      <ToastContainer />
       <Box sx={{ background: "hotpink" }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
@@ -125,65 +141,65 @@ const page = () => {
           <Grid container spacing={2}>
             {loading
               ? Array.from({ length: 3 }).map((index) => (
-                  <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
-                    <Box>
-                      <Card sx={{ maxWidth: 345 }}>
-                        <Skeleton
-                          variant="rectangular"
-                          height={194}
-                          animation="wave"
+                <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+                  <Box>
+                    <Card sx={{ maxWidth: 345 }}>
+                      <Skeleton
+                        variant="rectangular"
+                        height={194}
+                        animation="wave"
+                      />
+                      <CardContent>
+                        <Skeleton animation="wave" />
+                      </CardContent>
+                    </Card>
+                    <br />
+                  </Box>
+                </Grid>
+              ))
+              : desc.map((response, index) => {
+                if (providerSlug == response.provider_id)
+                  return (
+                    <Grid item key={response.provider_id + "_" + response.id}>
+                      <Card sx={{ maxWidth: 350 }}>
+                        <CardHeader
+                          title={response.name}
+                          sx={{ background: "#b7bfee" }}
                         />
-                        <CardContent>
-                          <Skeleton animation="wave" />
-                        </CardContent>
+                        <CardMedia
+                          sx={{ cursor: "pointer" }}
+                          component="img"
+                          image={response.img}
+                          alt={response.alt}
+                          onClick={(e) =>
+                            router.push(
+                              `${response.provider_id}/${response.id}`
+                            )
+                          }
+                        />
+
+                        <CardActions disableSpacing>
+                          <IconButton aria-label="add to favorites">
+                            <Checkbox
+                              onClick={() => fav(response)}
+                              inputProps={{ "aria-label": "Favorite" }}
+                              icon={<FavoriteBorder />}
+                              checkedIcon={<Favorite color="secondary" />}
+                            />
+                          </IconButton>
+                          <IconButton aria-label="bookmark">
+                            <Checkbox
+                              onClick={() => bookmark(response)}
+                              icon={<BookmarkBorderIcon />}
+                              checkedIcon={<BookmarkIcon />}
+                            />
+                          </IconButton>
+                        </CardActions>
                       </Card>
                       <br />
-                    </Box>
-                  </Grid>
-                ))
-              : desc.map((response, index) => {
-                  if (providerSlug == response.provider_id)
-                    return (
-                      <Grid item key={response.provider_id + "_" + response.id}>
-                        <Card sx={{ maxWidth: 350 }}>
-                          <CardHeader
-                            title={response.name}
-                            sx={{ background: "#b7bfee" }}
-                          />
-                          <CardMedia
-                            sx={{ cursor: "pointer" }}
-                            component="img"
-                            image={response.img}
-                            alt={response.alt}
-                            onClick={(e) =>
-                              router.push(
-                                `${response.provider_id}/${response.id}`
-                              )
-                            }
-                          />
-
-                          <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                              <Checkbox
-                                onClick={() => fav(response)}
-                                inputProps={{ "aria-label": "Favorite" }}
-                                icon={<FavoriteBorder />}
-                                checkedIcon={<Favorite color="secondary" />}
-                              />
-                            </IconButton>
-                            <IconButton aria-label="bookmark">
-                              <Checkbox
-                                {...label}
-                                icon={<BookmarkBorderIcon />}
-                                checkedIcon={<BookmarkIcon />}
-                              />
-                            </IconButton>
-                          </CardActions>
-                        </Card>
-                        <br />
-                      </Grid>
-                    );
-                })}
+                    </Grid>
+                  );
+              })}
           </Grid>
         </Container>
       </Box>

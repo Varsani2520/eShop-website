@@ -4,17 +4,15 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Box from "@mui/material/Box";
 import { HomeService } from "../service/HomeService";
-import { Checkbox, Container, Grid, Typography } from "@mui/material";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
+import {  Container, Grid, Typography } from "@mui/material";
+import {  FavoriteBorder } from "@mui/icons-material";
+
 import Skeleton from "@mui/material/Skeleton";
 import { useRouter } from "next/navigation";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const HomeCard = () => {
   const [card, setCard] = useState([]);
@@ -23,7 +21,7 @@ const HomeCard = () => {
   async function fetchCards() {
     const result = await HomeService();
     setCard(result);
-    console.log(result);
+    
     setLoading(false);
   }
   
@@ -79,19 +77,7 @@ const HomeCard = () => {
                           {response.description}
                         </Typography>
                       </CardContent>
-                      <CardActions disableSpacing>
-                        <Checkbox
-                          onClick={() => fav(response)}
-                          inputProps={{ "aria-label": "Favorite" }}
-                          icon={<FavoriteBorder />}
-                          checkedIcon={<Favorite color="secondary" />}
-                        />
-                        <Checkbox
-                          inputProps={{ "aria-label": "Bookmark" }}
-                          icon={<BookmarkBorderIcon />}
-                          checkedIcon={<BookmarkIcon />}
-                        />
-                      </CardActions>
+                      
                     </Card>
                     <br />
                   </Box>

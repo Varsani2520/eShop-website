@@ -63,31 +63,31 @@ const Layout = ({ children }) => {
           <Divider />
           <Card sx={{ background: "#f0f0f0", padding: 3 }}>
             <div style={linkStyle}>
-              <Button variant="outlined" color="primary"onClick={()=>'/profile/bookings'}>
-                My Booking
+              <Button variant="outlined" color="primary"href='/profile/bookings'>
+                Booking
               </Button>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button variant="outlined" color="primary"onClick={()=>'/profile/bookmark'}>
+              <Button variant="outlined" color="primary"href='/profile/bookmarks'>
                 Bookmark
               </Button>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button variant="outlined" color="primary"onClick={()=>'/profile/favourites'}>
-                Favourites
+              <Button variant="outlined" color="primary"href='/profile/favourites'>
+                WishList
               </Button>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button variant="outlined" color="primary"onClick={()=>'/profile/notifications'}>
+              <Button variant="outlined" color="primary"href='/profile/notifications'>
                 Notification
               </Button>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button variant="outlined" color="secondary" onClick={()=>'/profile/delete-account'}>
+              <Button variant="outlined" color="secondary" href='/profile/delete-account'>
                 Delete Account
               </Button>
             </div>
