@@ -12,13 +12,14 @@ const page = () => {
     <Container>
       <Grid container justifyContent="center" alignItems="center">
         <Grid item lg={12} md={12} xs={12} sx={{ mt: "10%" }}>
-          <img
+          {/* <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRkYirTLhuwtOs47q2Dm3Ob1pEfQ_eXYeCUA&usqp=CAU"
             height="auto"
             width="100%"
             alt="welcome"
-            style={{ maxWidth: "800px" }}
-          />
+            style={{ maxWidth: "800px" }} */}
+            <Slider1/>
+          
         </Grid>
       </Grid>
 
