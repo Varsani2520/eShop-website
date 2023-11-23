@@ -8,7 +8,7 @@ connectDatabase();
 
 export async function POST(request) {
   const { username, password, name, address } = await request.json();
-  await connectDatabase();
+  
 
   const token = jwt.sign({ username }, process.env.JWT_SECRET);
   try {

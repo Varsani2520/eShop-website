@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -13,7 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 
 const LoginPage = () => {
-  const session = useSession();
   const router = useRouter();
 
   const [signup, setSignup] = useState({
@@ -49,14 +47,6 @@ const LoginPage = () => {
       console.log(error);
     }
   }
-  // useEffect(() => {
-  //   if (session.status === "authenticated") {
-  //     router.push("/");
-  //   }
-  //   if (session.status === "unauthenticated") {
-  //     router.push("/signup");
-  //   }
-  // }, [session, router]);
 
   return (
     <div>
@@ -81,16 +71,6 @@ const LoginPage = () => {
               <Typography component="h1" variant="h4" mb={4}>
                 Sign Up
               </Typography>
-              {/* <Button
-                variant="contained"
-                color="primary"
-                onClick={() => signIn("google")}
-                sx={{ mb: 2 }}
-                startIcon={<GoogleIcon />}
-              >
-                sign up with Google
-              </Button> */}
-              or
               <TextField
                 label="Username"
                 variant="outlined"
