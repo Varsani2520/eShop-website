@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 connectDatabase();
 export async function POST(request) {
-  const { token } = await request.json({ token });
+  const { token } = await request.json();
 
   try {
     const getFav = new faviorite({
