@@ -1,10 +1,7 @@
 import { Schema } from "mongoose";
-import { favouriteReducer } from "../reducer/favourite";
 
 const getFavioriteModal = Schema({
-  token: token,
-  favdata: favouriteReducer,
-  status: "pending",
+  token: String
 });
 
 // modal
