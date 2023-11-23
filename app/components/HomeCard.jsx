@@ -13,8 +13,7 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import Skeleton from "@mui/material/Skeleton";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { addToFavouriteItem, incrementTotalfav } from "../action/action";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const HomeCard = () => {
@@ -27,23 +26,7 @@ const HomeCard = () => {
     console.log(result);
     setLoading(false);
   }
-  const favourites = useSelector((state) => state.likes.favouriteItems);
-  const dispatch = useDispatch();
-  function fav(item) {
-    console.log("htis is fav");
-
-    const isItemInFav = favourites.some(
-      (favouriteItems) => favouriteItems.id === item.id
-    );
-    if (isItemInFav) {
-      toast.warning("Item already in the cart");
-    } else {
-      // Item is not in the cart, proceed to add it
-      dispatch(addToFavouriteItem(item));
-      dispatch(incrementTotalfav());
-      toast.success("Added to favourite successfully");
-    }
-  }
+  
 
   useEffect(() => {
     fetchCards();

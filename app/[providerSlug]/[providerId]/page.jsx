@@ -27,6 +27,10 @@ import {
   styled,
 } from "@mui/material";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import { addToFavouriteItem, incrementTotalfav } from "@/app/action/action";
+import 'react-toastify/dist/ReactToastify.css'
 const page = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const { providerSlug } = useParams();
@@ -69,11 +73,29 @@ const page = () => {
       console.log(error);
     }
   }
+  const favourites = useSelector((state) => state.likes.favouriteItems);
+  const dispatch = useDispatch();
+  function fav(item) {
+    console.log("htis is fav");
+
+    const isItemInFav = favourites.some(
+      (favouriteItems) => favouriteItems.id === item.id
+    );
+    if (isItemInFav) {
+      toast.warning("Item already in the cart");
+    } else {
+      // Item is not in the cart, proceed to add it
+      dispatch(addToFavouriteItem(item));
+      dispatch(incrementTotalfav());
+      toast.success("Added to favourite successfully");
+    }
+  }
   useEffect(() => {
     Desc();
   }, []);
   return (
     <div>
+      <ToastContainer/>
       <Box sx={{ background: "hotpink" }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
@@ -143,9 +165,10 @@ const page = () => {
                           <CardActions disableSpacing>
                             <IconButton aria-label="add to favorites">
                               <Checkbox
-                                {...label}
+                                onClick={() => fav(response)}
+                                inputProps={{ "aria-label": "Favorite" }}
                                 icon={<FavoriteBorder />}
-                                checkedIcon={<Favorite />}
+                                checkedIcon={<Favorite color="secondary" />}
                               />
                             </IconButton>
                             <IconButton aria-label="bookmark">

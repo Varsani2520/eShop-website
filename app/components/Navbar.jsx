@@ -19,7 +19,6 @@ import { useState, useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useSelector } from "react-redux";
 import { Badge } from "@mui/material";
-import { useSession } from "next-auth/react";
 
 const pages = [
   { label: "Home", link: "/" },
@@ -50,7 +49,6 @@ function App() {
       setLikes(favs.length);
     }
   }, [carts, favs, user]);
-  const session = useSession();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

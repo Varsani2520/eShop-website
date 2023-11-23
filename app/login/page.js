@@ -19,7 +19,6 @@ const page = () => {
     password: "",
   });
   const router = useRouter();
-  const session = useSession();
   async function handleSubmit(e) {
     e.preventDefault();
     if (!login.username || !login.password) {
@@ -32,13 +31,14 @@ const page = () => {
       dispatch(loginUserSuccess(response));
       toast.success(response.msg);
       router.push("/");
-    } catch (error) {
+    } 
+    catch (error) {
       toast.error("loggedIn fail");
       dispatch(loginUserFailure);
       console.log(error);
     }
   }
-  
+
   return (
     <div>
       <ToastContainer />

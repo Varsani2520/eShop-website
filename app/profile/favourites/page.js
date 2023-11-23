@@ -53,7 +53,7 @@ const page = () => {
                   <Grid container spacing={2} mt={5}>
                     <Grid item xs={6} md={4}>
                       <CardMedia
-                        image={likes.image}
+                        image={likes.img}
                         width={300}
                         height={140}
                         component="img"

@@ -13,8 +13,8 @@ import {
 
 const Layout = ({ children }) => {
   return (
-    <Container>
-      <Grid container justifyContent="center" spacing={2}>
+    <Container maxWidth="xl">
+      <Grid container justifyContent="center" spacing={2} sx={{mt:'10%'}}>
         <Grid item md={4}>
           <Card
             sx={{

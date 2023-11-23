@@ -2,32 +2,40 @@ import { connectDatabase } from "@/app/database/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { signupUser } from "@/app/modal/signupUser";
-import { loginUserFailure } from "@/app/action/action";
+
 connectDatabase();
+
 // post method
 export async function POST(request) {
   const { username, password } = await request.json();
-  connectDatabase();
 
   try {
-    const createuser = await signupUser.findOne({ username });
-    if (!createuser) {
-      return NextResponse.json({ msg: "user not found" });
+    const user = await signupUser.findOne({ username });
+
+    if (!user) {
+      return NextResponse.json({ msg: "User not found" });
     }
-    const checkpasswordCon = bcrypt.compare(createuser.password, password);
-    if (checkpasswordCon) {
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (passwordMatch) {
       return NextResponse.json({
-        data: createuser,
-        msg: "user logedIn successfully",
+        data: user,
+        msg: "User logged in successfully",
       });
-    }
-    if (!checkpasswordCon) {
-      return NextResponse.json({ msg: "enter valid password" });
     } else {
-      return NextResponse.json({ msg: "enter vaild information" });
+      return NextResponse.json({ msg: "Enter valid password" });
     }
   } catch (error) {
-    dispatch(loginUserFailure("failed to login"));
-    return NextResponse.json({ message: "falied to login", success: "false" });
+    // Handle the error appropriately, e.g., log it or send an error response
+    console.error(error);
+
+    // If you have access to your store or dispatch function, use it here
+    // dispatch(loginUserFailure("Failed to login"));
+
+    return NextResponse.json({
+      message: "Failed to login",
+      success: false,
+    });
   }
 }
