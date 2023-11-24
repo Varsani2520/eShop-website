@@ -21,16 +21,16 @@ import { useSelector } from "react-redux";
 import { Badge } from "@mui/material";
 
 const pages = [
-  { label: "Home", link: "/" },
-  { label: "About", link: "/about" },
-  { label: "Product", link: "/product" },
-  { label: "Contact", link: "/contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Product", href: "/product" },
+  { label: "Contact", href: "/contact" },
 ];
 const settings = [
-  { label: "Profile", link: "/profile" },
-  { label: "Account", link: "/account" },
-  { label: "Dashboard", link: "/dashboard" },
-  { label: "Logout", link: "/logout" },
+  { label: "Profile", href: "/profile" },
+  { label: "Account", href: "/account" },
+  { label: "Dashboard", href: "/dashboard" },
+  { label: "Logout", href: "/logout" },
 ];
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
   const favs = useSelector((state) => state.likes.favouriteItems);
   const user = useSelector((state) => state.auth.authUser.data)
 
-  
+
   useEffect(() => {
     if (carts) {
       setCart(carts.length);
@@ -128,7 +128,7 @@ function App() {
             >
               {pages.map((page) => (
                 <MenuItem key={page.label} onClick={handleCloseNavMenu}>
-                  <Link href={page.link} style={{ textDecoration: "none" }}>
+                  <Link href={page.href} style={{ textDecoration: "none" }}>
                     <Typography textAlign="center">{page.label}</Typography>
                   </Link>
                 </MenuItem>
@@ -157,7 +157,7 @@ function App() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link
-                href={page.link}
+                href={page.href}
                 style={{ textDecoration: "none" }}
                 key={page.label}
               >
@@ -224,7 +224,7 @@ function App() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
-                  <Link href={setting.link} style={{ textDecoration: "none" }}>
+                  <Link href={setting.href} style={{ textDecoration: "none" }}>
                     <Typography textAlign="center">{setting.label}</Typography>
                   </Link>
                 </MenuItem>

@@ -1,6 +1,6 @@
 "use client";
 import { decrementTotalfav, removeToFavouriteItem } from "@/app/action/action";
-import { LinkedCameraSharp } from "@mui/icons-material";
+import { getFaviorites } from "@/app/service/getFaviourite";
 import {
   Box,
   Button,
@@ -17,65 +17,63 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const page = () => {
   const dispatch = useDispatch();
-  const favs = useSelector((state) => state.likes.favouriteItems);
-  console.log(favs);
 
-  const [likes, setLikes] = useState(0);
+  const tokens = useSelector((state) => state.auth.authUser.data.token);
+
+  
+  const [fav, setFav] = useState([]);
+
+  async function getFav() {
+    const response = await getFaviorites(tokens);
+    setFav(response);
+    // setLikes(response.data.length);
+  }
   function rmv(item) {
     dispatch(removeToFavouriteItem(item));
     dispatch(decrementTotalfav());
-    toast.success("remove favourite sucess");
+    toast.success("remove favourite success");
   }
   useEffect(() => {
-    if (favs) {
-      setLikes(favs.length);
-    }
-  }, [favs]);
+    getFav();
+  }, []);
+
   return (
     <div>
+      <ToastContainer />
+
       <div>
-        <ToastContainer />
-
-        <Box>
-          {favs &&
-            favs.map((likes) => (
-              <Card key={likes.id}>
-                {favs.length === 0 ? (
-                  <div>
-                    <img
-                      src="https://w7.pngwing.com/pngs/277/965/png-transparent-empty-cart-illustration-thumbnail.png"
-                      alt="empty cart img"
-                      width="300px"
-                    />
-                    <Typography>no item in favourite</Typography>
-                  </div>
-                ) : (
-                  <Grid container spacing={2} mt={5}>
-                    <Grid item xs={6} md={4}>
-                      <CardMedia
-                        image={likes.img}
-                        width={300}
-                        height={140}
-                        component="img"
-                        alt="img"
-                      />
+        {fav.map((likes) => {
+          return (
+            <>
+              {likes.data.map((like) => {
+                console.log(like);
+                return (
+                  <Card key={like.id}>
+                    <Grid container spacing={2} mt={5}>
+                      <Grid item xs={6} md={4}>
+                        <CardMedia
+                          image={like.img}
+                          width={300}
+                          height={140}
+                          component="img"
+                          alt="img"
+                        />
+                      </Grid>
+                      <Grid item xs={6} md={2}>
+                        <CardContent>
+                          <Typography>{like.name}</Typography>
+                          <Typography>rating: {like.rating}</Typography>
+                          <Typography>Price: {like.price}</Typography>
+                          <Button onClick={() => rmv(likes)}>REMOVE</Button>
+                        </CardContent>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={6} md={2}>
-                      <CardContent>
-                        <Typography> {likes.name}</Typography>
-                        <Typography>rating:{likes.rating}</Typography>
-                        <Typography>Price:{likes.price}</Typography>
-
-                        <Button onClick={() => rmv(likes)}>REMOVE</Button>
-                      </CardContent>
-                    </Grid>
-                  </Grid>
-                )}
-
-                {/* option */}
-              </Card>
-            ))}
-        </Box>
+                  </Card>
+                );
+              })}
+            </>
+          );
+        })}
       </div>
     </div>
   );

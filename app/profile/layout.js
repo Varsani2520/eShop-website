@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import {
   Avatar,
@@ -10,11 +10,12 @@ import {
   Box,
   Divider,
 } from "@mui/material";
+import Link from "next/link";
 
 const Layout = ({ children }) => {
   return (
     <Container maxWidth="xl">
-      <Grid container justifyContent="center" spacing={2} sx={{mt:'10%'}}>
+      <Grid container justifyContent="center" spacing={2} sx={{ mt: "10%" }}>
         <Grid item md={4}>
           <Card
             sx={{
@@ -63,31 +64,47 @@ const Layout = ({ children }) => {
           <Divider />
           <Card sx={{ background: "#f0f0f0", padding: 3 }}>
             <div style={linkStyle}>
-              <Button variant="outlined" color="primary"href='/profile/bookings'>
-                Booking
+              <Button variant="outlined" color="primary">
+                <Link href="/profile/bookings">Booking</Link>
               </Button>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button variant="outlined" color="primary"href='/profile/bookmarks'>
+              <Button
+                variant="outlined"
+                color="primary"
+                href="/profile/bookmark"
+              >
                 Bookmark
               </Button>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button variant="outlined" color="primary"href='/profile/favourites'>
+              <Button
+                variant="outlined"
+                color="primary"
+                href="/profile/favourites"
+              >
                 WishList
               </Button>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button variant="outlined" color="primary"href='/profile/notifications'>
+              <Button
+                variant="outlined"
+                color="primary"
+                href="/profile/notifications"
+              >
                 Notification
               </Button>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button variant="outlined" color="secondary" href='/profile/delete-account'>
+              <Button
+                variant="outlined"
+                color="secondary"
+                href="/profile/delete-account"
+              >
                 Delete Account
               </Button>
             </div>

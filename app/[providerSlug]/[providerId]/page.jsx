@@ -32,6 +32,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { addToFavouriteItem, bookmarkitem, incrementTotalfav } from "@/app/action/action";
 import 'react-toastify/dist/ReactToastify.css'
 import { FavioriteService } from "@/app/service/get-faviourite";
+import { bookmarkServices } from "@/app/service/bookmark";
 
 const page = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -76,7 +77,7 @@ const page = () => {
     }
   }
   const favourites = useSelector((state) => state.likes.favouriteItems);
-  const bookmaarkItem = useSelector((state) => state.bookmark.bookmarkItems);
+  const bookmarkItems = useSelector((state) => state.bookmark.bookmarkItems);
 
   const token = useSelector((state) => state.auth.authUser.data.token);
   const dispatch = useDispatch();
@@ -97,12 +98,14 @@ const page = () => {
     }
   }
   function bookmark(item) {
-    const isItemInBook = bookmaarkItem.some((bookmarkItems) => bookmarkItems.id === item.id)
+    const isItemInBook = bookmarkItems.some((bookmarkItems) => bookmarkItems.id === item.id)
+    
     if (isItemInBook) {
       toast.warning("item is already in your bookmark")
     }
     else {
       dispatch(bookmarkitem(item))
+      bookmarkServices(token, item)
       toast.success("Bookmark Successfully")
     }
   }
