@@ -26,6 +26,7 @@ import {
 } from "../action/action";
 
 const page = () => {
+ 
   const carts = useSelector((state) => state.cart.cartItems);
 
   const dispatch = useDispatch();

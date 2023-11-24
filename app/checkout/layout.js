@@ -13,21 +13,13 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import React from "react";
+import Steppers from "../components/Steppers";
 
 const layout = ({ children }) => {
-  const steps = ["Cart", "Address", "Payment", "Summary"];
-
   return (
     <div>
-      <Box sx={{ width: "100%", mt: 5 }}>
-        {" "}
-        <Stepper activeStep={1} alternativeLabel>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+      <Box sx={{ width: "100%", mt: "10%" }}>
+        <Steppers />
       </Box>
       <Container>
         <Grid container spacing={3}>
@@ -45,7 +37,6 @@ const layout = ({ children }) => {
             </Card>
             <Button variant="contained">
               <Link href="/checkout/address">Continue</Link>
-              
             </Button>
           </Grid>
         </Grid>

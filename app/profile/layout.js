@@ -11,8 +11,11 @@ import {
   Divider,
 } from "@mui/material";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
+  const user = useSelector((state) => state.auth.authUser.data);
+
   return (
     <Container maxWidth="xl">
       <Grid container justifyContent="center" spacing={2} sx={{ mt: "10%" }}>
@@ -42,15 +45,14 @@ const Layout = ({ children }) => {
                 src=""
                 alt="User Avatar"
                 sx={{ width: 120, height: 120, marginBottom: 2 }}
+                type="file"
               />
               <Typography variant="h6" sx={{ fontSize: 20, color: "#333" }}>
-                Name
+                {user.name}
               </Typography>
+
               <Typography variant="body2" sx={{ fontSize: 16, color: "#666" }}>
-                Address
-              </Typography>
-              <Typography variant="body2" sx={{ fontSize: 16, color: "#666" }}>
-                Email
+                {user.username}
               </Typography>
               <Button
                 variant="contained"

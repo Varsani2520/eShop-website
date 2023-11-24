@@ -99,7 +99,7 @@ const page = () => {
   }
   function bookmark(item) {
     const isItemInBook = bookmarks.some((bookmarkItems) => bookmarkItems.id === item.id)
-    
+
     if (isItemInBook) {
       toast.warning("item is already in your bookmark")
     }
@@ -113,9 +113,9 @@ const page = () => {
     Desc();
   }, []);
   return (
-    <div>
+    <div >
       <ToastContainer />
-      <Box sx={{ background: "hotpink" }}>
+      <Box sx={{ background: "hotpink",mt:'10%' }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">

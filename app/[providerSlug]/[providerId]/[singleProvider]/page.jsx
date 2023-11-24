@@ -84,7 +84,7 @@ const page = () => {
   return (
     <Box>
       <ToastContainer />
-      <Box sx={{ background: "hotpink" }}>
+      <Box sx={{ background: "hotpink", mt: '10%' }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
