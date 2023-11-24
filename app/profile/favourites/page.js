@@ -26,7 +26,7 @@ const page = () => {
   async function getFav() {
     const response = await getFaviorites(tokens);
     setFav(response);
-    // setLikes(response.data.length);
+  
   }
   function rmv(item) {
     dispatch(removeToFavouriteItem(item));

@@ -22,10 +22,10 @@ const page = () => {
 
   const [book, setBook] = useState([]);
   async function getBook() {
-    const respons = await getBookmark(token);
+    const response = await getBookmark(token);
     setBook(response);
   }
-  async function rmv(item) {
+   function rmv(item) {
     dispatch(bookmarkitemremove(response));
     toast.success("remove bookmark success");
   }
@@ -39,6 +39,7 @@ const page = () => {
 
       <Box>
         {book.map((bookmark) => {
+          console.log(bookmark);
           return (
             <>
               {bookmark.data.map((book) => {

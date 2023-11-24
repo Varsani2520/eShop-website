@@ -77,7 +77,7 @@ const page = () => {
     }
   }
   const favourites = useSelector((state) => state.likes.favouriteItems);
-  const bookmarkItems = useSelector((state) => state.bookmark.bookmarkItems);
+  const bookmarks = useSelector((state) => state.bookmark.bookmarkItems);
 
   const token = useSelector((state) => state.auth.authUser.data.token);
   const dispatch = useDispatch();
@@ -98,7 +98,7 @@ const page = () => {
     }
   }
   function bookmark(item) {
-    const isItemInBook = bookmarkItems.some((bookmarkItems) => bookmarkItems.id === item.id)
+    const isItemInBook = bookmarks.some((bookmarkItems) => bookmarkItems.id === item.id)
     
     if (isItemInBook) {
       toast.warning("item is already in your bookmark")
