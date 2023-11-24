@@ -105,6 +105,7 @@ const page = () => {
     }
     else {
       dispatch(bookmarkitem(item))
+      
       bookmarkServices(token, item)
       toast.success("Bookmark Successfully")
     }
@@ -115,7 +116,7 @@ const page = () => {
   return (
     <div >
       <ToastContainer />
-      <Box sx={{ background: "hotpink",mt:'10%' }}>
+      <Box sx={{ background: "hotpink" }}mt={{md:'5%',xs:'10%'}}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">

@@ -19,17 +19,15 @@ const page = () => {
   const dispatch = useDispatch();
 
   const tokens = useSelector((state) => state.auth.authUser.data.token);
-
-  
+   
   const [fav, setFav] = useState([]);
 
   async function getFav() {
     const response = await getFaviorites(tokens);
     setFav(response);
-  
   }
-  function rmv(item) {
-    dispatch(removeToFavouriteItem(item));
+  function rmv(response) {
+    dispatch(removeToFavouriteItem(response));
     dispatch(decrementTotalfav());
     toast.success("remove favourite success");
   }

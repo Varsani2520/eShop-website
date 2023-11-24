@@ -73,7 +73,7 @@ const page = () => {
           </Card>
         ) : (
           carts.map((cart) => (
-            <Card key={cart.id}>
+            <Card key={cart.id} sx={{background:'#f0f0f0'}}>
               {carts.length === 0 ? (
                 <img
                   src="https://w7.pngwing.com/pngs/277/965/png-transparent-empty-cart-illustration-thumbnail.png"

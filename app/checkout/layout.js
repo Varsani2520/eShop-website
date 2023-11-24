@@ -22,12 +22,12 @@ const layout = ({ children }) => {
         <Steppers />
       </Box>
       <Container>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             {children}
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Card>
+          <Grid item xs={12} md={6} >
+            <Card >
               <CardHeader>Price Details</CardHeader>
               <CardContent>
                 <Typography>Total Product Price:</Typography>
