@@ -26,8 +26,8 @@ const layout = ({ children }) => {
           <Grid item xs={12} md={6}>
             {children}
           </Grid>
-          <Grid item xs={12} md={6} >
-            <Card >
+          <Grid item xs={12} md={6}>
+            <Card>
               <CardHeader>Price Details</CardHeader>
               <CardContent>
                 <Typography>Total Product Price:</Typography>

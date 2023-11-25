@@ -19,18 +19,14 @@ const page = () => {
   const dispatch = useDispatch();
 
   const tokens = useSelector((state) => state.auth.authUser.data.token);
-   
+
   const [fav, setFav] = useState([]);
 
   async function getFav() {
     const response = await getFaviorites(tokens);
     setFav(response);
   }
-  function rmv(response) {
-    dispatch(removeToFavouriteItem(response));
-    dispatch(decrementTotalfav());
-    toast.success("remove favourite success");
-  }
+
   useEffect(() => {
     getFav();
   }, []);
@@ -62,7 +58,8 @@ const page = () => {
                           <Typography>{like.name}</Typography>
                           <Typography>rating: {like.rating}</Typography>
                           <Typography>Price: {like.price}</Typography>
-                          <Button onClick={() => rmv(likes)}>REMOVE</Button>
+                          {/* <Button >REMOVE</Button> */}
+                          {/* pending */}
                         </CardContent>
                       </Grid>
                     </Grid>

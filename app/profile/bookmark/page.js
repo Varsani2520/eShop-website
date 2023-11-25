@@ -60,7 +60,8 @@ const page = () => {
                           <Typography>{book.name}</Typography>
                           <Typography>rating: {book.rating}</Typography>
                           <Typography>Price: {book.price}</Typography>
-                          <Button onClick={() => rmv(bookmark)}>REMOVE</Button>
+                          {/* <Button onClick={() => rmv(bookmark)}>REMOVE</Button> */}
+                          {/* pending */}
                         </CardContent>
                       </Grid>
                     </Grid>
