@@ -19,17 +19,16 @@ import { useState, useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useSelector } from "react-redux";
 import { Badge } from "@mui/material";
-
+import { styled } from '@mui/material/styles';
 const pages = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Product", href: "/product" },
+  // { label: "Product", href: "/product" },
   { label: "Contact", href: "/contact" },
 ];
 const settings = [
   { label: "Profile", href: "/profile" },
-  { label: "Account", href: "/account" },
-  { label: "Dashboard", href: "/dashboard" },
+  
   { label: "Logout", href: "/logout" },
 ];
 
@@ -66,7 +65,14 @@ function App() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }));
   return (
     <AppBar
       position="fixed"
@@ -173,24 +179,29 @@ function App() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Badge color="error" badgeContent={cart}>
-              <IconButton
-                color="primary"
-                aria-label="add to shopping cart"
-                href="/checkout"
-              >
+
+            <IconButton
+              color="primary"
+              aria-label="add to shopping cart"
+              href="/checkout"
+
+            >
+              <StyledBadge badgeContent={cart} color="secondary">
+
                 <AddShoppingCartIcon />
-              </IconButton>
-            </Badge>
-            <Badge color="error" badgeContent={likes}>
-              <IconButton
-                color="primary"
-                aria-label="add to shopping cart"
-                href="/profile/favourites"
-              >
+              </StyledBadge>
+            </IconButton>
+
+            <IconButton
+              color="primary"
+              aria-label="add to shopping cart"
+              href="/profile/favourites"
+
+            >
+              <StyledBadge badgeContent={likes} color="secondary">
                 <FavoriteBorderOutlinedIcon />
-              </IconButton>
-            </Badge>
+              </StyledBadge>
+            </IconButton>
 
             {
               user ? (

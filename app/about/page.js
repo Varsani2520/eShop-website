@@ -80,11 +80,12 @@ const Page = () => {
 
   useEffect(() => {
     fetchData();
+    document.title = "About us | eRequirements";
   }, []);
 
   return (
     <div>
-      <Box sx={{ background: "hotpink" }}>
+      <Box sx={{ background: "hotpink" }} mt={{ md: "5%", xs: "10%" }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
@@ -117,7 +118,12 @@ const Page = () => {
               style={{ width: "100%" }}
             />
           </Grid>
-          <Grid item xs={12} md={6} sx={{ alignItems: "center" ,justifyContent:'center'}}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{ alignItems: "center", justifyContent: "center" }}
+          >
             {loading ? (
               <Box>
                 <CardContent>
@@ -134,12 +140,9 @@ const Page = () => {
                 <br />
               </Box>
             ) : (
- 
               data.map((response) => (
-                <div key={response.id} >
-
-              
-                  <h1 >{response.title}</h1>
+                <div key={response.id}>
+                  <h1>{response.title}</h1>
                   <Typography>{response.description}</Typography>
                 </div>
               ))
@@ -147,18 +150,19 @@ const Page = () => {
             <Card sx={{ maxWidth: 345 }}>
               <CardActions disableSpacing>
                 {" "}
-                <Button>More
-                   <ExpandMore
-                  expand={expanded}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon label="more" />
-                </ExpandMore>
+                <Button>
+                  More
+                  <ExpandMore
+                    expand={expanded}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon label="more" />
+                  </ExpandMore>
                 </Button>
               </CardActions>
-               
+
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                   <Typography paragraph>Method:</Typography>

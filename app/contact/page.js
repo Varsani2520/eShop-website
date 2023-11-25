@@ -58,7 +58,7 @@ const page = () => {
       return;
     }
     try {
-      const response=await contactuserService(contact);
+      const response=await contactuserService(contact.email,contact.name,contact.message);
       console.log("Raw response",response);
       
       toast.success("success");
@@ -67,6 +67,9 @@ const page = () => {
       console.log(error);
     }
   }
+  useEffect(()=>{
+    document.title="Contact us | eRequirements"
+  },[])
   return (
     <div>
       <ToastContainer />

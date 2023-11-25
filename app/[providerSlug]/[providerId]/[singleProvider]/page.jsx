@@ -79,6 +79,7 @@ const page = () => {
 
   useEffect(() => {
     Providers();
+    document.title="SingleProvider | eRequirements"
   }, []);
 
   return (

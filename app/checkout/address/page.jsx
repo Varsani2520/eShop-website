@@ -1,17 +1,33 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+import { contactAddress } from "@/app/service/contactAddress";
 const ContactForm = () => {
- 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission logic here
-  };
+  const [contact, setContact] = useState({
+    name: '', contactNo: '', house: '', area: '', pin: '', city: '', state: ''
+  })
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!contact.name || !contact.contactNo || !contact.house || !contact.area || !contact.pin || !contact.city || !contact.state) {
+      toast.error("Please fill in all the fields.");
+      return;
+    }
+    try {
+      const response = await contactAddress(contact.name, contact.contactNocontact, contact.house, contact.area, contact.pin, contact.city, contact.state);
+console.log(response)
+      toast.success("success");
+    } catch (error) {
+      toast.error("something missing");
+      console.log(error);
+    }
+  }
 
   return (
     <Container>
-      <Typography variant="h5" gutterBottom sx={{mt:5}}>
+      <ToastContainer />
+      <Typography variant="h5" gutterBottom sx={{ mt: 5 }}>
         Contact Details
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -22,6 +38,13 @@ const ContactForm = () => {
               label="Name"
               variant="outlined"
               required
+              onChange={(e) =>
+                setContact({
+                  ...contact,
+                  name: e.target.value,
+                })
+              }
+              value={contact.name}
             />
           </Grid>
           <Grid item xs={12}>
@@ -30,6 +53,13 @@ const ContactForm = () => {
               label="Contact Number"
               variant="outlined"
               required
+              onChange={(e) =>
+                setContact({
+                  ...contact,
+                  contactNo: e.target.value,
+                })
+              }
+              value={contact.contactNo}
             />
           </Grid>
           <Grid item xs={12}>
@@ -38,6 +68,13 @@ const ContactForm = () => {
               label="House No."
               variant="outlined"
               required
+              onChange={(e) =>
+                setContact({
+                  ...contact,
+                  house: e.target.value,
+                })
+              }
+              value={contact.house}
             />
           </Grid>
           <Grid item xs={12}>
@@ -46,6 +83,13 @@ const ContactForm = () => {
               label="Area Colony"
               variant="outlined"
               required
+              onChange={(e) =>
+                setContact({
+                  ...contact,
+                  area: e.target.value,
+                })
+              }
+              value={contact.area}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -54,6 +98,13 @@ const ContactForm = () => {
               label="Pin Code"
               variant="outlined"
               required
+              onChange={(e) =>
+                setContact({
+                  ...contact,
+                  pin: e.target.value,
+                })
+              }
+              value={contact.pin}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -62,6 +113,13 @@ const ContactForm = () => {
               label="City"
               variant="outlined"
               required
+              onChange={(e) =>
+                setContact({
+                  ...contact,
+                  city: e.target.value,
+                })
+              }
+              value={contact.city}
             />
           </Grid>
           <Grid item xs={12}>
@@ -70,10 +128,17 @@ const ContactForm = () => {
               label="State"
               variant="outlined"
               required
+              onChange={(e) =>
+                setContact({
+                  ...contact,
+                  state: e.target.value,
+                })
+              }
+              value={contact.state}
             />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary" href="/checkout/address/payment">
+            <Button type="submit" variant="contained" color="primary" >
               Save Address and Continue
             </Button>
           </Grid>

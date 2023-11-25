@@ -64,11 +64,7 @@ export default function Steppers() {
                     {steps.map((label, index) => {
                         const stepProps = {};
                         const labelProps = {};
-                        if (isStepOptional(index)) {
-                            labelProps.optional = (
-                                <Typography variant="caption">Optional</Typography>
-                            );
-                        }
+                        
                         if (isStepSkipped(index)) {
                             stepProps.completed = false;
                         }

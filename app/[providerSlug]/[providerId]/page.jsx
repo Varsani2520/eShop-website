@@ -35,6 +35,7 @@ import { FavioriteService } from "@/app/service/get-faviourite";
 import { bookmarkServices } from "@/app/service/bookmark";
 
 const page = () => {
+
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const { providerSlug } = useParams();
   const router = useRouter();
@@ -110,8 +111,10 @@ const page = () => {
       toast.success("Bookmark Successfully")
     }
   }
+   
   useEffect(() => {
     Desc();
+    document.title="provider | eRequirements"
   }, []);
   return (
     <div >
@@ -207,6 +210,7 @@ const page = () => {
           </Grid>
         </Container>
       </Box>
+      
     </div>
   );
 };

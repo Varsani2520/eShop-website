@@ -15,7 +15,9 @@ import Link from "next/link";
 import React from "react";
 import Steppers from "../components/Steppers";
 
+
 const layout = ({ children }) => {
+  
   return (
     <div>
       <Box sx={{ width: "100%", mt: "10%" }}>
@@ -30,8 +32,7 @@ const layout = ({ children }) => {
             <Card>
               <CardHeader>Price Details</CardHeader>
               <CardContent>
-                <Typography>Total Product Price:</Typography>
-
+              <Typography>Total Product Price:</Typography>
                 <Typography>Order Total:</Typography>
               </CardContent>
             </Card>

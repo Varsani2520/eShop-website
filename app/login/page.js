@@ -38,7 +38,9 @@ const page = () => {
       console.log(error);
     }
   }
-
+useEffect(()=>{
+  document.title="login | eRequirements"
+},[])
   return (
     <div>
       <ToastContainer />
