@@ -22,3 +22,15 @@ export async function POST(request) {
     return NextResponse.json({ message: "falied user", success: "false" });
   }
 }
+
+// get
+export async function GET(request) {
+  
+  try {
+    const result = await contactAddress.find();
+    return NextResponse.json(result);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ msg: "get address not find" });
+  }
+}

@@ -18,7 +18,7 @@ export async function POST(request) {
 
     const passwordMatch = await bcrypt.compare(password, user.password);
 
-    if (passwordMatch) {
+    if (passwordMatch && user) {
       return NextResponse.json({
         data: user,
         msg: "User logged in successfully",

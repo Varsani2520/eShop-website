@@ -1,9 +1,12 @@
+"use client"
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import { getContactAddress } from '@/app/service/contactAddress';
+import { useSelector } from 'react-redux';
 
 const products = [
   {
@@ -38,6 +41,16 @@ const payments = [
 ];
 
 export default function Review() {
+  const token=useSelector((state)=>state.auth.authUser.token)
+  async function getAddress() {
+    const response = await getContactAddress(token)
+    setFav(response)
+    console.log(response);
+  }
+  React.useEffect(() => {
+    getAddress()
+
+  }, [])
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

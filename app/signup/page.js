@@ -26,7 +26,7 @@ const LoginPage = () => {
     if (
       !signup.username ||
       !signup.password ||
-      !signup.username ||
+      !signup.name ||
       !signup.address
     ) {
       toast.error("please fill in all the field");
@@ -41,7 +41,7 @@ const LoginPage = () => {
       console.log(response);
       toast.success("Account Created Successfully");
 
-      router.push("/login");
+     router.push('/login')
     } catch (error) {
       toast.error("Failed to Create Account");
       console.log(error);
