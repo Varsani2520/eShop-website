@@ -211,8 +211,8 @@ function App() {
                   </IconButton>
                 </Tooltip>
               ) : (
-                <><Button href="/signup" >Sign up</Button >
-                  <Button href="/login" >Login</Button >
+                <><Button href="/signup" variant="contained" >Sign up</Button >
+                  <Button href="/login" variant="contained" >Login</Button >
                 </>
               )
             }
