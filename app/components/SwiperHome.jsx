@@ -9,12 +9,13 @@ import "swiper/css/scrollbar";
 const SwiperHome = () => {
     return <div>
         <Swiper
-            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            modules={[Navigation, Pagination,  A11y]}
             spaceBetween={50}
             slidesPerView={1}
             navigation
+            autoplay
             pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
+            
 
         >
             <SwiperSlide>
