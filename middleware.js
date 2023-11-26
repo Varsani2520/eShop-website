@@ -1,6 +1,8 @@
-export function middleware() {
-  console.log("hello");
+
+
+export function middleware(request) {
+  
 }
 export const config = {
-  matcher: "/",
+  matcher: ["/checkout", "/profile/:path*"],
 };

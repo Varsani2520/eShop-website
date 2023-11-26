@@ -3,8 +3,9 @@ import { contactAddress } from "@/app/modal/contactAddress";
 import { NextResponse } from "next/server";
 connectDatabase();
 export async function POST(request) {
-  const { name, state, city, pin, contactNo, house, area } =
+  const { name, state, city, pin, contactNo, house, area, token } =
     await request.json();
+  
   try {
     const UserSchema = new contactAddress({
       name: name,
@@ -14,6 +15,7 @@ export async function POST(request) {
       house: house,
       contactNo: contactNo,
       area: area,
+      token: token,
     });
     const createuser = await UserSchema.save();
     console.log("contact address successfully");
@@ -24,13 +26,6 @@ export async function POST(request) {
 }
 
 // get
-export async function GET(request) {
-  
-  try {
-    const result = await contactAddress.find();
-    return NextResponse.json(result);
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json({ msg: "get address not find" });
-  }
-}
+
+// get route is test
+

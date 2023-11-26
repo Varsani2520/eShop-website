@@ -29,13 +29,7 @@ const layout = ({ children }) => {
             {children}
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
-              <CardHeader>Price Details</CardHeader>
-              <CardContent>
-              <Typography>Total Product Price:</Typography>
-                <Typography>Order Total:</Typography>
-              </CardContent>
-            </Card>
+            
             <Button variant="contained">
               <Link href="/checkout/address">Continue</Link>
             </Button>

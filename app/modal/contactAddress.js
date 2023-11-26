@@ -8,6 +8,7 @@ const contactAddressModal = Schema({
   pin: String,
   city: String,
   state: String,
+  token: String,
 });
 
 // modal

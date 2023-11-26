@@ -4,10 +4,14 @@ import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { contactAddress } from "@/app/service/contactAddress";
+import { Router, useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 const ContactForm = () => {
+  const router = useRouter()
   const [contact, setContact] = useState({
     name: '', contactNo: '', house: '', area: '', pin: '', city: '', state: ''
   })
+  const tokens=useSelector((state)=>state.auth.authUser.data.token)
   async function handleSubmit(e) {
     e.preventDefault();
     if (!contact.name || !contact.contactNo || !contact.house || !contact.area || !contact.pin || !contact.city || !contact.state) {
@@ -15,9 +19,10 @@ const ContactForm = () => {
       return;
     }
     try {
-      const response = await contactAddress(contact.name, contact.contactNocontact, contact.house, contact.area, contact.pin, contact.city, contact.state);
-console.log(response)
+      const response = await contactAddress(tokens,contact.name, contact.contactNo, contact.house, contact.area, contact.pin, contact.city, contact.state);
+      console.log(response)
       toast.success("success");
+      router.push('/checkout/address/payment')
     } catch (error) {
       toast.error("something missing");
       console.log(error);

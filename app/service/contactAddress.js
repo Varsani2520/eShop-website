@@ -1,6 +1,6 @@
 import { httpAxios } from "../httpAxios";
 
-export async function contactAddress(
+export async function contactAddress(token,
   name,
   contactNo,
   city,
@@ -11,7 +11,7 @@ export async function contactAddress(
 ) {
   const result = await httpAxios
     .post("api/contactAddress", {
-      token: token,
+      token:token,
       name: name,
       city: city,
       house: house,
@@ -26,7 +26,7 @@ export async function contactAddress(
 
 export async function getContactAddress(token) {
   const result = await httpAxios
-    .get("api/get-faviorite", { token })
+    .post("api/get-contactAddress", { token })
     .then((response) => response.data);
   return result;
 }
