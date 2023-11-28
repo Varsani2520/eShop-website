@@ -10,7 +10,9 @@ import { Box, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { loginUserFailure, loginUserSuccess } from "../action/action";
 import Link from "next/link";
-
+import Lottie from "lottie-react";
+import loginAnimation from '../lottie-animation/loginAnimation'
+import Toast from "../components/Toast";
 const page = () => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({
@@ -47,16 +49,12 @@ useEffect(()=>{
 },[])
   return (
     <div>
-      <ToastContainer />
+      <Toast />
 
       <Box sx={{ mt: "2rem" }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSni4W_ssx3U1KqS7a7wY_Q4NVU2hW3CP-1jA&usqp=CAU"
-              alt="signup Image"
-              style={{ width: "100%" }}
-            />
+           <Lottie animationData={loginAnimation} height={50}/>
           </Grid>
           <Grid
             item

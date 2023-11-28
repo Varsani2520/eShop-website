@@ -7,66 +7,35 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import HomeIcon from "@mui/icons-material/Home";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import {
   Box,
-  Breadcrumbs,
   Card,
   CardActions,
   CardContent,
   CardHeader,
   CardMedia,
-  Chip,
   Container,
   Grid,
   IconButton,
   Skeleton,
-  Typography,
-  emphasize,
-  styled,
 } from "@mui/material";
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+
 import { addToFavouriteItem, bookmarkitem, incrementTotalfav } from "@/app/action/action";
 import 'react-toastify/dist/ReactToastify.css'
 import { FavioriteService } from "@/app/service/get-faviourite";
 import { bookmarkServices } from "@/app/service/bookmark";
+import ProviderHeader from "@/app/components/providerHeader";
+import Toast from "@/app/components/Toast";
+import { toast } from "react-toastify";
 
 const page = () => {
-
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const { providerSlug } = useParams();
   const router = useRouter();
   const [desc, setdesc] = useState([]);
   const [loading, setLoading] = useState(true);
-  const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
-    backgroundColor:
-      theme.palette.mode === "light"
-        ? theme.palette.grey[100]
-        : theme.palette.grey[800],
-    height: theme.spacing(3),
-    color: theme.palette.text.primary,
-    fontWeight: theme.typography.fontWeightRegular,
-    "&:hover, &:focus": {
-      backgroundColor: emphasize(
-        theme.palette.mode === "light"
-          ? theme.palette.grey[100]
-          : theme.palette.grey[800],
-        0.06
-      ),
-    },
-    "&:active": {
-      boxShadow: theme.shadows[1],
-      backgroundColor: emphasize(
-        theme.palette.mode === "light"
-          ? theme.palette.grey[100]
-          : theme.palette.grey[800],
-        0.12
-      ),
-    },
-  }));
+
   async function Desc() {
     try {
       const response = await ProviderService(providerSlug);
@@ -77,11 +46,7 @@ const page = () => {
       console.log(error);
     }
   }
-  const toastStyle = {
-    borderRadius: "8px",
-    padding: "16px",
-    fontSize: "16px",
-  };
+
   const favourites = useSelector((state) => state.likes.favouriteItems);
   const bookmarks = useSelector((state) => state.bookmark.bookmarkItems);
 
@@ -129,40 +94,8 @@ const page = () => {
   }, []);
   return (
     <div >
-      <ToastContainer position="top-center"
-        autoClose={5000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        style={toastStyle} />
-      <Box sx={{ background: "hotpink" }} mt={{ md: '5%', xs: '10%' }}>
-        <Container>
-          <Box sx={{ pt: 5, pb: 5 }}>
-            <Breadcrumbs aria-label="breadcrumb">
-              <a href="/" >
-                <StyledBreadcrumb
-                  component="a"
-                  label="Home"
-                  icon={<HomeIcon fontSize="large" />}
-                />
-              </a>
-              <StyledBreadcrumb
-                component="a"
-                href="/about"
-                label="Providers"
-                icon={<ExpandMoreIcon />}
-              />
-            </Breadcrumbs>
-            <Typography variant="h4" sx={{ mt: 4 }}>
-              Providers
-            </Typography>
-          </Box>
-        </Container>
-      </Box>
+      <Toast />
+      <ProviderHeader />
       <Box sx={{ display: "flex", mt: 10, justifyContent: "center" }}>
         <Container>
           <Grid container spacing={2}>

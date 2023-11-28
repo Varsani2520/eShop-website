@@ -8,10 +8,11 @@ import { Grid, TextField } from "@mui/material";
 import { signupservice } from "../service/signupservice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import Link from "next/link";
+import Toast from "../components/Toast";
 
 const LoginPage = () => {
+  
   const router = useRouter();
 
   const [signup, setSignup] = useState({
@@ -54,7 +55,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <ToastContainer />
+      <Toast/>
 
       <Box sx={{ mt: "2rem" }}>
         <Grid container spacing={2}>

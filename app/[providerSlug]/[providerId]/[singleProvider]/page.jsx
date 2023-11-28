@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { emphasize, styled } from "@mui/material/styles";
 import HomeIcon from "@mui/icons-material/Home";
 import StarIcon from "@mui/icons-material/Star";
@@ -25,6 +25,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { addToCartItem, incrementTotalCard } from "@/app/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import Toast from "@/app/components/Toast";
 
 const page = () => {
   const carts = useSelector((state) => state.cart.cartItems);
@@ -79,11 +80,8 @@ const page = () => {
       console.log(error);
     }
   }
-  const toastStyle = {
-    borderRadius: "8px",
-    padding: "16px",
-    fontSize: "16px",
-  };
+  
+  
   useEffect(() => {
     Providers();
     document.title = "SingleProvider | eRequirements"
@@ -91,16 +89,7 @@ const page = () => {
 
   return (
     <Box>
-      <ToastContainer position="top-center"
-        autoClose={5000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        style={toastStyle} />
+      <Toast/>
       <Box sx={{ background: "hotpink" }} mt={{ md: '5%', xs: '10%' }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
