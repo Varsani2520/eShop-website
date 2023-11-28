@@ -28,10 +28,13 @@ import Link from "next/link";
 
 const page = () => {
   const carts = useSelector((state) => state.cart.cartItems);
+  const token = useSelector((state) => state.auth.authUser)
   const dispatch = useDispatch();
   function hello(item) {
-    console.log("htis is cart");
-    // Check if the item is already in the cart
+    if (!token || !token.data) {
+      toast.warning("please log in to add to cart.")
+      return;
+    }    // Check if the item is already in the cart
     const isItemInCart = carts.some((cartItems) => cartItems.id === item.id);
 
     if (isItemInCart) {
@@ -76,16 +79,29 @@ const page = () => {
       console.log(error);
     }
   }
-
+  const toastStyle = {
+    borderRadius: "8px",
+    padding: "16px",
+    fontSize: "16px",
+  };
   useEffect(() => {
     Providers();
-    document.title="SingleProvider | eRequirements"
+    document.title = "SingleProvider | eRequirements"
   }, []);
 
   return (
     <Box>
-      <ToastContainer />
-      <Box sx={{ background: "hotpink" }}mt={{md:'5%',xs:'10%'}}>
+      <ToastContainer position="top-center"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={toastStyle} />
+      <Box sx={{ background: "hotpink" }} mt={{ md: '5%', xs: '10%' }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
@@ -101,10 +117,19 @@ const page = () => {
                 deleteIcon={<ExpandMoreIcon />}
               />
             </Breadcrumbs>
+            {
+              hlo.map((response) => {
+                if (singleProvider == response.id)
+                  return (
+
+                    <Typography variant="h4" sx={{ mt: 4 }}>{response.name}</Typography>
+                  )
+              })
+            }
           </Box>
         </Container>
       </Box>
-      <ToastContainer />
+
       <Container>
         <Box sx={{ mt: 10 }}>
           {hlo.map((response) => {
@@ -115,9 +140,10 @@ const page = () => {
                     <Grid item xs={12} md={6}>
                       <Card sx={{ maxWidth: 500, mt: 10 }}>
                         <CardMedia
-                          sx={{ height: 400 }}
+                          sx={{ height: 700 }}
                           image={response.img}
                           alt={response.alt}
+
                         />
                       </Card>
                       <Box sx={{ mt: 5 }}>

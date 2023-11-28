@@ -24,7 +24,11 @@ const page = () => {
     message: "",
   });
   
-
+  const toastStyle = {
+    borderRadius: "8px",
+    padding: "16px",
+    fontSize: "16px",
+  };
   const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
     backgroundColor:
       theme.palette.mode === "light"

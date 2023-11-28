@@ -6,7 +6,6 @@ import { loginservice } from "../service/loginService";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { Box, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { loginUserFailure, loginUserSuccess } from "../action/action";
@@ -18,6 +17,11 @@ const page = () => {
     username: "",
     password: "",
   });
+  const toastStyle = {
+    borderRadius: "8px",
+    padding: "16px",
+    fontSize: "16px",
+  };
   const router = useRouter();
   async function handleSubmit(e) {
     e.preventDefault();
@@ -49,7 +53,7 @@ useEffect(()=>{
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <img
-              src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7865.jpg?size=626&ext=jpg&ga=GA1.1.248855276.1696004271&semt=ais"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSni4W_ssx3U1KqS7a7wY_Q4NVU2hW3CP-1jA&usqp=CAU"
               alt="signup Image"
               style={{ width: "100%" }}
             />

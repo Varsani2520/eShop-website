@@ -26,7 +26,11 @@ const page = () => {
     const response = await getFaviorites(tokens);
     setFav(response);
   }
-
+  const toastStyle = {
+    borderRadius: "8px",
+    padding: "16px",
+    fontSize: "16px",
+  };
   useEffect(() => {
     getFav();
   }, []);

@@ -24,7 +24,11 @@ const HomeCard = () => {
     
     setLoading(false);
   }
-  
+  const toastStyle = {
+    borderRadius: "8px",
+    padding: "16px",
+    fontSize: "16px",
+  };
 
   useEffect(() => {
     fetchCards();
@@ -33,7 +37,16 @@ const HomeCard = () => {
   return (
     <>
       <Container>
-        <ToastContainer />
+        <ToastContainer  position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={toastStyle}/>
         <Box sx={{ display: "flex" }}>
           <Grid container spacing={2}>
             {loading

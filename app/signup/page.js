@@ -20,7 +20,11 @@ const LoginPage = () => {
     name: "",
     address: "",
   });
-
+  const toastStyle = {
+    borderRadius: "8px",
+    padding: "16px",
+    fontSize: "16px",
+  };
   async function handleSubmit(e) {
     e.preventDefault();
     if (
@@ -41,7 +45,7 @@ const LoginPage = () => {
       console.log(response);
       toast.success("Account Created Successfully");
 
-     router.push('/login')
+      router.push("/login");
     } catch (error) {
       toast.error("Failed to Create Account");
       console.log(error);

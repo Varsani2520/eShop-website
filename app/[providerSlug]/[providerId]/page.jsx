@@ -77,13 +77,22 @@ const page = () => {
       console.log(error);
     }
   }
+  const toastStyle = {
+    borderRadius: "8px",
+    padding: "16px",
+    fontSize: "16px",
+  };
   const favourites = useSelector((state) => state.likes.favouriteItems);
   const bookmarks = useSelector((state) => state.bookmark.bookmarkItems);
 
-  const token = useSelector((state) => state.auth.authUser.data.token);
+  const token = useSelector((state) => state.auth.authUser);
   const dispatch = useDispatch();
-  function fav(item) {
 
+  function fav(item) {
+    if (!token || !token.data) {
+      toast.warning("please log in to add to favorites.")
+      return;
+    }
     const isItemInFav = favourites.some(
       (favouriteItems) => favouriteItems.id === item.id
     );
@@ -91,14 +100,17 @@ const page = () => {
       toast.warning("Your Items is already in your WishList");
     } else {
       // Item is not in the cart, proceed to add it
-      console.log(item);
       dispatch(addToFavouriteItem(item));
       dispatch(incrementTotalfav());
-      FavioriteService(token, item)
-      toast.success("Added to favourite successfully");
+      FavioriteService(token.data.token, item)
+      toast.success("Added to wishlist  successfully");
     }
   }
   function bookmark(item) {
+    if (!token || !token.data) {
+      toast.warning("please log in to bookmark this item")
+      return;
+    }
     const isItemInBook = bookmarks.some((bookmarkItems) => bookmarkItems.id === item.id)
 
     if (isItemInBook) {
@@ -106,20 +118,28 @@ const page = () => {
     }
     else {
       dispatch(bookmarkitem(item))
-      
-      bookmarkServices(token, item)
+      bookmarkServices(token.data.token, item)
       toast.success("Bookmark Successfully")
     }
   }
-   
+
   useEffect(() => {
     Desc();
-    document.title="provider | eRequirements"
+    document.title = "provider | eRequirements"
   }, []);
   return (
     <div >
-      <ToastContainer />
-      <Box sx={{ background: "hotpink" }}mt={{md:'5%',xs:'10%'}}>
+      <ToastContainer position="top-center"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={toastStyle} />
+      <Box sx={{ background: "hotpink" }} mt={{ md: '5%', xs: '10%' }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
@@ -210,7 +230,7 @@ const page = () => {
           </Grid>
         </Container>
       </Box>
-      
+
     </div>
   );
 };

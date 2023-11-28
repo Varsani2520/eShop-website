@@ -52,10 +52,23 @@ const page = () => {
   const handleDecrement = (cart) => {
     dispatch(decrementQuantityItem(cart));
   };
-
+  const toastStyle = {
+    borderRadius: "8px",
+    padding: "16px",
+    fontSize: "16px",
+  };
   return (
     <div>
-      <ToastContainer />
+      <ToastContainer  position="top-center"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={toastStyle} />
       <Box sx={{ mt: 5 }}>
         <Breadcrumbs aria-label="breadcrumb">
           <Typography>Cart | {cart} Item</Typography>

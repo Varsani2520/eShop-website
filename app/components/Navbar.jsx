@@ -28,7 +28,7 @@ const pages = [
 ];
 const settings = [
   { label: "Profile", href: "/profile" },
-  
+
   { label: "Logout", href: "/logout" },
 ];
 
@@ -82,7 +82,7 @@ function App() {
         zIndex: 1000,
       }}
     >
-      <Container maxWidth="xl">
+      <Container >
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
@@ -196,7 +196,7 @@ function App() {
               color="primary"
               aria-label="add to shopping cart"
               href="/profile/favourites"
-
+              sx={{ marginRight: 2 }}
             >
               <StyledBadge badgeContent={likes} color="secondary">
                 <FavoriteBorderOutlinedIcon />
@@ -211,8 +211,8 @@ function App() {
                   </IconButton>
                 </Tooltip>
               ) : (
-                <><Button href="/signup" variant="contained" >Sign up</Button >
-                  <Button href="/login" variant="contained" >Login</Button >
+                <><Button href="/signup" variant="contained" sx={{ marginRight: 2 }} >Sign up</Button >
+                  <Button href="/login" variant="contained" sx={{ marginRight: 2 }}>Login</Button >
                 </>
               )
             }
