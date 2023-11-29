@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { loginUserFailure, loginUserSuccess } from "../action/action";
 import Link from "next/link";
 import Lottie from "lottie-react";
-import loginAnimation from '../lottie-animation/loginAnimation'
+import loginAnimation from '../lottie-animation/loginAnimation.json'
 import Toast from "./Toast";
 const LoginPage = () => {
   const dispatch = useDispatch();

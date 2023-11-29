@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { contactuserService } from "../service/Contactuser";
 import { ToastContainer, toast } from "react-toastify";
 import Lottie from "lottie-react";
-import contactAnimation from "../lottie-animation/contactAnimation";
+import contactAnimation from "../lottie-animation/contactAnimation.json";
 import ContactHeading from "./ContactHeading";
 const ContactPage = () => {
     const [contact, setContact] = useState({
