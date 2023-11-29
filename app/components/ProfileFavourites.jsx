@@ -41,7 +41,7 @@ const ProfileFavourites = () => {
 
       <div>
         {fav.length===0?(
-          <>hello</>
+          <><h1>hello</h1></>
         ):(
 
         fav.map((likes) => {
