@@ -16,7 +16,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {emptyAnimation} from '../lottie-animation/emptyAnimation'
+import emptyProfile from '../lottie-animation/emptyProfile'
 const ProfileBookmark = () => {
   const dispatch = useDispatch();
 
@@ -46,7 +46,7 @@ const ProfileBookmark = () => {
 
       <Box>
         {book.length===0?(
-          <><Lottie animationData={emptyAnimation}/></>
+          <><Lottie animationData={emptyProfile}/></>
         ):(
           
           book.map((bookmark) => {
