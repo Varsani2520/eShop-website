@@ -18,7 +18,7 @@ const payments = [
   { name: 'Expiry date', detail: '04/2024' },
 ];
 
-export default function summary() {
+export default function CheckSummary() {
   const dispatch = useDispatch()
 
   const [address, setAdress] = React.useState([])

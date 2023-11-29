@@ -25,7 +25,7 @@ import {
   removeToCartItem,
 } from "../action/action";
 
-const page = () => {
+const CheckOut = () => {
  
   const carts = useSelector((state) => state.cart.cartItems);
 
@@ -130,4 +130,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default CheckOut;

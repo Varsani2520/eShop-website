@@ -1,5 +1,6 @@
+import ContactPage from "@/app/components/ContactPage";
 import React from "react"
-import ContactPage from "../components/contactPage";
+
 const page = () => {
  
  

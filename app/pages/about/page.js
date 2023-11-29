@@ -16,7 +16,7 @@ import {
   Button,
 } from "@mui/material";
 import Link from "next/link";
-import { AboutService } from "../service/AboutService";
+import { AboutService } from "../../service/AboutService";
 import { styled } from "@mui/material/styles";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";

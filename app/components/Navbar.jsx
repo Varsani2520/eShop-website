@@ -22,14 +22,14 @@ import { Badge } from "@mui/material";
 import { styled } from '@mui/material/styles';
 const pages = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "About", href: "/pages/about" },
   // { label: "Product", href: "/product" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/pages/contact" },
 ];
 const settings = [
-  { label: "Profile", href: "/profile" },
+  { label: "Profile", href: "/pages/profile" },
 
-  { label: "Logout", href: "/logout" },
+  { label: "Logout", href: "/pages/logout" },
 ];
 
 function App() {
@@ -211,8 +211,8 @@ function App() {
                   </IconButton>
                 </Tooltip>
               ) : (
-                <><Button href="/signup" variant="contained" sx={{ marginRight: 2 }} >Sign up</Button >
-                  <Button href="/login" variant="contained" sx={{ marginRight: 2 }}>Login</Button >
+                <><Button href="/pages/signup" variant="contained" sx={{ marginRight: 2 }} >Sign up</Button >
+                  <Button href="/pages/login" variant="contained" sx={{ marginRight: 2 }}>Login</Button >
                 </>
               )
             }

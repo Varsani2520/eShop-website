@@ -1,5 +1,5 @@
+import LogoutPage from "@/app/components/LogoutPage";
 import React from "react";
-import LogoutPage from "../components/LogoutPage";
 
 const Page = () => {
   return <LogoutPage />;

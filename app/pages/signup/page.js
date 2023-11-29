@@ -1,7 +1,9 @@
 "use client";
 
-import Toast from "../components/Toast";
-import SignUp from "../components/SignUp";
+import SignUp from "@/app/components/SignUp";
+import Toast from "@/app/components/Toast";
+
+
 
 const SignUpPage = () => {
   return (

@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { contactAddress } from "@/app/service/contactAddress";
 import { Router, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-const ContactForm = () => {
+const CheckAddress = () => {
   const router = useRouter()
   const [contact, setContact] = useState({
     name: '', contactNo: '', house: '', area: '', pin: '', city: '', state: ''
@@ -153,4 +153,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default CheckAddress;

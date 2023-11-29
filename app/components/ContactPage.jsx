@@ -13,7 +13,7 @@ import { contactuserService } from "../service/Contactuser";
 import { ToastContainer, toast } from "react-toastify";
 import Lottie from "lottie-react";
 import contactAnimation from "../lottie-animation/contactAnimation";
-import Heading from "../contact/Heading";
+import ContactHeading from "./ContactHeading";
 const ContactPage = () => {
     const [contact, setContact] = useState({
         name: "",
@@ -49,7 +49,7 @@ const ContactPage = () => {
     }
     return <div>
         <ToastContainer/>
-        <Heading/>
+        <ContactHeading/>
         <Box sx={{ mt: "2rem" }}>
         <Grid container spacing={2}>
             <Grid item xs={12} md={6}>

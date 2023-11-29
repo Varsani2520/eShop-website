@@ -6,7 +6,7 @@ import { emphasize, styled } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
 import HomeIcon from "@mui/icons-material/Home";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-const Heading = () => {
+const ContactHeading = () => {
   const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
     backgroundColor:
       theme.palette.mode === "light"
@@ -63,4 +63,4 @@ const Heading = () => {
   );
 };
 
-export default Heading;
+export default ContactHeading;
