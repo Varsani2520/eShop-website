@@ -36,11 +36,22 @@ const CheckOut = () => {
   const [cart, setCart] = useState(0);
   const [loading, setLoading] = useState(true);
   const [totalPrice, setTotalPrice] = useState(0);
+  const calculateTotalPrice = () => {
+    if (carts) {
+      return carts.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    }
+    return 0;
+  };
   useEffect(() => {
-    setCart(carts.length);
-    setLoading(false);
-    const total=carts.reduce((acc,item)=>acc.item.price*item.quantity,0);
-    setTotalPrice(total)
+    if (carts) {
+
+      setCart(carts.length);
+      setLoading(false);
+      const total = calculateTotalPrice()
+
+      setTotalPrice(total)
+
+    }
   }, [carts]);
 
   function rmv(item) {
@@ -64,6 +75,16 @@ const CheckOut = () => {
     padding: "16px",
     fontSize: "16px",
   };
+  const handlePaymentSuccess = (paymentDetails) => {
+    // handle the payment success logic, e.g., show a success message
+    console.log('Payment success:', paymentDetails);
+    toast.success("Payment successful");
+    // Additional logic, such as redirecting to another page
+    dispatch({type:'CLEAR_CART'})
+    router.push('/pages/address');
+  };
+
+
   return (
     <div>
       <ToastContainer position="top-center"
@@ -109,13 +130,13 @@ const CheckOut = () => {
                       component="img"
                       alt="img"
                     />
-                    <Button onClick={() => router.push('/pages/address')}>Continue </Button>
+                    {/* <Button onClick={() => router.push('/pages/address')}>Continue </Button> */}
                   </Grid>
                   <Grid item xs={6} md={2}>
                     <CardHeader>Name:{cart.name}</CardHeader>
                     <CardContent>
                       <Typography>
-                        Price:{cart.price * cart.quantity}
+                        Price:{cart.price && cart.quantity ? cart.price * cart.quantity : 0}
                       </Typography>
                       <Typography>
                         Quantity:
@@ -133,7 +154,7 @@ const CheckOut = () => {
             </Card>
           ))
         )}
-        <Paycheck total={totalPrice}/>
+        <Paycheck total={totalPrice} onPaymentSuccess={handlePaymentSuccess} />
       </Box>
     </div>
   );

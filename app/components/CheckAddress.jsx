@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { contactAddress } from "@/app/service/contactAddress";
 import { Router, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import Toast from "./Toast";
 const CheckAddress = () => {
   const router = useRouter()
   const [contact, setContact] = useState({
@@ -22,7 +23,7 @@ const CheckAddress = () => {
       const response = await contactAddress(tokens,contact.name, contact.contactNo, contact.house, contact.area, contact.pin, contact.city, contact.state);
       console.log(response)
       toast.success("success");
-      router.push('/checkout/address/payment')
+      router.push('/pages/payment')
     } catch (error) {
       toast.error("something missing");
       console.log(error);
@@ -31,7 +32,7 @@ const CheckAddress = () => {
 
   return (
     <Container>
-      <ToastContainer />
+      <Toast />
       <Typography variant="h5" gutterBottom sx={{ mt: 5 }}>
         Contact Details
       </Typography>
@@ -143,7 +144,7 @@ const CheckAddress = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" href="/pages/payment"variant="contained" color="primary" >
+            <Button type="submit" variant="contained" color="primary" >
               Save Address and Continue
             </Button>
           </Grid>

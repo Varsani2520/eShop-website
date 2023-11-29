@@ -5,18 +5,20 @@ const initialStage = {
   status: "pending",
   count: 0,
 };
+
 export const addToCart = "add";
 export const removeToCart = "remove";
 export const incrementQuantity = "incQuantity";
 export const decrementQuantity = "decQuantity";
 export const incrementcartcount = "incrementcartcount";
 export const decrementcartcount = "decrementcartcount";
+export const CLEAR_CART="clearData"
 export const cartReducer = (state = initialStage, action) => {
   switch (action.type) {
     case addToCart:
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload],
+        cartItems: state.cartItems ? [...state.cartItems, action.payload] : [action.payload],
         status: "pending",
         count: state.count + 1,
       };
@@ -70,6 +72,10 @@ export const cartReducer = (state = initialStage, action) => {
         ...state,
         count: state.count - 1,
       };
+      case CLEAR_CART:
+        return{
+          ...state,cart:{...state.cart,cartItems:[]}
+        }
     default:
       return state;
   }

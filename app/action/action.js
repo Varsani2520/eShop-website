@@ -5,6 +5,7 @@ import {
 } from "../reducer/authenticate";
 import { addToBookmark, removeToBookmark } from "../reducer/bookmark";
 import {
+  CLEAR_CART,
   addToCart,
   decrementQuantity,
   decrementcartcount,
@@ -79,4 +80,7 @@ export const bookmarkitem = (Items) => ({
 export const bookmarkitemremove = (Items) => ({
   type: removeToBookmark,
   payload: Items,
+});
+export const clearCart = () => ({
+  type: CLEAR_CART,
 });

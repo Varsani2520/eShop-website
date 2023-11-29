@@ -36,7 +36,8 @@ const page = () => {
       toast.warning("please log in to add to cart.")
       return;
     }    // Check if the item is already in the cart
-    const isItemInCart = carts.some((cartItems) => cartItems.id === item.id);
+    const isItemInCart = Array.isArray(carts) && carts.some((cartItems) => cartItems.id === item.id);
+
 
     if (isItemInCart) {
       toast.warning("Item already in the cart");
