@@ -182,7 +182,7 @@ function App() {
             <IconButton
               color="primary"
               aria-label="add to shopping cart"
-              href="/checkout"
+              href="/pages/checkout"
 
             >
               <StyledBadge badgeContent={cart} color="secondary">
@@ -194,7 +194,7 @@ function App() {
             <IconButton
               color="primary"
               aria-label="add to shopping cart"
-              href="/profile/favourites"
+              href="/pages/profile/favourites"
               sx={{ marginRight: 2 }}
             >
               <StyledBadge badgeContent={likes} color="secondary">
