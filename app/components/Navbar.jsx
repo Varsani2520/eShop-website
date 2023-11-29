@@ -23,7 +23,6 @@ import { styled } from '@mui/material/styles';
 const pages = [
   { label: "Home", href: "/" },
   { label: "About", href: "/pages/about" },
-  // { label: "Product", href: "/product" },
   { label: "Contact", href: "/pages/contact" },
 ];
 const settings = [
