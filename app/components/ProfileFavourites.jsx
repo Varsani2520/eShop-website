@@ -11,10 +11,12 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {emptyAnimation} from '../lottie-animation/emptyAnimation'
 const ProfileFavourites = () => {
   const dispatch = useDispatch();
 
@@ -41,7 +43,7 @@ const ProfileFavourites = () => {
 
       <div>
         {fav.length===0?(
-          <><h1>hello</h1></>
+          <><Lottie animationData={emptyAnimation}/></>
         ):(
 
         fav.map((likes) => {

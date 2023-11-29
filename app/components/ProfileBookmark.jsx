@@ -11,10 +11,12 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {emptyAnimation} from '../lottie-animation/emptyAnimation'
 const ProfileBookmark = () => {
   const dispatch = useDispatch();
 
@@ -43,39 +45,44 @@ const ProfileBookmark = () => {
       <ToastContainer />
 
       <Box>
-        {book.map((bookmark) => {
-          console.log(bookmark);
-          return (
-            <>
-              {bookmark.data.map((book) => {
-                return (
-                  <Card key={book.id}>
-                    <Grid container spacing={2} mt={5}>
-                      <Grid item xs={6} md={4}>
-                        <CardMedia
-                          image={book.img}
-                          width={300}
-                          height={140}
-                          component="img"
-                          alt="img"
-                        />
+        {book.length===0?(
+          <><Lottie animationData={emptyAnimation}/></>
+        ):(
+          
+          book.map((bookmark) => {
+            console.log(bookmark);
+            return (
+              <>
+                {bookmark.data.map((book) => {
+                  return (
+                    <Card key={book.id}>
+                      <Grid container spacing={2} mt={5}>
+                        <Grid item xs={6} md={4}>
+                          <CardMedia
+                            image={book.img}
+                            width={300}
+                            height={140}
+                            component="img"
+                            alt="img"
+                          />
+                        </Grid>
+                        <Grid item xs={6} md={2}>
+                          <CardContent>
+                            <Typography>{book.name}</Typography>
+                            <Typography>rating: {book.rating}</Typography>
+                            <Typography>Price: {book.price}</Typography>
+                            {/* <Button onClick={() => rmv(bookmark)}>REMOVE</Button> */}
+                            {/* pending */}
+                          </CardContent>
+                        </Grid>
                       </Grid>
-                      <Grid item xs={6} md={2}>
-                        <CardContent>
-                          <Typography>{book.name}</Typography>
-                          <Typography>rating: {book.rating}</Typography>
-                          <Typography>Price: {book.price}</Typography>
-                          {/* <Button onClick={() => rmv(bookmark)}>REMOVE</Button> */}
-                          {/* pending */}
-                        </CardContent>
-                      </Grid>
-                    </Grid>
-                  </Card>
-                );
-              })}
-            </>
-          );
-        })}
+                    </Card>
+                  );
+                })}
+              </>
+            );
+          })
+        )}
       </Box>
     </div>
   );
