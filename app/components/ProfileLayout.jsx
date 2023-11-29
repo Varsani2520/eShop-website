@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
-const ProfileLayout = ({ children }) => {
+const ProfileLayout = () => {
   const dispatch=useDispatch()
   const user = useSelector((state) => state.auth.authUser.data);
 
@@ -122,7 +122,7 @@ const ProfileLayout = ({ children }) => {
               padding: 3,
             }}
           >
-            {children}
+            {/* {children} */}
           </Card>
         </Grid>
       </Grid>
