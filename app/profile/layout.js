@@ -11,9 +11,10 @@ import {
   Divider,
 } from "@mui/material";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
+  const dispatch=useDispatch()
   const user = useSelector((state) => state.auth.authUser.data);
 
   return (
@@ -29,7 +30,8 @@ const Layout = ({ children }) => {
             }}
           >
             <Box display="flex" flexDirection="column" alignItems="center">
-              <Button
+              {/* bugs in btn edit  */}
+              {/* <Button
                 variant="outlined"
                 color="primary"
                 style={{
@@ -40,7 +42,7 @@ const Layout = ({ children }) => {
                 }}
               >
                 Edit
-              </Button>
+              </Button> */}
               <Avatar
                 src=""
                 alt="User Avatar"
@@ -48,11 +50,11 @@ const Layout = ({ children }) => {
                 type="file"
               />
               <Typography variant="h6" sx={{ fontSize: 20, color: "#333" }}>
-                {user.name}
+                {user ? user.name :"guest"}
               </Typography>
 
               <Typography variant="body2" sx={{ fontSize: 16, color: "#666" }}>
-                {user.username}
+                {user ?user.username: "guest"}
               </Typography>
               <Button
                 variant="contained"
