@@ -15,7 +15,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const page = () => {
+const ProfileFavourites = () => {
   const dispatch = useDispatch();
 
   const tokens = useSelector((state) => state.auth.authUser.data.token);
@@ -78,4 +78,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ProfileFavourites;

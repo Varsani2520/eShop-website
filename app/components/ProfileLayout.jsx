@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
-const Layout = ({ children }) => {
+const ProfileLayout = ({ children }) => {
   const dispatch=useDispatch()
   const user = useSelector((state) => state.auth.authUser.data);
 
@@ -69,7 +69,7 @@ const Layout = ({ children }) => {
           <Card sx={{ background: "#f0f0f0", padding: 3 }}>
             <div style={linkStyle}>
               <Button variant="outlined" color="primary">
-                <Link href="/profile/bookings">Booking</Link>
+                <Link href="/pages/profile/bookings">Booking</Link>
               </Button>
             </div>
             <Divider />
@@ -77,7 +77,7 @@ const Layout = ({ children }) => {
               <Button
                 variant="outlined"
                 color="primary"
-                href="/profile/bookmark"
+                href="/pages/profile/bookmark"
               >
                 Bookmark
               </Button>
@@ -87,7 +87,7 @@ const Layout = ({ children }) => {
               <Button
                 variant="outlined"
                 color="primary"
-                href="/profile/favourites"
+                href="/pages/profile/favourites"
               >
                 WishList
               </Button>
@@ -97,7 +97,7 @@ const Layout = ({ children }) => {
               <Button
                 variant="outlined"
                 color="primary"
-                href="/profile/notifications"
+                href="/pages/profile/notifications"
               >
                 Notification
               </Button>
@@ -107,7 +107,7 @@ const Layout = ({ children }) => {
               <Button
                 variant="outlined"
                 color="secondary"
-                href="/profile/delete-account"
+                href="/pages/profile/delete-account"
               >
                 Delete Account
               </Button>
@@ -143,4 +143,4 @@ const linkStyle = {
   },
 };
 
-export default Layout;
+export default ProfileLayout;
