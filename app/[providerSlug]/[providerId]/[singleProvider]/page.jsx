@@ -142,7 +142,7 @@ const page = () => {
                         >
                           Add to Cart
                         </Button>
-                        <Link href="/checkout">
+                        <Link href="/pages/checkout">
                           <Button variant="outlined">Buy Now</Button>
                         </Link>
                       </Box>
