@@ -143,7 +143,7 @@ const CheckAddress = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary" >
+            <Button type="submit" href="/pages/payment"variant="contained" color="primary" >
               Save Address and Continue
             </Button>
           </Grid>

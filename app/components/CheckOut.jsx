@@ -24,6 +24,8 @@ import {
   incrementQuantityItem,
   removeToCartItem,
 } from "../action/action";
+import { useHref } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const CheckOut = () => {
  
@@ -52,6 +54,7 @@ const CheckOut = () => {
   const handleDecrement = (cart) => {
     dispatch(decrementQuantityItem(cart));
   };
+  const router=useRouter()
   const toastStyle = {
     borderRadius: "8px",
     padding: "16px",
@@ -98,10 +101,11 @@ const CheckOut = () => {
                     <CardMedia
                       image={cart.img}
                       width={300}
-                      height={140}
+                      height={540}
                       component="img"
                       alt="img"
                     />
+                    <Button onClick={()=>router.push('/pages/address')}>Continue </Button>
                   </Grid>
                   <Grid item xs={6} md={2}>
                     <CardHeader>Name:{cart.name}</CardHeader>
