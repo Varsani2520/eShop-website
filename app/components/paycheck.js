@@ -1,15 +1,10 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 
-const Paycheck = ({ total ,onPaymentSuccess}) => {
+const Paycheck = ({ total,onPaymentSuccess }) => {
   const onToken = (token) => {
     console.log(token);
-    onPaymentSuccess({
-      cardType: token.card.brand,
-      cardHolder: token.card.name,
-      cardNumber: `xxxx-xxxx-xxxx-${token.card.last4}`,
-      expiryDate: `${token.card.exp_month}/${token.card.exp_year}`,
-    });
+    onPaymentSuccess(token)
   };
 
   return (

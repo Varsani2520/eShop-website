@@ -80,6 +80,7 @@ const CheckOut = () => {
     console.log('Payment success:', paymentDetails);
     toast.success("Payment successful");
     // Additional logic, such as redirecting to another page
+    dispatch({ type: 'SET_PAYMENT_DETAILS', payload: paymentDetails });
     dispatch({type:'CLEAR_CART'})
     router.push('/pages/address');
   };

@@ -20,6 +20,7 @@ import {
   incrementfav,
   removeToFavourite,
 } from "../reducer/favourite";
+import { SET_PAYMENT_DETAILS } from "../reducer/payment";
 
 export const addToCartItem = (item) => ({
   type: addToCart,
@@ -84,3 +85,4 @@ export const bookmarkitemremove = (Items) => ({
 export const clearCart = () => ({
   type: CLEAR_CART,
 });
+export const setpaymentdetaail = () => ({ type: SET_PAYMENT_DETAILS });
