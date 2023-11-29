@@ -26,9 +26,9 @@ import { addToFavouriteItem, bookmarkitem, incrementTotalfav } from "@/app/actio
 import 'react-toastify/dist/ReactToastify.css'
 import { FavioriteService } from "@/app/service/get-faviourite";
 import { bookmarkServices } from "@/app/service/bookmark";
-import ProviderHeader from "@/app/components/providerHeader";
 import Toast from "@/app/components/Toast";
 import { toast } from "react-toastify";
+import ProviderHeader from "@/app/components/ProviderHeader";
 
 const page = () => {
   const { providerSlug } = useParams();
