@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 
+
 import {
   Box,
   Button,
@@ -24,19 +25,22 @@ import {
   incrementQuantityItem,
   removeToCartItem,
 } from "../action/action";
-import { useHref } from "react-router-dom";
 import { useRouter } from "next/navigation";
+import Paycheck from "./paycheck";
 
 const CheckOut = () => {
- 
+
   const carts = useSelector((state) => state.cart.cartItems);
 
   const dispatch = useDispatch();
   const [cart, setCart] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     setCart(carts.length);
     setLoading(false);
+    const total=carts.reduce((acc,item)=>acc.item.price*item.quantity,0);
+    setTotalPrice(total)
   }, [carts]);
 
   function rmv(item) {
@@ -54,7 +58,7 @@ const CheckOut = () => {
   const handleDecrement = (cart) => {
     dispatch(decrementQuantityItem(cart));
   };
-  const router=useRouter()
+  const router = useRouter()
   const toastStyle = {
     borderRadius: "8px",
     padding: "16px",
@@ -62,7 +66,7 @@ const CheckOut = () => {
   };
   return (
     <div>
-      <ToastContainer  position="top-center"
+      <ToastContainer position="top-center"
         autoClose={5000}
         hideProgressBar={true}
         newestOnTop={false}
@@ -89,7 +93,7 @@ const CheckOut = () => {
           </Card>
         ) : (
           carts.map((cart) => (
-            <Card key={cart.id} sx={{background:'#f0f0f0'}}>
+            <Card key={cart.id} sx={{ background: '#f0f0f0' }}>
               {carts.length === 0 ? (
                 <img
                   src="https://w7.pngwing.com/pngs/277/965/png-transparent-empty-cart-illustration-thumbnail.png"
@@ -105,7 +109,7 @@ const CheckOut = () => {
                       component="img"
                       alt="img"
                     />
-                    <Button onClick={()=>router.push('/pages/address')}>Continue </Button>
+                    <Button onClick={() => router.push('/pages/address')}>Continue </Button>
                   </Grid>
                   <Grid item xs={6} md={2}>
                     <CardHeader>Name:{cart.name}</CardHeader>
@@ -129,6 +133,7 @@ const CheckOut = () => {
             </Card>
           ))
         )}
+        <Paycheck total={totalPrice}/>
       </Box>
     </div>
   );

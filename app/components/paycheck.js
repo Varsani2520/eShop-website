@@ -1,20 +1,20 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 
-const Paycheck = () => {
+const Paycheck = ({total}) => {
   const onToken = (token) => {
     console.log(token);
   };
 
   return (
     <StripeCheckout
-      key={""}
+      key={process.env.stripeKey}
       label="Payment"
       name="eRequirement"
       billingAddress
       shippingAddress
-      description={`Your total is 100`}
-      amount={100}
+      description={`Your total is ${total}`}
+      amount={total *100}
       panelLabel="Stripe payment"
       token={onToken}
       stripeKey={process.env.KEY}
