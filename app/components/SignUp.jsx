@@ -43,7 +43,7 @@ const SignUp = () => {
         console.log(response);
         toast.success("Account Created Successfully");
   
-        router.push("/login");
+        router.push("/pages/login");
       } catch (error) {
         toast.error("Failed to Create Account");
         console.log(error);
