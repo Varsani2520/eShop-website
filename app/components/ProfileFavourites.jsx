@@ -40,7 +40,11 @@ const ProfileFavourites = () => {
       <ToastContainer />
 
       <div>
-        {fav.map((likes) => {
+        {fav.length===0?(
+          <>hello</>
+        ):(
+
+        fav.map((likes) => {
           return (
             <>
               {likes.data.map((like) => {
@@ -72,7 +76,8 @@ const ProfileFavourites = () => {
               })}
             </>
           );
-        })}
+        })
+        )}
       </div>
     </div>
   );
