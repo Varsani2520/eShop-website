@@ -23,7 +23,7 @@ const CheckAddress = () => {
       const response = await contactAddress(tokens,contact.name, contact.contactNo, contact.house, contact.area, contact.pin, contact.city, contact.state);
       console.log(response)
       toast.success("success");
-      router.push('/pages/payment')
+      router.push('/pages/summary')
     } catch (error) {
       toast.error("something missing");
       console.log(error);
@@ -33,7 +33,7 @@ const CheckAddress = () => {
   return (
     <Container>
       <Toast />
-      <Typography variant="h5" gutterBottom sx={{ mt: 5 }}>
+      <Typography variant="h5" gutterBottom sx={{ mt: '10%' }}>
         Contact Details
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -144,7 +144,7 @@ const CheckAddress = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary" >
+            <Button type="submit" variant="contained" color="primary"sx={{mb:'10%'}} >
               Save Address and Continue
             </Button>
           </Grid>

@@ -87,7 +87,7 @@ const CheckOut = () => {
 
 
   return (
-    <div>
+    <Container>
       <ToastContainer position="top-center"
         autoClose={5000}
         hideProgressBar={true}
@@ -98,7 +98,7 @@ const CheckOut = () => {
         draggable
         pauseOnHover
         style={toastStyle} />
-      <Box sx={{ mt: 5 }}>
+      <Box sx={{ mt: '10%' ,mb:'10%'}}>
         <Breadcrumbs aria-label="breadcrumb">
           <Typography>Cart | {cart} Item</Typography>
         </Breadcrumbs>
@@ -157,7 +157,7 @@ const CheckOut = () => {
         )}
         <Paycheck total={totalPrice} onPaymentSuccess={handlePaymentSuccess} />
       </Box>
-    </div>
+    </Container>
   );
 };
 

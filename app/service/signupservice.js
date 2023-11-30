@@ -6,3 +6,10 @@ export async function signupservice(username, password,name,address) {
     .then((response) => response.data);
   return result;
 }
+
+export async function deleteAccountService(token) {
+  const result = await httpAxios
+    .post("api/delete-account", { token})
+    .then((response) => response.data);
+  return result;
+}

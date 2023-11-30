@@ -12,19 +12,22 @@ export const favouriteReducer = (state = initialStage, action) => {
     case addToFavourite:
       return {
         ...state,
-        favouriteItems: [...state.favouriteItems, action.payload],
+        favouriteItems: state.favouriteItems
+          ? [...state.favouriteItems, action.payload]
+          : [action.payload],
         status: "pending",
+        count: state.count + 1,
       };
 
     case removeToFavourite:
-      const updatedFav = state.favouriteItems.filter(
+      const updatedFavourites = state.favouriteItems.filter(
         (item) => item.id !== action.payload.id
       );
       return {
         ...state,
-
-        favouriteItems: updatedFav,
-        status: "pending",
+        favouriteItems: updatedFavourites,
+        status:'pending',
+        count: state.count - 1,
       };
     case incrementfav:
       return {

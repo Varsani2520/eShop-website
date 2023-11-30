@@ -1,14 +1,13 @@
 import { connectDatabase } from "@/app/database/db";
-import { loginUser } from "@/app/modal/loginUser";
-import {  NextResponse } from "next/server";
-
+import { signupUser } from "@/app/modal/signupUser";
+import { NextResponse } from "next/server";
+connectDatabase()
 export async function POST(request){
-    connectDatabase()
     const {token}=await request.json()
     try {
-        const result=await loginUser.deleteOne(token)
+        const result=await signupUser.deleteOne({token})
         return NextResponse.json(result)
     } catch (error) {
-        console.log(error);
+        console.log("error",error);
     }
 }

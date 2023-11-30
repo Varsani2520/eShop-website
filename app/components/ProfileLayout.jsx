@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProfileLayout = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.authUser.data);
 
   return (
@@ -50,18 +50,19 @@ const ProfileLayout = () => {
                 type="file"
               />
               <Typography variant="h6" sx={{ fontSize: 20, color: "#333" }}>
-                {user ? user.name :"guest"}
+                {user ? user.name : "guest"}
               </Typography>
 
               <Typography variant="body2" sx={{ fontSize: 16, color: "#666" }}>
-                {user ?user.username: "guest"}
+                {user ? user.username : "guest"}
               </Typography>
               <Button
                 variant="contained"
                 color="primary"
+
                 sx={{ marginTop: 2, "&:hover": { backgroundColor: "#0069d9" } }}
               >
-                Logout
+                Delete Account
               </Button>
             </Box>
           </Card>

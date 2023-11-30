@@ -47,13 +47,13 @@ export const decrementTotalCard = () => ({
 });
 // favroute
 
-export const addToFavouriteItem = (Items) => ({
+export const addToFavouriteItem = (item) => ({
   type: addToFavourite,
-  payload: Items,
+  payload: item,
 });
-export const removeToFavouriteItem = (Items) => ({
+export const removeToFavouriteItem = (item) => ({
   type: removeToFavourite,
-  payload: Items,
+  payload: item,
 });
 export const incrementTotalfav = () => ({
   type: incrementfav,
@@ -75,13 +75,13 @@ export const logoutuser = () => ({
 });
 
 // bookamrk item
-export const bookmarkitem = (Items) => ({
+export const bookmarkitem = (item) => ({
   type: addToBookmark,
-  payload: Items,
+  payload: item,
 });
-export const bookmarkitemremove = (Items) => ({
+export const bookmarkitemremove = (item) => ({
   type: removeToBookmark,
-  payload: Items,
+  payload: item,
 });
 export const clearCart = () => ({
   type: CLEAR_CART,

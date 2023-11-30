@@ -2,6 +2,7 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import Container from "@mui/material/Container/Container";
+import style from '../styles/style.css'
 
 const Slider1 = () => {
   return (
