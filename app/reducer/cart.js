@@ -12,13 +12,15 @@ export const incrementQuantity = "incQuantity";
 export const decrementQuantity = "decQuantity";
 export const incrementcartcount = "incrementcartcount";
 export const decrementcartcount = "decrementcartcount";
-export const CLEAR_CART="clearData"
+export const CLEAR_CART = "clearData";
 export const cartReducer = (state = initialStage, action) => {
   switch (action.type) {
     case addToCart:
       return {
         ...state,
-        cartItems: state.cartItems ? [...state.cartItems, action.payload] : [action.payload],
+        cartItems: state.cartItems
+          ? [...state.cartItems, action.payload]
+          : [action.payload],
         status: "pending",
         count: state.count + 1,
       };
@@ -72,11 +74,12 @@ export const cartReducer = (state = initialStage, action) => {
         ...state,
         count: state.count - 1,
       };
-      case CLEAR_CART:
-        return{
-          ...state,cart:{...state.cart,cartItems:[]}
-        }
-        
+    case CLEAR_CART:
+      return {
+        ...state,
+        cartItems: [],
+      };
+
     default:
       return state;
   }

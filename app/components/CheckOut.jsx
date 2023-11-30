@@ -20,6 +20,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearCart,
   decrementQuantityItem,
   decrementTotalCard,
   incrementQuantityItem,
@@ -76,12 +77,11 @@ const CheckOut = () => {
     fontSize: "16px",
   };
   const handlePaymentSuccess = (paymentDetails) => {
-    // handle the payment success logic, e.g., show a success message
-    console.log('Payment success:', paymentDetails);
+
     toast.success("Payment successful");
-    // Additional logic, such as redirecting to another page
+
     dispatch({ type: 'SET_PAYMENT_DETAILS', payload: paymentDetails });
-    dispatch({type:'CLEAR_CART'})
+   
     router.push('/pages/address');
   };
 
@@ -137,7 +137,7 @@ const CheckOut = () => {
                     <CardHeader>Name:{cart.name}</CardHeader>
                     <CardContent>
                       <Typography>
-                        Price:{cart.price && cart.quantity ? cart.price * cart.quantity : 0}
+                        Price:{cart.price && cart.quantity ? cart.price * cart.quantity : cart.price}
                       </Typography>
                       <Typography>
                         Quantity:

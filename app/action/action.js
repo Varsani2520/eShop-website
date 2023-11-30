@@ -1,3 +1,4 @@
+import { CLEAR_ADDRESS } from "../reducer/address";
 import {
   LOGIN_USER_FAILURE,
   LOGIN_USER_SUCCESS,
@@ -86,3 +87,7 @@ export const clearCart = () => ({
   type: CLEAR_CART,
 });
 export const setpaymentdetaail = () => ({ type: SET_PAYMENT_DETAILS });
+
+export const clearADress=()=>({
+  type:CLEAR_ADDRESS
+})

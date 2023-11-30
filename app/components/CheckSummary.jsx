@@ -10,11 +10,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CardContent, CardHeader, CardMedia, Card, Container, Box, Button } from '@mui/material';
 import { toast } from 'react-toastify';
 import Toast from './Toast';
-import   'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css'
 import { useRouter } from 'next/navigation';
+import { clearADress, clearCart } from '../action/action';
 
 export default function CheckSummary() {
-  const router=useRouter()
+  const router = useRouter()
   const dispatch = useDispatch()
   const [address, setAdress] = React.useState([])
   const tokens = useSelector((state) => state.auth.authUser.data.token)
@@ -40,23 +41,18 @@ export default function CheckSummary() {
   }, [carts]);
 
   function order() {
-    // Assuming you have a function to format the item names
     const itemNames = carts.map((cart) => cart.name).join(', ');
+    toast.success(`Order successful! Items: ${itemNames}`)
+    dispatch(clearCart())
+    dispatch({ type: 'CLEAR_PAYMENT_DETAILS' })
+    dispatch(clearADress())
 
-    // Show a success notification
-    toast.success(`Order successful! Items: ${itemNames}`, {
-      autoClose: 1000, // Close the notification after 5 seconds
-      position: toast.POSITION.TOP_CENTER,
-    });
+    router.push("/");
 
-    // Redirect to the notification page after a delay
-    setTimeout(() => {
-      router.push("/profile/notifications");
-    }, 1000);
   }
   return (
     <Container>
-      <Toast/>
+      <Toast />
       <Box p={2}>
         <Typography variant="h6" gutterBottom>
           Order summary
