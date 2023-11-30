@@ -16,6 +16,7 @@ import Toast from "@/app/components/Toast";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { deleteAccountService } from "@/app/service/signupservice";
+import { logoutuser } from "@/app/action/action";
 
 const Layout = ({children}) => {
   const dispatch=useDispatch()
@@ -24,6 +25,7 @@ const Layout = ({children}) => {
     try {
       const response=await deleteAccountService(user.username)
       console.log(response)
+      dispatch(logoutuser(user))
       toast.success("delete account")
     } catch (error) {
       toast.error("not delete")
