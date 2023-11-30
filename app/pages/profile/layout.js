@@ -12,13 +12,27 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
+import Toast from "@/app/components/Toast";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+import { deleteAccountService } from "@/app/service/signupservice";
 
 const Layout = ({children}) => {
   const dispatch=useDispatch()
   const user = useSelector((state) => state.auth.authUser.data);
-
+  async function deleteAccount(){
+    try {
+      const response=await deleteAccountService(user.username)
+      console.log(response)
+      toast.success("delete account")
+    } catch (error) {
+      toast.error("not delete")
+      console.log(error);
+    }
+  }
   return (
     <Container maxWidth="xl">
+      <Toast/>
       <Grid container justifyContent="center" spacing={2} sx={{ mt: "10%" }}>
         <Grid item md={4}>
           <Card
@@ -107,7 +121,7 @@ const Layout = ({children}) => {
               <Button
                 variant="outlined"
                 color="secondary"
-                href="/pages/profile/delete-account"
+                onClick={()=>deleteAccount()}
               >
                 Delete Account
               </Button>

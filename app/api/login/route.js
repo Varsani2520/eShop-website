@@ -26,13 +26,9 @@ export async function POST(request) {
     } else {
       return NextResponse.json({ msg: "Enter valid password" });
     }
+    
   } catch (error) {
-    // Handle the error appropriately, e.g., log it or send an error response
     console.error(error);
-
-    // If you have access to your store or dispatch function, use it here
-    // dispatch(loginUserFailure("Failed to login"));
-
     return NextResponse.json({
       message: "Failed to login",
       success: false,
