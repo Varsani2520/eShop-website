@@ -18,68 +18,67 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import emptyProfile from '../lottie-animation/emptyProfile'
 import { decrementTotalfav, removeToFavouriteItem } from "../action/action";
+import Toast from "./Toast";
 const ProfileFavourites = () => {
   const dispatch = useDispatch();
-
   const tokens = useSelector((state) => state.auth.authUser.data.token);
-  const favs = useSelector((state) => state.likes.favouriteItems);
-
   const [fav, setFav] = useState([]);
-
-  async function getFav() {
-    const response = await getFaviorites(tokens);
-    setFav(response);
+  const favs = async function getFav() {
+    try {
+      const response = await getFaviorites(tokens)
+      setFav(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
-  const toastStyle = {
-    borderRadius: "8px",
-    padding: "16px",
-    fontSize: "16px",
-  };
   useEffect(() => {
-    getFav();
+    favs()
   }, []);
   function rmv(item) {
     dispatch(removeToFavouriteItem(item));
     dispatch(decrementTotalfav())
     toast.success("remove item success");
-
-
   }
   return (
     <div>
-      <ToastContainer />
-
+      <Toast />
       <div>
-        {favs.length === 0 ? (
-          <><Lottie animationData={emptyProfile} /></>
+        {fav.length === 0 ? (
+          <Lottie animationData={emptyProfile} />
         ) : (
+          fav.map((response) => {
+            return (
+              <>
+                {response.data.map((singleFav) => {
+                  return (
 
-          favs.map((like) => (
+                    <Card key={singleFav.id}>
+                      <Grid container spacing={2} mt={5}>
+                        <Grid item xs={6} md={4}>
+                          <CardMedia
+                            image={singleFav.img}
+                            width={300}
+                            height={140}
+                            component="img"
+                            alt="img"
+                          />
+                        </Grid>
+                        <Grid item xs={6} md={2}>
+                          <CardContent>
+                            <Typography>{singleFav.name}</Typography>
+                            <Typography>rating: {singleFav.rating}</Typography>
+                            <Typography>Price: {singleFav.price}</Typography>
+                            <Button onClick={() => rmv(response)}>REMOVE</Button>
+                          </CardContent>
+                        </Grid>
+                      </Grid>
+                    </Card>
 
-
-            <Card key={like.id}>
-              <Grid container spacing={2} mt={5}>
-                <Grid item xs={6} md={4}>
-                  <CardMedia
-                    image={like.img}
-                    width={300}
-                    height={140}
-                    component="img"
-                    alt="img"
-                  />
-                </Grid>
-                <Grid item xs={6} md={2}>
-                  <CardContent>
-                    <Typography>{like.name}</Typography>
-                    <Typography>rating: {like.rating}</Typography>
-                    <Typography>Price: {like.price}</Typography>
-                    <Button onClick={() => rmv(like)}>REMOVE</Button>
-
-                  </CardContent>
-                </Grid>
-              </Grid>
-            </Card>
-          ))
+                  )
+                })}
+              </>
+            )
+          })
         )}
       </div>
     </div>

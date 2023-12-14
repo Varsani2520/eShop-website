@@ -1,4 +1,5 @@
 "use client";
+import style from '../../../styles/style.css'
 import "react-toastify/dist/ReactToastify.css";
 import { ProviderService } from "@/app/service/ProviderService";
 import {
@@ -42,8 +43,7 @@ const page = () => {
     if (isItemInCart) {
       toast.warning("Item already in the cart");
     } else {
-      // Item is not in the cart, proceed to add it
-
+ 
       dispatch(addToCartItem(item));
       dispatch(incrementTotalCard());
       toast.success("Added to cart successfully");
@@ -139,6 +139,7 @@ const page = () => {
                       <Box sx={{ mt: 5 }}>
                         <Button
                           variant="outlined"
+                          className="add-to-cart-btn"
                           onClick={() => hello(response)}
                         >
                           Add to Cart

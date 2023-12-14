@@ -7,6 +7,7 @@ export const addToFavourite = "addToFav";
 export const removeToFavourite = "removeFromFav";
 export const incrementfav = "increment";
 export const decrementfav = "decrement";
+export const clearFav = "clearfavourite";
 export const favouriteReducer = (state = initialStage, action) => {
   switch (action.type) {
     case addToFavourite:
@@ -26,7 +27,7 @@ export const favouriteReducer = (state = initialStage, action) => {
       return {
         ...state,
         favouriteItems: updatedFavourites,
-        status:'pending',
+        status: "pending",
         count: state.count - 1,
       };
     case incrementfav:
@@ -38,6 +39,11 @@ export const favouriteReducer = (state = initialStage, action) => {
       return {
         ...state,
         count: state.count - 1,
+      };
+    case clearFav:
+      return {
+        ...state,
+        favouriteItems: [],
       };
     default:
       return state;

@@ -14,27 +14,29 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "@/app/components/Toast";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
+import "react-toastify/dist/ReactToastify.css";
 import { deleteAccountService } from "@/app/service/signupservice";
-import { logoutuser } from "@/app/action/action";
+import {  logoutuser } from "@/app/action/action";
 
-const Layout = ({children}) => {
-  const dispatch=useDispatch()
+const Layout = ({ children }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.authUser.data);
-  async function deleteAccount(){
+
+  async function deleteAccount() {
     try {
-      const response=await deleteAccountService(user.username)
-      console.log(response)
+      const response = await deleteAccountService(user.token);
+      console.log(response);
       dispatch(logoutuser(user))
-      toast.success("delete account")
+      toast.success("delete account");
+      window.location.href("/");
     } catch (error) {
-      toast.error("not delete")
+      toast.error("not delete");
       console.log(error);
     }
   }
   return (
     <Container maxWidth="xl">
-      <Toast/>
+      <Toast />
       <Grid container justifyContent="center" spacing={2} sx={{ mt: "10%" }}>
         <Grid item md={4}>
           <Card
@@ -66,11 +68,11 @@ const Layout = ({children}) => {
                 type="file"
               />
               <Typography variant="h6" sx={{ fontSize: 20, color: "#333" }}>
-                {user ? user.name :"guest"}
+                {user ? user.name : "guest"}
               </Typography>
 
               <Typography variant="body2" sx={{ fontSize: 16, color: "#666" }}>
-                {user ?user.username: "guest"}
+                {user ? user.username : "guest"}
               </Typography>
               <Button
                 variant="contained"
@@ -123,7 +125,7 @@ const Layout = ({children}) => {
               <Button
                 variant="outlined"
                 color="secondary"
-                onClick={()=>deleteAccount()}
+                onClick={() => deleteAccount()}
               >
                 Delete Account
               </Button>

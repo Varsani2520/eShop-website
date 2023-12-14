@@ -13,6 +13,7 @@ import Link from "next/link";
 import Lottie from "lottie-react";
 import loginAnimation from '../lottie-animation/loginAnimation.json'
 import Toast from "./Toast";
+import Cookies from "js-cookie";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({
@@ -33,19 +34,21 @@ const LoginPage = () => {
     try {
       const response = await loginservice(login.username, login.password);
       console.log(response);
-
+      Cookies.set('user', true)
       dispatch(loginUserSuccess(response));
       toast.success(response.msg);
       router.push("/");
     }
     catch (error) {
       toast.error("loggedIn fail");
+      Cookies.set('user', false)
+
       dispatch(loginUserFailure);
       console.log(error);
     }
   }
   return <><Box sx={{ mt: "2rem" }}>
-    <Toast/>
+    <Toast />
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
         <Lottie animationData={loginAnimation} height={50} />

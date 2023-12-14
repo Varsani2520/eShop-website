@@ -5,6 +5,8 @@ const initialStage = {
 };
 export const addToBookmark = "addBookmarkItem";
 export const removeToBookmark = "removeBookmarkItem";
+export const clearBookmark = "removeBookmark";
+export const SET_BOOKMARK_ITEMS="setPermentBook"
 export const bookmarkReducer = (state = initialStage, action) => {
   switch (action.type) {
     case addToBookmark:
@@ -21,6 +23,16 @@ export const bookmarkReducer = (state = initialStage, action) => {
         ...state,
         bookmarkItems: updatedBookmark,
         status: "pending",
+      };
+    case clearBookmark:
+      return {
+        ...state,
+        bookmarkItems: [],
+      };
+      case SET_BOOKMARK_ITEMS:
+      return {
+        ...state,
+        bookmarkItems: action.payload,
       };
     default:
       return state;

@@ -16,6 +16,7 @@ const Toast = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        closeButton={false}
         style={toastStyle} />
   </div>;
 };

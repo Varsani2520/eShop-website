@@ -70,7 +70,12 @@ const HomeCard = () => {
               : card.map((response) => (
                 <Grid item xs={12} sm={6} md={4} lg={4} key={response.id}>
                   <Box>
-                    <Card sx={{ maxWidth: 345 }}>
+                    <Card sx={{ maxWidth: 345 ,transition: "transform 0.3s ease-in-out",
+                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                            "&:hover": {
+                              transform: "scale(1.05)",
+                              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                            },}}>
                       <CardHeader
                         title={response.title}
                         sx={{ background: "#d4d5ee" }}

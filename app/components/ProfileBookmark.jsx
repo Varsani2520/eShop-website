@@ -20,58 +20,64 @@ import emptyProfile from '../lottie-animation/emptyProfile'
 import Toast from "./Toast";
 const ProfileBookmark = () => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.authUser.data.token);
-  const books = useSelector((state) => state.bookmark.bookmarkItems)
+  const tokens = useSelector((state) => state.auth.authUser.data.token);
   const [book, setBook] = useState([]);
-  async function getBook() {
-    const response = await getBookmark(token);
-    setBook(response);
+  const books = async function getBook() {
+    try {
+
+      const response = await getBookmark(tokens);
+      setBook(response);
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
   }
   function rmv(item) {
     dispatch(bookmarkitemremove(item));
     toast.success("remove bookmark success");
   }
-  const toastStyle = {
-    borderRadius: "8px",
-    padding: "16px",
-    fontSize: "16px",
-  };
   useEffect(() => {
-    getBook();
+    books();
   }, []);
 
   return (
     <div>
       <Toast />
-
       <Box>
-        {books.length === 0 ? (
+        {book.length === 0 ? (
           <><Lottie animationData={emptyProfile} /></>
         ) : (
 
-          books.map((book) => (
-            <Card key={book.id}>
-              <Grid container spacing={2} mt={5}>
-                <Grid item xs={6} md={4}>
-                  <CardMedia
-                    image={book.img}
-                    width={300}
-                    height={140}
-                    component="img"
-                    alt="img"
-                  />
-                </Grid>
-                <Grid item xs={6} md={2}>
-                  <CardContent>
-                    <Typography>{book.name}</Typography>
-                    <Typography>rating: {book.rating}</Typography>
-                    <Typography>Price: {book.price}</Typography>
-                    <Button onClick={() => rmv(book)}>REMOVE</Button>
-                  </CardContent>
-                </Grid>
-              </Grid>
-            </Card>
-          ))
+          book.map((response) => {
+            return (<>
+              {response.data.map((singleBook) => {
+                return (
+                  <Card key={singleBook.id}>
+                    <Grid container spacing={2} mt={5}>
+                      <Grid item xs={6} md={4}>
+                        <CardMedia
+                          image={singleBook.img}
+                          width={300}
+                          height={140}
+                          component="img"
+                          alt="img"
+                        />
+                      </Grid>
+                      <Grid item xs={6} md={2}>
+                        <CardContent>
+                          <Typography>{singleBook.name}</Typography>
+                          <Typography>rating: {singleBook.rating}</Typography>
+                          <Typography>Price: {singleBook.price}</Typography>
+                          <Button onClick={() => rmv(book)}>REMOVE</Button>
+                        </CardContent>
+                      </Grid>
+                    </Grid>
+                  </Card>
+                )
+              })}
+            </>
+            )
+          })
         )}
       </Box>
     </div>

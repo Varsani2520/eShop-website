@@ -121,13 +121,28 @@ const page = () => {
                 if (providerSlug == response.provider_id)
                   return (
                     <Grid item key={response.provider_id + "_" + response.id}>
-                      <Card sx={{ maxWidth: 350 }}>
+                      <Card
+                          sx={{
+                            maxWidth: 350,
+                            transition: "transform 0.3s ease-in-out",
+                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                            "&:hover": {
+                              transform: "scale(1.05)",
+                              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                            },
+                          }}>
                         <CardHeader
                           title={response.name}
                           sx={{ background: "#b7bfee" }}
                         />
                         <CardMedia
-                          sx={{ cursor: "pointer" }}
+                           sx={{
+                            cursor: "pointer",
+                            transition: "transform 0.3s ease-in-out",
+                            "&:hover": {
+                              transform: "scale(1.1)",
+                            },
+                          }}
                           component="img"
                           image={response.img}
                           alt={response.alt}
@@ -139,7 +154,12 @@ const page = () => {
                         />
 
                         <CardActions disableSpacing>
-                          <IconButton aria-label="add to favorites">
+                          <IconButton aria-label="add to favorites"sx={{
+                                transition: "transform 0.3s ease-in-out",
+                                "&:hover": {
+                                  transform: "scale(1.2)",
+                                },
+                              }}>
                             <Checkbox
                               onClick={() => fav(response)}
                               inputProps={{ "aria-label": "Favorite" }}
@@ -147,7 +167,13 @@ const page = () => {
                               checkedIcon={<Favorite color="secondary" />}
                             />
                           </IconButton>
-                          <IconButton aria-label="bookmark">
+                          <IconButton aria-label="bookmark"
+                          sx={{
+                            transition: "transform 0.3s ease-in-out",
+                            "&:hover": {
+                              transform: "scale(1.2)",
+                            },
+                          }}>
                             <Checkbox
                               onClick={() => bookmark(response)}
                               icon={<BookmarkBorderIcon />}

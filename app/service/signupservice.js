@@ -7,9 +7,9 @@ export async function signupservice(username, password,name,address) {
   return result;
 }
 
-export async function deleteAccountService(username) {
+export async function deleteAccountService(token) {
   const result = await httpAxios
-    .post("api/delete-account", { username})
+    .post("api/delete-account", { token:token})
     .then((response) => response.data);
   return result;
 }

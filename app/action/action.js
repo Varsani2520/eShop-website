@@ -4,7 +4,12 @@ import {
   LOGIN_USER_SUCCESS,
   LOGOUT_USER,
 } from "../reducer/authenticate";
-import { addToBookmark, removeToBookmark } from "../reducer/bookmark";
+import {
+  SET_BOOKMARK_ITEMS,
+  addToBookmark,
+  clearBookmark,
+  removeToBookmark,
+} from "../reducer/bookmark";
 import {
   CLEAR_CART,
   addToCart,
@@ -17,6 +22,7 @@ import {
 
 import {
   addToFavourite,
+  clearFav,
   decrementfav,
   incrementfav,
   removeToFavourite,
@@ -45,6 +51,9 @@ export const incrementTotalCard = () => ({
 export const decrementTotalCard = () => ({
   type: decrementcartcount,
 });
+export const clearCart = () => ({
+  type: CLEAR_CART,
+});
 // favroute
 
 export const addToFavouriteItem = (item) => ({
@@ -60,6 +69,9 @@ export const incrementTotalfav = () => ({
 });
 export const decrementTotalfav = () => ({
   type: decrementfav,
+});
+export const removefav = () => ({
+  type: clearFav,
 });
 // auth action
 export const loginUserSuccess = (userData) => ({
@@ -83,11 +95,16 @@ export const bookmarkitemremove = (item) => ({
   type: removeToBookmark,
   payload: item,
 });
-export const clearCart = () => ({
-  type: CLEAR_CART,
+export const clearBookmarkItem = () => ({ type: clearBookmark });
+
+export const setBookmarkItems = (items) => ({
+  type: SET_BOOKMARK_ITEMS,
+  payload: items,
 });
+
+// payment
 export const setpaymentdetaail = () => ({ type: SET_PAYMENT_DETAILS });
 
-export const clearADress=()=>({
-  type:CLEAR_ADDRESS
-})
+export const clearADress = () => ({
+  type: CLEAR_ADDRESS,
+});

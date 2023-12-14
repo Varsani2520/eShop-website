@@ -11,6 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 const LogoutPage = () => {
     const dispatch = useDispatch();
   const router = useRouter();
@@ -27,6 +28,7 @@ const LogoutPage = () => {
   function handleLogout() {
     // Direct toast
     dispatch(logoutuser());
+    Cookies.set("user",false)
     router.push("/");
   }
   return <div><Box
