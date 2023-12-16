@@ -13,32 +13,45 @@ import Toast from './Toast';
 import 'react-toastify/dist/ReactToastify.css'
 import { useRouter } from 'next/navigation';
 import { clearADress, clearCart } from '../action/action';
+import { summaryServices } from '../service/summary';
 
 export default function CheckSummary() {
   const router = useRouter()
   const dispatch = useDispatch()
   const [address, setAdress] = React.useState([])
   const tokens = useSelector((state) => state.auth.authUser.data.token)
-  const carts = useSelector((state) => state.cart.cartItems);
+  const carts = useSelector((state) => state.cart.cartItems)
+
   const paymentDetails = useSelector((state) => state.payment.paymentDetails)
-  const [cart, setCart] = React.useState(0);
+  const [cartItem, setCart] = React.useState([]);
   const [totalQuantity, setTotalQuantity] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(0);
-
+  const [summary, setSummary] = React.useState([])
+  const date = new Date()
   async function getAddress() {
     const response = await getContactAddress(tokens)
     setAdress(response || [])
   }
-
+  async function getSummaries() {
+    try {
+      const response = await summaryServices(tokens, carts, "pending", date);
+      console.log(response.data);
+      setSummary(response.data);
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
   React.useEffect(() => {
     setCart(carts.length);
     getAddress()
+    getSummaries()
     const totalQuantity = carts.reduce((acc, item) => acc + item.quantity, 0);
     const totalPrice = carts.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     setTotalQuantity(totalQuantity);
     setTotalPrice(totalPrice);
-  }, [carts]);
+  }, []);
 
   function order() {
     const itemNames = carts.map((cart) => cart.name).join(', ');
@@ -46,25 +59,24 @@ export default function CheckSummary() {
     dispatch(clearCart())
     dispatch({ type: 'CLEAR_PAYMENT_DETAILS' })
     dispatch(clearADress())
-
     router.push("/");
 
   }
   return (
     <Container>
       <Toast />
-      <Box p={2}>
+      <Box p={2} mt={"5%"}>
         <Typography variant="h6" gutterBottom>
           Order summary
         </Typography>
         <List disablePadding>
-          {carts.map((cart) => (
-            <Card key={cart.id} sx={{ marginBottom: 2 }}>
+          {Array.isArray(summary) && summary.map((result, index) => (
 
+            <Card key={result.id} sx={{ marginBottom: 2 }}>
               <Grid container spacing={2} mt={5}>
                 <Grid item xs={12} md={4}>
                   <CardMedia
-                    image={cart.img}
+                    image={result.img}
                     width={300}
                     height={140}
                     component="img"
@@ -73,21 +85,24 @@ export default function CheckSummary() {
                 </Grid>
                 <Grid item xs={12} md={8}>
                   <CardContent>
-                    <CardHeader>Name:{cart.name}</CardHeader>
+                    <CardHeader>Name:{result.name}</CardHeader>
                     <ListItem sx={{ py: 1, px: 0 }}>
-
                       <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                        price:{cart.price}
+                        price:{result.price}
                       </Typography>
-                      <Typography variant="subtitle1">Quantity:{cart.quantity}</Typography>
+                      <Typography variant="subtitle1">Quantity:{result.quantity}</Typography>
                     </ListItem>
                   </CardContent>
                 </Grid>
               </Grid>
             </Card>
-          ))}
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={`Total Quantity: ${totalQuantity}`} />
+          ))
+
+
+          }
+
+          < ListItem sx={{ py: 1, px: 0 }}>
+            {/* <ListItemText primary={`Total Quantity: ${totalQuantity}`} /> */}
             <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
               Total Price: ${totalPrice.toFixed(2)}
             </Typography>
@@ -136,9 +151,6 @@ export default function CheckSummary() {
                   </Typography>
                 )
               }
-
-
-
             </Grid>
           </Grid>
         </Grid>
@@ -146,6 +158,6 @@ export default function CheckSummary() {
           Confirm Order
         </Button>
       </Box>
-    </Container>
+    </Container >
   );
 }

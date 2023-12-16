@@ -13,11 +13,8 @@ export const favouriteReducer = (state = initialStage, action) => {
     case addToFavourite:
       return {
         ...state,
-        favouriteItems: state.favouriteItems
-          ? [...state.favouriteItems, action.payload]
-          : [action.payload],
+        favouriteItems: [...state.favouriteItems, action.payload],
         status: "pending",
-        count: state.count + 1,
       };
 
     case removeToFavourite:
@@ -28,7 +25,6 @@ export const favouriteReducer = (state = initialStage, action) => {
         ...state,
         favouriteItems: updatedFavourites,
         status: "pending",
-        count: state.count - 1,
       };
     case incrementfav:
       return {

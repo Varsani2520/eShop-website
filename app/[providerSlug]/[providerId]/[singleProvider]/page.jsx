@@ -15,10 +15,11 @@ import {
   Grid,
   Rating,
   Typography,
+  cardActionAreaClasses,
 } from "@mui/material";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { emphasize, styled } from "@mui/material/styles";
 import HomeIcon from "@mui/icons-material/Home";
 import StarIcon from "@mui/icons-material/Star";
@@ -27,26 +28,40 @@ import { addToCartItem, incrementTotalCard } from "@/app/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Toast from "@/app/components/Toast";
+import { cartService } from '@/app/service/get-cart';
 
 const page = () => {
+  const dispatch = useDispatch();
+  const [desc, setdesc] = useState([]);
+  const { providerSlug } = useParams();
+  const { singleProvider } = useParams();
   const carts = useSelector((state) => state.cart.cartItems);
   const token = useSelector((state) => state.auth.authUser)
-  const dispatch = useDispatch();
-  function hello(item) {
+
+  function addToCart(item) {
     if (!token || !token.data) {
       toast.warning("please log in to add to cart.")
       return;
-    }    // Check if the item is already in the cart
-    const isItemInCart = Array.isArray(carts) && carts.some((cartItems) => cartItems.id === item.id);
-
-
-    if (isItemInCart) {
-      toast.warning("Item already in the cart");
+    }
+    const isItemIncart = carts.some(
+      (cartItems) => cartItems.id === item.id
+    );
+    if (isItemIncart) {
+      toast.warning("Your Items is already in your cart");
     } else {
- 
       dispatch(addToCartItem(item));
       dispatch(incrementTotalCard());
-      toast.success("Added to cart successfully");
+      cartService(token.data.token, item)
+      toast.success("Added to cart  successfully");
+    }
+  }
+
+  async function Desc() {
+    try {
+      const response = await ProviderService(providerSlug);
+      setdesc(response)
+    } catch (error) {
+      console.log(error);
     }
   }
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -68,29 +83,14 @@ const page = () => {
       },
     };
   });
-
-  const [hlo, setHlo] = useState([]);
-  const { providerSlug } = useParams();
-  const { singleProvider } = useParams();
-
-  async function Providers() {
-    try {
-      const response = await ProviderService(providerSlug);
-      setHlo(response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  
-  
   useEffect(() => {
-    Providers();
+    Desc();
     document.title = "SingleProvider | eRequirements"
   }, []);
 
   return (
     <Box>
-      <Toast/>
+      <Toast />
       <Box sx={{ background: "hotpink" }} mt={{ md: '5%', xs: '10%' }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
@@ -108,7 +108,7 @@ const page = () => {
               />
             </Breadcrumbs>
             {
-              hlo.map((response) => {
+              desc.map((response) => {
                 if (singleProvider == response.id)
                   return (
 
@@ -122,7 +122,7 @@ const page = () => {
 
       <Container>
         <Box sx={{ mt: 10 }}>
-          {hlo.map((response) => {
+          {desc.map((response) => {
             if (singleProvider == response.id)
               return (
                 <Box key={response.id}>
@@ -140,7 +140,7 @@ const page = () => {
                         <Button
                           variant="outlined"
                           className="add-to-cart-btn"
-                          onClick={() => hello(response)}
+                          onClick={() => addToCart(response)}
                         >
                           Add to Cart
                         </Button>

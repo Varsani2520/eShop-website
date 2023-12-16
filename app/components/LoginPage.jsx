@@ -97,7 +97,7 @@ const LoginPage = () => {
             Login
           </Button>
           dont have account?
-          <Link href="/signup">Sign up</Link>
+          <Link href="/pages/signup">Sign up</Link>
         </form>
       </Grid>
     </Grid>

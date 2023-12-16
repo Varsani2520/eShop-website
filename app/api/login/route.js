@@ -21,12 +21,10 @@ export async function POST(request) {
     if (passwordMatch && user) {
       return NextResponse.json({
         data: user,
-        msg: "User logged in successfully",
       });
     } else {
       return NextResponse.json({ msg: "Enter valid password" });
     }
-    
   } catch (error) {
     console.error(error);
     return NextResponse.json({

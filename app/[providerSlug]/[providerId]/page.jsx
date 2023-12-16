@@ -22,7 +22,7 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addToFavouriteItem, bookmarkitem, incrementTotalfav } from "@/app/action/action";
+import { addToCartItem, addToFavouriteItem, bookmarkitem, incrementTotalCard, incrementTotalfav } from "@/app/action/action";
 import 'react-toastify/dist/ReactToastify.css'
 import { FavioriteService } from "@/app/service/get-faviourite";
 import { bookmarkServices } from "@/app/service/bookmark";
@@ -31,15 +31,17 @@ import { toast } from "react-toastify";
 import ProviderHeader from "@/app/components/ProviderHeader.jsx";
 
 const page = () => {
+  const dispatch = useDispatch();
   const { providerSlug } = useParams();
   const router = useRouter();
   const [desc, setdesc] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const favourites = useSelector((state) => state.likes.favouriteItems);
+  const bookmarks = useSelector((state) => state.bookmark.bookmarkItems);
+  const token = useSelector((state) => state.auth.authUser);
   async function Desc() {
     try {
       const response = await ProviderService(providerSlug);
-      console.log("inside card", providerSlug);
       setdesc(response);
       setLoading(false);
     } catch (error) {
@@ -47,11 +49,9 @@ const page = () => {
     }
   }
 
-  const favourites = useSelector((state) => state.likes.favouriteItems);
-  const bookmarks = useSelector((state) => state.bookmark.bookmarkItems);
+ 
 
-  const token = useSelector((state) => state.auth.authUser);
-  const dispatch = useDispatch();
+
 
   function fav(item) {
     if (!token || !token.data) {
@@ -122,21 +122,21 @@ const page = () => {
                   return (
                     <Grid item key={response.provider_id + "_" + response.id}>
                       <Card
-                          sx={{
-                            maxWidth: 350,
-                            transition: "transform 0.3s ease-in-out",
-                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                            "&:hover": {
-                              transform: "scale(1.05)",
-                              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
-                            },
-                          }}>
+                        sx={{
+                          maxWidth: 350,
+                          transition: "transform 0.3s ease-in-out",
+                          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                          "&:hover": {
+                            transform: "scale(1.05)",
+                            boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                          },
+                        }}>
                         <CardHeader
                           title={response.name}
                           sx={{ background: "#b7bfee" }}
                         />
                         <CardMedia
-                           sx={{
+                          sx={{
                             cursor: "pointer",
                             transition: "transform 0.3s ease-in-out",
                             "&:hover": {
@@ -154,12 +154,12 @@ const page = () => {
                         />
 
                         <CardActions disableSpacing>
-                          <IconButton aria-label="add to favorites"sx={{
-                                transition: "transform 0.3s ease-in-out",
-                                "&:hover": {
-                                  transform: "scale(1.2)",
-                                },
-                              }}>
+                          <IconButton aria-label="add to favorites" sx={{
+                            transition: "transform 0.3s ease-in-out",
+                            "&:hover": {
+                              transform: "scale(1.2)",
+                            },
+                          }}>
                             <Checkbox
                               onClick={() => fav(response)}
                               inputProps={{ "aria-label": "Favorite" }}
@@ -168,12 +168,12 @@ const page = () => {
                             />
                           </IconButton>
                           <IconButton aria-label="bookmark"
-                          sx={{
-                            transition: "transform 0.3s ease-in-out",
-                            "&:hover": {
-                              transform: "scale(1.2)",
-                            },
-                          }}>
+                            sx={{
+                              transition: "transform 0.3s ease-in-out",
+                              "&:hover": {
+                                transform: "scale(1.2)",
+                              },
+                            }}>
                             <Checkbox
                               onClick={() => bookmark(response)}
                               icon={<BookmarkBorderIcon />}

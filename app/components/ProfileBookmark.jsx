@@ -24,7 +24,6 @@ const ProfileBookmark = () => {
   const [book, setBook] = useState([]);
   const books = async function getBook() {
     try {
-
       const response = await getBookmark(tokens);
       setBook(response);
       console.log(response)
@@ -68,7 +67,7 @@ const ProfileBookmark = () => {
                           <Typography>{singleBook.name}</Typography>
                           <Typography>rating: {singleBook.rating}</Typography>
                           <Typography>Price: {singleBook.price}</Typography>
-                          <Button onClick={() => rmv(book)}>REMOVE</Button>
+                          {/* <Button onClick={() => rmv(book)}>REMOVE</Button> */}
                         </CardContent>
                       </Grid>
                     </Grid>

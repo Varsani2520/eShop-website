@@ -21,7 +21,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Badge } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import { getFaviorites } from "../service/getFaviourite";
+import { getCart } from "../service/getCart";
 import Cookies from "js-cookie";
+
 const pages = [
   { label: "Home", href: "/" },
   { label: "About", href: "/pages/about" },
@@ -29,39 +31,26 @@ const pages = [
 ];
 const settings = [
   { label: "Profile", href: "/pages/profile" },
-
   { label: "Logout", href: "/pages/logout" },
 ];
 
 function App() {
   const [cart, setCart] = useState(0);
   const [fav, setFav] = useState(0);
-  const carts = useSelector((state) => state.cart.cartItems);
+  const cartItems = useSelector((state) => state.cart.cartItems)
+  const FavItems = useSelector((state) => state.likes.favouriteItems)
   let tokens;
-  const authenticated = Cookies.get('user')
-  
-  const getFav = async () => {
-    try {
-      tokens = useSelector((state) => state.auth.authUser.data.token)
-      const response = await getFaviorites(tokens);
-      return response.length;
-    } catch (error) {
-      console.error(error);
-      return 0;
-    }
-  };
+  const authenticated = useSelector((state) => state.auth.message)
+  // const authenticated = Cookies.get('user')
+
   useEffect(() => {
-    const fetchData = async () => {
-      const favLength = await getFav();
-      setFav(favLength);
-
-      if (carts) {
-        setCart(carts.length);
-      }
-    };
-
-    fetchData();
-  }, [carts, tokens]);
+    if (FavItems) {
+      setFav(FavItems.length)
+    }
+    if (cartItems) {
+      setCart(cartItems.length)
+    }
+  }, [tokens, cartItems, FavItems]);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -225,8 +214,12 @@ function App() {
                   </IconButton>
                 </Tooltip>
               ) : (
-                <><Button href="/pages/signup" variant="contained" sx={{ marginRight: 2 }} >Sign up</Button >
-                  <Button href="/pages/login" variant="contained" sx={{ marginRight: 2 }}>Login</Button >
+                <> <Link href="/pages/signup" passHref>
+                  <Button component="a" variant="contained" sx={{ marginRight: 2 }}>Sign up</Button>
+                </Link>
+                  <Link href="/pages/login" passHref>
+                    <Button component="a" variant="contained" sx={{ marginRight: 2 }}>Login</Button>
+                  </Link>
                 </>
               )
             }

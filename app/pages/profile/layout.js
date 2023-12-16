@@ -16,7 +16,7 @@ import Toast from "@/app/components/Toast";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { deleteAccountService } from "@/app/service/signupservice";
-import {  logoutuser } from "@/app/action/action";
+import { logoutuser } from "@/app/action/action";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
     try {
       const response = await deleteAccountService(user.token);
       console.log(response);
-      dispatch(logoutuser(user))
+      dispatch(logoutuser(user));
       toast.success("delete account");
       window.location.href("/");
     } catch (error) {
@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
     }
   }
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="lg">
       <Toast />
       <Grid container justifyContent="center" spacing={2} sx={{ mt: "10%" }}>
         <Grid item md={4}>
@@ -86,49 +86,47 @@ const Layout = ({ children }) => {
           <Divider />
           <Card sx={{ background: "#f0f0f0", padding: 3 }}>
             <div style={linkStyle}>
-              <Button variant="outlined" color="primary">
-                <Link href="/pages/profile/bookings">Booking</Link>
-              </Button>
+              <Link href="/pages/profile/bookings">
+                <Button variant="outlined" color="primary">
+                  Booking
+                </Button>
+              </Link>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button
-                variant="outlined"
-                color="primary"
-                href="/pages/profile/bookmark"
-              >
-                Bookmark
-              </Button>
+              <Link href="/pages/profile/bookmark" passHref>
+                <Button variant="outlined" color="primary">
+                  Bookmark
+                </Button>
+              </Link>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button
-                variant="outlined"
-                color="primary"
-                href="/pages/profile/favourites"
-              >
-                WishList
-              </Button>
+              <Link href="/pages/profile/favourites" passHref>
+                <Button variant="outlined" color="primary">
+                  WishList
+                </Button>
+              </Link>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button
-                variant="outlined"
-                color="primary"
-                href="/pages/profile/notifications"
-              >
-                Notification
-              </Button>
+              <Link href="/pages/profile/notifications" passHref>
+                <Button variant="outlined" color="primary">
+                  Notification
+                </Button>
+              </Link>
             </div>
             <Divider />
             <div style={linkStyle}>
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={() => deleteAccount()}
-              >
-                Delete Account
-              </Button>
+              
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={() => deleteAccount()}
+                >
+                  Delete Account
+                </Button>
+              
             </div>
           </Card>
         </Grid>

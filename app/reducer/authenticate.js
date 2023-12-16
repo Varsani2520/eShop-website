@@ -1,6 +1,6 @@
 const initialStage = {
   authUser: [],
-  messsage: "fail",
+  message: false,
 };
 export const LOGIN_USER_SUCCESS = "loginSuccess";
 export const LOGIN_USER_FAILURE = "loginFail";
@@ -11,17 +11,17 @@ const authReducer = (state = initialStage, action) => {
       return {
         ...state,
         authUser: action.payload,
-        message: "success",
+        message: true,
       };
     case "LOGIN_USER_FAILURE":
       return {
         authuser: [],
-        message: "failure",
+        message: false,
       };
     case LOGOUT_USER:
       return {
         authUser: [],
-        message: "logout",
+        message: false,
       };
     default:
       return state;

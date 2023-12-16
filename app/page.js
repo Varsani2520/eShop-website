@@ -10,8 +10,8 @@ import SwiperHome from "./components/SwiperHome.jsx";
 
 const page = () => {
   return (
-    <Container>
-      <Grid >
+    <Container maxWidth="lg">
+      <Grid>
         <Grid item lg={12} md={12} xs={12} sx={{ mt: "10%" }}>
           <SwiperHome />
         </Grid>

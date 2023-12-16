@@ -51,7 +51,6 @@ const ProfileFavourites = () => {
               <>
                 {response.data.map((singleFav) => {
                   return (
-
                     <Card key={singleFav.id}>
                       <Grid container spacing={2} mt={5}>
                         <Grid item xs={6} md={4}>
@@ -68,7 +67,8 @@ const ProfileFavourites = () => {
                             <Typography>{singleFav.name}</Typography>
                             <Typography>rating: {singleFav.rating}</Typography>
                             <Typography>Price: {singleFav.price}</Typography>
-                            <Button onClick={() => rmv(response)}>REMOVE</Button>
+                            {/* pending */}
+                            {/* <Button onClick={() => rmv(response)}>REMOVE</Button> */}
                           </CardContent>
                         </Grid>
                       </Grid>

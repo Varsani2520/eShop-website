@@ -12,4 +12,4 @@ const contactUserModal = Schema({
 
 // modal
 export const user =
-  mongoose.models.names || mongoose.model("names", contactUserModal);
+  mongoose.models.contact || mongoose.model("contact", contactUserModal);

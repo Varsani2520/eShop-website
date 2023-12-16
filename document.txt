@@ -1,0 +1,10 @@
+payment success -> taro cart(reducer) no data ==> db
+
+likes and fav -> db
+
+
+->today
+send request to summaries and check token
+api token -> isAvailalble in database response
+
+=> response.data.map(() => {})
