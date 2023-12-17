@@ -53,15 +53,15 @@ export default function CheckSummary() {
     setTotalPrice(totalPrice);
   }, []);
 
-  function order() {
-    const itemNames = carts.map((cart) => cart.name).join(', ');
-    toast.success(`Order successful! Items: ${itemNames}`)
-    dispatch(clearCart())
-    dispatch({ type: 'CLEAR_PAYMENT_DETAILS' })
-    dispatch(clearADress())
-    router.push("/");
+  // function order() {
+  //   const itemNames = carts.map((cart) => cart.name).join(', ');
+  //   toast.success(`Order successful! Items: ${itemNames}`)
+  //   dispatch(clearCart())
+  //   dispatch({ type: 'CLEAR_PAYMENT_DETAILS' })
+  //   dispatch(clearADress())
+  //   router.push("/");
 
-  }
+  // }
   return (
     <Container>
       <Toast />
@@ -154,9 +154,9 @@ export default function CheckSummary() {
             </Grid>
           </Grid>
         </Grid>
-        <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={() => order()}>
+        {/* <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={() => order()}>
           Confirm Order
-        </Button>
+        </Button> */}
       </Box>
     </Container >
   );

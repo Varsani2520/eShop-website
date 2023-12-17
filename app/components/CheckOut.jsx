@@ -71,6 +71,7 @@ const CheckOut = () => {
     toast.success("Payment successful");
     dispatch({ type: 'SET_PAYMENT_DETAILS', payload: paymentDetails });
     router.push('/pages/address');
+    dispatch(clearCart())
   };
 
 

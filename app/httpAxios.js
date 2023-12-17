@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const httpAxios = axios.create({
-  baseURL: "https://erequirements.vercel.app",
+  baseURL: "http://localhost:3000",
 });
