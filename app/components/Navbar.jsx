@@ -36,21 +36,28 @@ const settings = [
 
 function App() {
   const [cart, setCart] = useState(0);
-  const [fav, setFav] = useState(0);
   const cartItems = useSelector((state) => state.cart.cartItems)
-  const FavItems = useSelector((state) => state.likes.favouriteItems)
+  const [FavItems, setFavs] = useState(0);
+
   let tokens;
   const authenticated = useSelector((state) => state.auth.message)
   const user = Cookies.get('user')
-
-  useEffect(() => {
-    if (FavItems) {
-      setFav(FavItems.length)
+  async function favs() {
+    try {
+      const response = await getFaviorites()
+      setFavs(response.length)
     }
+    catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    favs()
+
     if (cartItems) {
       setCart(cartItems.length)
     }
-  }, [tokens, cartItems, FavItems]);
+  }, [tokens, cartItems]);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -201,13 +208,13 @@ function App() {
               href="/pages/profile/favourites"
               sx={{ marginRight: 2 }}
             >
-              <StyledBadge badgeContent={fav} color="secondary">
+              <StyledBadge badgeContent={FavItems} color="secondary">
                 <FavoriteBorderOutlinedIcon />
               </StyledBadge>
             </IconButton>
 
             {
-              !user==undefined && authenticated ? (
+              !user == undefined && authenticated ? (
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar />
