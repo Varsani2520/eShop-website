@@ -22,8 +22,8 @@ const CheckAddress = () => {
     try {
       const response = await contactAddress(tokens,contact.name, contact.contactNo, contact.house, contact.area, contact.pin, contact.city, contact.state);
       console.log(response)
-      toast.success("success");
-      router.push('/pages/summary')
+      toast.success("order delivered at this address");
+      router.push('/')
     } catch (error) {
       toast.error("something missing");
       console.log(error);

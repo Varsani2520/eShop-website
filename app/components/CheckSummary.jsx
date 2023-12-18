@@ -3,7 +3,6 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import { getContactAddress } from '@/app/service/contactAddress';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,45 +11,43 @@ import { toast } from 'react-toastify';
 import Toast from './Toast';
 import 'react-toastify/dist/ReactToastify.css'
 import { useRouter } from 'next/navigation';
-import { clearADress, clearCart } from '../action/action';
 import { summaryServices } from '../service/summary';
+import { getServerSession } from 'next-auth';
 
 export default function CheckSummary() {
   const router = useRouter()
   const dispatch = useDispatch()
   const [address, setAdress] = React.useState([])
   const tokens = useSelector((state) => state.auth.authUser.data.token)
-  const carts = useSelector((state) => state.cart.cartItems)
 
   const paymentDetails = useSelector((state) => state.payment.paymentDetails)
   const [cartItem, setCart] = React.useState([]);
   const [totalQuantity, setTotalQuantity] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(0);
   const [summary, setSummary] = React.useState([])
-  const date = new Date()
   async function getAddress() {
     const response = await getContactAddress(tokens)
     setAdress(response || [])
   }
-  async function getSummaries() {
+  async function Summaries() {
     try {
-      const response = await summaryServices(tokens, carts, "pending", date);
-      console.log(response.data);
-      setSummary(response.data);
+      const response = await summaryServices(tokens);
+      console.log(response);
+      setSummary(response);
     }
     catch (error) {
       console.log(error)
     }
   }
   React.useEffect(() => {
-    setCart(carts.length);
+    // setCart(carts.length);
     getAddress()
-    getSummaries()
-    const totalQuantity = carts.reduce((acc, item) => acc + item.quantity, 0);
-    const totalPrice = carts.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    Summaries()
+    // const totalQuantity = carts.reduce((acc, item) => acc + item.quantity, 0);
+    // const totalPrice = carts.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-    setTotalQuantity(totalQuantity);
-    setTotalPrice(totalPrice);
+    // setTotalQuantity(totalQuantity);
+    // setTotalPrice(totalPrice);
   }, []);
 
   // function order() {
@@ -70,36 +67,48 @@ export default function CheckSummary() {
           Order summary
         </Typography>
         <List disablePadding>
-          {Array.isArray(summary) && summary.map((result, index) => (
+          {
+            summary.map((response) => {
+              return (
+                <>
+                  {
+                    response.data.map((singleSummary) => {
+                      return (
+                        <Card key={singleSummary.id} sx={{ marginBottom: 2 }}>
+                          <Grid container spacing={2} mt={5}>
+                            <Grid item xs={12} md={4}>
+                              <CardMedia
+                                image={singleSummary.img}
+                                width={300}
+                                height={140}
+                                component="img"
+                                alt="img"
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={8}>
+                              <CardContent>
+                                <CardHeader>Name:{singleSummary.name}</CardHeader>
 
-            <Card key={result.id} sx={{ marginBottom: 2 }}>
-              <Grid container spacing={2} mt={5}>
-                <Grid item xs={12} md={4}>
-                  <CardMedia
-                    image={result.img}
-                    width={300}
-                    height={140}
-                    component="img"
-                    alt="img"
-                  />
-                </Grid>
-                <Grid item xs={12} md={8}>
-                  <CardContent>
-                    <CardHeader>Name:{result.name}</CardHeader>
-                    <ListItem sx={{ py: 1, px: 0 }}>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                        price:{result.price}
-                      </Typography>
-                      <Typography variant="subtitle1">Quantity:{result.quantity}</Typography>
-                    </ListItem>
-                  </CardContent>
-                </Grid>
-              </Grid>
-            </Card>
-          ))
+                                <ListItem sx={{ py: 1, px: 0 }}>
+                                  <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+                                    price:{singleSummary.price}
+                                  </Typography>
 
+                                  <Typography variant="subtitle1">Quantity:{singleSummary.quantity}</Typography>
+                                </ListItem>
+                              </CardContent>
+                            </Grid>
+                          </Grid>
+                        </Card>
+                      )
+                    })
+                  }</>
 
+              )
+            })
           }
+
+
 
           < ListItem sx={{ py: 1, px: 0 }}>
             {/* <ListItemText primary={`Total Quantity: ${totalQuantity}`} /> */}

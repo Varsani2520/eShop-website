@@ -41,7 +41,7 @@ function App() {
   const FavItems = useSelector((state) => state.likes.favouriteItems)
   let tokens;
   const authenticated = useSelector((state) => state.auth.message)
-  // const authenticated = Cookies.get('user')
+  const user = Cookies.get('user')
 
   useEffect(() => {
     if (FavItems) {
@@ -207,7 +207,7 @@ function App() {
             </IconButton>
 
             {
-              authenticated ? (
+              user && authenticated ? (
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar />
