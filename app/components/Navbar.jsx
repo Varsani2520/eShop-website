@@ -40,7 +40,7 @@ function App() {
   const [FavItems, setFavs] = useState(0);
 
   let tokens;
-  const authenticated = useSelector((state) => state.auth.message)
+  const authenticated = useSelector((state) => state.auth.authUser)
   const user = Cookies.get('user')
   async function favs() {
     try {
