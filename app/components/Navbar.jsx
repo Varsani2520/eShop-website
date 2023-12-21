@@ -37,32 +37,37 @@ const settings = [
 function App() {
   const [cart, setCart] = useState(0);
   const cartItems = useSelector((state) => state.cart.cartItems)
-  const [FavItems, setFavs] = useState(0);
+  const favItems = useSelector((state) => state.likes.favouriteItems)
+  // const [FavItems, setFavs] = useState(0);
 
   let tokens;
-  const authenticated = useSelector((state) => state.auth.message="true")
+  const authenticated = useSelector((state) => state.auth.message = "true")
   const user = Cookies.get('user')
-  async function favs() {
-    try {
-      const response = await getFaviorites()
-      setFavs(response.length)
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
+  // const token = useSelector((state) => state.auth.authUser)
+  // async function favs() {
+  //   try {
+  //     const response = await getFaviorites(token)
+  //     setFavs(response.length)
+  //     console.log(response)
+  //   }
+  //   catch (error) {
+  //     console.log(error)
+  //   }
+  // }
   useEffect(() => {
     favs();
     if (authenticated) {
       if (cartItems) {
         setCart(cartItems.length);
       }
-      setFavs(FavItems);
+      if (favItems) {
+        setFav(favItems.length)
+      }
     } else {
       setCart(0);
       setFavs(0);
     }
-  }, [tokens, cartItems]);
+  }, [tokens, cartItems, favItems]);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

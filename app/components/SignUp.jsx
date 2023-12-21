@@ -38,7 +38,6 @@ const SignUp = () => {
       );
       console.log(response);
       toast.success("Account Created Successfully");
-
       router.push("/pages/login");
     } catch (error) {
       toast.error("Failed to Create Account");

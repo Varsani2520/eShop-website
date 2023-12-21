@@ -20,11 +20,7 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
-  const toastStyle = {
-    borderRadius: "8px",
-    padding: "16px",
-    fontSize: "16px",
-  };
+  
   const router = useRouter();
   async function handleSubmit(e) {
     e.preventDefault();
