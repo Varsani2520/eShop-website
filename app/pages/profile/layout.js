@@ -146,7 +146,7 @@ const Layout = ({ children }) => {
               <Button
                 variant="outlined"
                 color="secondary"
-                onClick={() => deleteAccount()}
+                onClick={deleteAccount}
               >
                 Delete Account
               </Button>
