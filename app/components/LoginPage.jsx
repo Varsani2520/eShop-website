@@ -38,7 +38,6 @@ const LoginPage = () => {
     catch (error) {
       toast.error("loggedIn fail");
       Cookies.set('user', false)
-
       dispatch(loginUserFailure);
       console.log(error);
     }
