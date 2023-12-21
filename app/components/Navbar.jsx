@@ -56,7 +56,7 @@ function App() {
   //   }
   // }
   useEffect(() => {
-    favs();
+    // favs();
     if (authenticated) {
       if (cartItems) {
         setCart(cartItems.length);
@@ -66,7 +66,7 @@ function App() {
       }
     } else {
       setCart(0);
-      setFavs(0);
+      setFav(0);
     }
   }, [tokens, cartItems, favItems]);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
