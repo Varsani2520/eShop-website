@@ -44,7 +44,7 @@ const ProfileBookmark = () => {
       <Toast />
       <Box>
         {book.length === 0 ? (
-          <><Lottie animationData={emptyProfile} style={{height:'200px'}} /></>
+          <><Lottie animationData={emptyProfile} style={{ height: '200px' }} /></>
         ) : (
 
           book.map((response) => {
@@ -56,8 +56,7 @@ const ProfileBookmark = () => {
                       <Grid item xs={6} md={4}>
                         <CardMedia
                           image={singleBook.img}
-                          width={300}
-                          height={140}
+                          sx={{ objectFit: 'cover' }}
                           component="img"
                           alt="img"
                         />

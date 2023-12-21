@@ -56,8 +56,7 @@ const ProfileFavourites = () => {
                         <Grid item xs={6} md={4}>
                           <CardMedia
                             image={singleFav.img}
-                            width={300}
-                            height={140}
+                            sx={{objectFit:'cover'}}
                             component="img"
                             alt="img"
                           />

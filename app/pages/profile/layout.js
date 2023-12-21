@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { deleteAccountService } from "@/app/service/signupservice";
 import { logoutuser } from "@/app/action/action";
+import Cookies from "js-cookie";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Layout = ({ children }) => {
       console.log(response);
       dispatch(logoutuser(user));
       toast.success("delete account");
+      Cookies.remove('user')
       window.location.href("/");
     } catch (error) {
       toast.error("not delete");

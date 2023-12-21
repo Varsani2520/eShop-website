@@ -44,8 +44,7 @@ const page = () => {
                     <Grid item xs={12} md={4}>
                       <CardMedia
                         image={singlebooking.img}
-                        width={300}
-                        height={140}
+                        sx={{ objectFit: "cover" }}
                         component="img"
                         alt="img"
                       />
@@ -62,9 +61,9 @@ const page = () => {
                             price:{singlebooking.price}
                           </Typography>
 
-                          <Typography variant="subtitle1">
+                          {/* <Typography variant="subtitle1">
                             Quantity:{singlebooking.quantity}
-                          </Typography>
+                          </Typography> */}
                         </ListItem>
                       </CardContent>
                     </Grid>
