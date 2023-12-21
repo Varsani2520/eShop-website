@@ -16,7 +16,7 @@ import Toast from "@/app/components/Toast";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { deleteAccountService } from "@/app/service/signupservice";
-import { logoutuser } from "@/app/action/action";
+import { logoutuser, removefav } from "@/app/action/action";
 import Cookies from "js-cookie";
 
 const Layout = ({ children }) => {
@@ -28,8 +28,9 @@ const Layout = ({ children }) => {
       const response = await deleteAccountService(user.token);
       console.log(response);
       dispatch(logoutuser(user));
+      dispatch(removefav());
       toast.success("delete account");
-      Cookies.remove('user')
+      Cookies.remove("user");
       window.location.href("/");
     } catch (error) {
       toast.error("not delete");
@@ -40,7 +41,7 @@ const Layout = ({ children }) => {
     <Container maxWidth="lg">
       <Toast />
       <Grid container justifyContent="center" spacing={2} sx={{ mt: "10%" }}>
-        <Grid item md={4}xs={12}>
+        <Grid item md={4} xs={12}>
           <Card
             sx={{
               backgroundColor: "#f0f0f0",
@@ -120,15 +121,13 @@ const Layout = ({ children }) => {
             </div>
             <Divider />
             <div style={linkStyle}>
-              
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={() => deleteAccount()}
-                >
-                  Delete Account
-                </Button>
-              
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={() => deleteAccount()}
+              >
+                Delete Account
+              </Button>
             </div>
           </Card>
         </Grid>
