@@ -39,24 +39,11 @@ function App() {
   const [fav, setFav] = useState(0);
   const cartItems = useSelector((state) => state.cart.cartItems)
   const favItems = useSelector((state) => state.likes.favouriteItems)
-  // const [FavItems, setFavs] = useState(0);
 
   let tokens;
   const authenticated = useSelector((state) => state.auth.message = "true")
   const user = Cookies.get('user')
-  // const token = useSelector((state) => state.auth.authUser)
-  // async function favs() {
-  //   try {
-  //     const response = await getFaviorites(token)
-  //     setFavs(response.length)
-  //     console.log(response)
-  //   }
-  //   catch (error) {
-  //     console.log(error)
-  //   }
-  // }
   useEffect(() => {
-    // favs();
     if (authenticated) {
       if (cartItems) {
         setCart(cartItems.length);

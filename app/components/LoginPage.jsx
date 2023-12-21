@@ -20,7 +20,7 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
-  
+
   const router = useRouter();
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,7 +32,7 @@ const LoginPage = () => {
       console.log(response);
       Cookies.set('user', true)
       dispatch(loginUserSuccess(response));
-      toast.success(response.msg);
+      toast.success("logged in success");
       router.push("/");
     }
     catch (error) {
