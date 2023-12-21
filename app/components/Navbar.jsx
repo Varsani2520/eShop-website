@@ -213,7 +213,7 @@ function App() {
             </IconButton>
 
             {
-              user && authenticated ? (
+              user=="true" && authenticated ? (
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar />
