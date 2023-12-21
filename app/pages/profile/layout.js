@@ -99,7 +99,7 @@ const Layout = ({ children }) => {
               </Typography>
               <Button
                 variant="contained"
-                onClick={handleOpen}
+                onClick={handleLogout}
                 color="primary"
                 sx={{ marginTop: 2, "&:hover": { backgroundColor: "#0069d9" } }}
               >
