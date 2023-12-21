@@ -36,6 +36,7 @@ const settings = [
 
 function App() {
   const [cart, setCart] = useState(0);
+  const [fav, setFav] = useState(0);
   const cartItems = useSelector((state) => state.cart.cartItems)
   const favItems = useSelector((state) => state.likes.favouriteItems)
   // const [FavItems, setFavs] = useState(0);
@@ -219,7 +220,7 @@ function App() {
               href="/pages/profile/favourites"
               sx={{ marginRight: 2 }}
             >
-              <StyledBadge badgeContent={FavItems} color="secondary">
+              <StyledBadge badgeContent={fav} color="secondary">
                 <FavoriteBorderOutlinedIcon />
               </StyledBadge>
             </IconButton>
