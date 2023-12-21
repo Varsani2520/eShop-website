@@ -24,10 +24,12 @@ import {
   removefav,
 } from "@/app/action/action";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.authUser.data);
+  const router = useRouter();
   function handleLogout() {
     dispatch(logoutuser());
     dispatch(removefav());
@@ -50,8 +52,7 @@ const Layout = ({ children }) => {
       dispatch(clearADress());
       Cookies.set("user", false);
       toast.success("delete account");
-
-      window.location.href("/");
+      router.push("/");
     } catch (error) {
       toast.error("not delete");
       console.log(error);
