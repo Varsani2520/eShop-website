@@ -13,12 +13,12 @@ const footer = () => {
               About
             </Typography>
             <Typography variant="body2" color="textSecondary" sx={{ color: 'white', fontWeight: 'bold', padding: '5px' }}>
-              <Link href="/contact" color="inherit">
+              <Link href="/pages/contact" color="inherit">
                 Contact Us
               </Link>
             </Typography>
             <Typography variant="body2" color="textSecondary" sx={{ color: 'white', fontWeight: 'bold', padding: '5px' }}>
-              <Link href="/about" color="inherit">
+              <Link href="/pages/about" color="inherit">
                 About Us
               </Link>
             </Typography>

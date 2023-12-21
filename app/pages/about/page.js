@@ -82,7 +82,7 @@ const Page = () => {
 
   return (
     <div>
-      <Box sx={{ background: "hotpink" }} mt={{ md: "5%", xs: "10%" }}>
+      <Box sx={{ background: "hotpink" }} mt={{ md: "3%", xs: "10%" }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
@@ -95,7 +95,7 @@ const Page = () => {
               </Link>
               <StyledBreadcrumb
                 component="a"
-                href="/about"
+                href="/pages/about"
                 label="About Us"
                 icon={<ExpandMoreIcon />}
               />

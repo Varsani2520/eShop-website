@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
     <Container maxWidth="lg">
       <Toast />
       <Grid container justifyContent="center" spacing={2} sx={{ mt: "10%" }}>
-        <Grid item md={4}>
+        <Grid item md={4}xs={12}>
           <Card
             sx={{
               backgroundColor: "#f0f0f0",
@@ -130,7 +130,7 @@ const Layout = ({ children }) => {
             </div>
           </Card>
         </Grid>
-        <Grid item md={8}>
+        <Grid item md={8} xs={12}>
           <Card
             sx={{
               backgroundColor: "#f0f0f0",

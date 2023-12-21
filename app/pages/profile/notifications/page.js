@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Card, Typography } from "@mui/material";
+import { Box, Card, CardHeader, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { getSummaries } from "@/app/service/get-summary";
 
@@ -18,24 +18,30 @@ const NotificationPage = () => {
       console.error("Error fetching summary data:", error);
     }
   }
-
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Intl.DateTimeFormat("en-US", options).format(new Date(dateString));
+  };
   useEffect(() => {
     SummaryData();
   }, []);
 
   return (
     <div>
-      <h1>Hello</h1>
       {summary &&
         summary.map((result) => {
           return (
             <>
-              <Card key={result._id}>
-                🔔 Your Service Order Placed Success 🥳
-                <br />
-                <Typography>Your service order has been received.</Typography>
-                <h1>Date: {result.date}</h1>
-                <h1>Status: {result.status}</h1>
+              <Card key={result.id} >
+                <CardHeader
+                 action={
+                  <Box sx={{border:'1px solid grey',p:0.5}}>
+                    <Typography variant="body2"sx={{color:'grey'}}>{result.status}</Typography>
+                  </Box>
+                }
+                  title="Your Order is Completed 🥳"
+                  subheader={formatDate(result.date)}
+                />
               </Card>
             </>
           );

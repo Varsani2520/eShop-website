@@ -48,11 +48,6 @@ const page = () => {
       console.log(error);
     }
   }
-
- 
-
-
-
   function fav(item) {
     if (!token || !token.data) {
       toast.warning("please log in to add to favorites.")
@@ -123,7 +118,7 @@ const page = () => {
                     <Grid item key={response.provider_id + "_" + response.id}>
                       <Card
                         sx={{
-                          maxWidth: 350,
+                          maxWidth:345,
                           transition: "transform 0.3s ease-in-out",
                           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                           "&:hover": {
@@ -137,6 +132,7 @@ const page = () => {
                         />
                         <CardMedia
                           sx={{
+                            objectFit:'cover',
                             cursor: "pointer",
                             transition: "transform 0.3s ease-in-out",
                             "&:hover": {

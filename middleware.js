@@ -14,7 +14,7 @@ export function middleware(request) {
       pathname.startsWith("/pages/signup") ||
       pathname.startsWith("/pages/login")
     ) {
-      return NextResponse.redirect(new URL("http://localhost:3000/"));
+      return NextResponse.redirect(new URL("https://erequirements.vercel.app"));
     }
   }
   // user is not auth

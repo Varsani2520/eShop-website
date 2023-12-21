@@ -79,13 +79,18 @@ const CheckOut = () => {
     <Container>
       <Toast />
       <Box sx={{ mt: '10%', mb: '10%' }}>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Typography>Cart | {carts.length} Item</Typography>
-        </Breadcrumbs>
+        {
+          carts.length > 0 && (
+
+            <Breadcrumbs aria-label="breadcrumb">
+              <Typography>Cart | {carts.length} Item</Typography>
+            </Breadcrumbs>
+          )
+        }
       </Box>
       <Box>
         {carts.length === 0 ? (
-          <Lottie animationData={emptyProfile} height={40} width={40} />
+          <Lottie animationData={emptyProfile} style={{ height: '200px' }} />
         ) : (
           carts.map((singleCart) => {
             return (
@@ -134,8 +139,12 @@ const CheckOut = () => {
 
         )
         }
+        {
+          carts.length > 0 && (
 
-        <Paycheck total={totalPrice} onPaymentSuccess={handlePaymentSuccess} />
+            <Paycheck total={totalPrice} onPaymentSuccess={handlePaymentSuccess} />
+          )
+        }
       </Box>
     </Container>
   );

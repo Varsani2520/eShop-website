@@ -18,7 +18,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import { useState, useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
-import { Badge } from "@mui/material";
+import { Badge, Hidden } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import { getFaviorites } from "../service/getFaviourite";
 import { getCart } from "../service/getCart";
@@ -52,10 +52,15 @@ function App() {
     }
   }
   useEffect(() => {
-    favs()
-
-    if (cartItems) {
-      setCart(cartItems.length)
+    favs();
+    if (authenticated) {
+      if (cartItems) {
+        setCart(cartItems.length);
+      }
+      setFavs(FavItems);
+    } else {
+      setCart(0);
+      setFavs(0);
     }
   }, [tokens, cartItems]);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -102,7 +107,7 @@ function App() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", sm: 'none', md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
@@ -112,6 +117,7 @@ function App() {
           >
             eShop
           </Typography>
+
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -214,7 +220,7 @@ function App() {
             </IconButton>
 
             {
-              !user == undefined && authenticated ? (
+              user && authenticated ? (
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar />

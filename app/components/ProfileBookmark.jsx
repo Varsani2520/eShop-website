@@ -44,7 +44,7 @@ const ProfileBookmark = () => {
       <Toast />
       <Box>
         {book.length === 0 ? (
-          <><Lottie animationData={emptyProfile} /></>
+          <><Lottie animationData={emptyProfile} style={{height:'200px'}} /></>
         ) : (
 
           book.map((response) => {

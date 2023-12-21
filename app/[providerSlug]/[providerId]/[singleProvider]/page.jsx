@@ -14,8 +14,7 @@ import {
   Container,
   Grid,
   Rating,
-  Typography,
-  cardActionAreaClasses,
+  Typography
 } from "@mui/material";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -91,7 +90,7 @@ const page = () => {
   return (
     <Box>
       <Toast />
-      <Box sx={{ background: "hotpink" }} mt={{ md: '5%', xs: '10%' }}>
+      <Box sx={{ background: "hotpink" }} mt={{ md: '3%', xs: '10%' }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
@@ -104,7 +103,7 @@ const page = () => {
               <StyledBreadcrumb component="a" href="#" label="Provider" />
               <StyledBreadcrumb
                 label="Services"
-                deleteIcon={<ExpandMoreIcon />}
+                icon={<ExpandMoreIcon />}
               />
             </Breadcrumbs>
             {
@@ -121,7 +120,7 @@ const page = () => {
       </Box>
 
       <Container>
-        <Box sx={{ mt: 10 }}>
+        <Box sx={{ mt: 10, mb: 10 }}>
           {desc.map((response) => {
             if (singleProvider == response.id)
               return (
@@ -136,7 +135,7 @@ const page = () => {
 
                         />
                       </Card>
-                      <Box sx={{ mt: 5 }}>
+                      <Box sx={{ mt: 5, mb: 5, display: 'flex', gap: 2 }}>
                         <Button
                           variant="outlined"
                           className="add-to-cart-btn"
@@ -145,7 +144,7 @@ const page = () => {
                           Add to Cart
                         </Button>
                         <Link href="/pages/checkout">
-                          <Button variant="outlined">Buy Now</Button>
+                          <Button variant="outlined" className="add-to-cart-btn">Buy Now</Button>
                         </Link>
                       </Box>
                     </Grid>

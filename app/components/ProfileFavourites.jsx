@@ -44,7 +44,7 @@ const ProfileFavourites = () => {
       <Toast />
       <div>
         {fav.length === 0 ? (
-          <Lottie animationData={emptyProfile} />
+          <Lottie animationData={emptyProfile} style={{ height: '200px' }} />
         ) : (
           fav.map((response) => {
             return (
