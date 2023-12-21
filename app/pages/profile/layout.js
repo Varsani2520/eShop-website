@@ -16,7 +16,13 @@ import Toast from "@/app/components/Toast";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { deleteAccountService } from "@/app/service/signupservice";
-import { logoutuser, removefav } from "@/app/action/action";
+import {
+  clearADress,
+  clearBookmarkItem,
+  clearCart,
+  logoutuser,
+  removefav,
+} from "@/app/action/action";
 import Cookies from "js-cookie";
 
 const Layout = ({ children }) => {
@@ -29,8 +35,14 @@ const Layout = ({ children }) => {
       console.log(response);
       dispatch(logoutuser(user));
       dispatch(removefav());
+      dispatch(logoutuser());
+      dispatch(removefav());
+      dispatch(clearCart());
+      dispatch(clearBookmarkItem());
+      dispatch(clearADress());
+      Cookies.set("user", false);
       toast.success("delete account");
-      Cookies.remove("user");
+
       window.location.href("/");
     } catch (error) {
       toast.error("not delete");
