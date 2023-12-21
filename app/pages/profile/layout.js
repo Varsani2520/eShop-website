@@ -28,7 +28,15 @@ import Cookies from "js-cookie";
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.authUser.data);
-
+  function handleLogout() {
+    dispatch(logoutuser());
+    dispatch(removefav());
+    dispatch(clearCart());
+    dispatch(clearBookmarkItem());
+    dispatch(clearADress());
+    Cookies.set("user", false);
+    router.push("/");
+  }
   async function deleteAccount() {
     try {
       const response = await deleteAccountService(user.token);
@@ -91,6 +99,7 @@ const Layout = ({ children }) => {
               </Typography>
               <Button
                 variant="contained"
+                onClick={handleOpen}
                 color="primary"
                 sx={{ marginTop: 2, "&:hover": { backgroundColor: "#0069d9" } }}
               >
