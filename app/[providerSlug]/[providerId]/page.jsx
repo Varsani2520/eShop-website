@@ -96,9 +96,9 @@ const page = () => {
           <Grid container spacing={2}>
             {loading
               ? Array.from({ length: 3 }).map((index) => (
-                <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+                <Grid item key={index} xs={12} sm={12} md={6} lg={4}>
                   <Box>
-                    <Card sx={{ maxWidth: 345 }}>
+                    <Card sx={{ maxWidth: "100%" }}>
                       <Skeleton
                         variant="rectangular"
                         height={194}
@@ -115,10 +115,10 @@ const page = () => {
               : desc.map((response, index) => {
                 if (providerSlug == response.provider_id)
                   return (
-                    <Grid item key={response.provider_id + "_" + response.id}>
+                    <Grid item key={response.provider_id + "_" + response.id} xs={12} sm={12} md={6} lg={4}>
                       <Card
                         sx={{
-                          maxWidth:345,
+                          maxWidth: "100%",
                           transition: "transform 0.3s ease-in-out",
                           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                           "&:hover": {
@@ -132,7 +132,7 @@ const page = () => {
                         />
                         <CardMedia
                           sx={{
-                            objectFit:'cover',
+                            objectFit: 'cover',
                             cursor: "pointer",
                             transition: "transform 0.3s ease-in-out",
                             "&:hover": {

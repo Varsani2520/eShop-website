@@ -14,17 +14,23 @@ export function middleware(request) {
       pathname.startsWith("/pages/signup") ||
       pathname.startsWith("/pages/login")
     ) {
-      return NextResponse.redirect(new URL("https://erequirements.vercel.app"));
+      return NextResponse.redirect(
+        new URL("https://erequirements.vercel.app/")
+      );
     }
   }
   // user is not auth
   if (!isAuthenticate) {
     console.log("inside");
     if (pathname.startsWith("/pages/profile")) {
-      return NextResponse.redirect(new URL("http://localhost:3000/"));
+      return NextResponse.redirect(
+        new URL("https://erequirements.vercel.app/")
+      );
     }
     if (pathname.startsWith("/pages/checkout")) {
-      return NextResponse.redirect(new URL("http://localhost:3000/"));
+      return NextResponse.redirect(
+        new URL("https://erequirements.vercel.app/")
+      );
     }
   }
 }

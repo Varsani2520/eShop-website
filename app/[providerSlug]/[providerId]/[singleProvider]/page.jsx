@@ -90,7 +90,7 @@ const page = () => {
   return (
     <Box>
       <Toast />
-      <Box sx={{ background: "hotpink" }} mt={{ md: '3%', xs: '10%' }}>
+      <Box sx={{ background: "hotpink" }} mt={{ md: '6%', xs: '10%', lg: '3%' }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
@@ -120,16 +120,17 @@ const page = () => {
       </Box>
 
       <Container>
-        <Box sx={{ mt: 10, mb: 10 }}>
+        <Box sx={{ mt: 5, mb: 5 }}>
           {desc.map((response) => {
             if (singleProvider == response.id)
               return (
                 <Box key={response.id}>
                   <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
-                      <Card sx={{ maxWidth: 500, mt: 10 }}>
+                    <Grid item xs={12} md={6} >
+                      <Card sx={{ maxWidth: "100%", mt: 10 }}>
                         <CardMedia
-                          sx={{ height: 700 }}
+                          component="img"
+                          sx={{ objectFit: 'cover' }}
                           image={response.img}
                           alt={response.alt}
 
@@ -188,11 +189,13 @@ const page = () => {
                           />
                         </CardContent>
                       </Card>
-                      <Card sx={{ mt: "10%" }}>
+                      <Card sx={{ mt: "5%" }}>
                         <CardContent>
                           <Typography variant="h5">
                             <CardHeader sx={{ background: "hotpink" }}>
-                              Reviews:
+                              title={
+                              } Reviews:
+
                             </CardHeader>
                             {response.review}
                           </Typography>
