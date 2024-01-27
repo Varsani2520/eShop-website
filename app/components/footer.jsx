@@ -9,8 +9,14 @@ const footer = () => {
         <Grid container spacing={3}>
           {/* Left Section: About */}
           <Grid item xs={12} sm={4}>
-            <Typography variant="h6" color="textPrimary" gutterBottom>
-              About
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              sx={{ fontWeight: "bold", padding: "5px" }}
+            >
+              <Link href="/pages/about" color="inherit">
+                About Us
+              </Link>
             </Typography>
             <Typography
               variant="body2"
