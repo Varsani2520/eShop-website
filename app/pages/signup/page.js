@@ -1,4 +1,3 @@
-"use client";
 
 import SignUp from "@/app/components/SignUp";
 import Toast from "@/app/components/Toast";
