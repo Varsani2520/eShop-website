@@ -5,13 +5,13 @@ import Link from "@mui/material/Link";
 const footer = () => {
   return (
     <footer
-      style={{ backgroundColor: "pink", color: "white", padding: "20px" }}
+      style={{ backgroundColor: "black", color: "white", padding: "20px" }}
     >
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           {/* Left Section: About */}
           <Grid item xs={12} sm={4}>
-            <Typography variant="h4" color="textPrimary" gutterBottom>
+            <Typography variant="h2" color="textPrimary" gutterBottom>
               About
             </Typography>
             <Typography
@@ -36,7 +36,7 @@ const footer = () => {
 
           {/* Center Section: Address */}
           <Grid item xs={12} sm={4}>
-            <Typography variant="h4" color="textPrimary" gutterBottom>
+            <Typography variant="h2" color="textPrimary" gutterBottom>
               Mail Us
             </Typography>
             <Typography
@@ -50,7 +50,7 @@ const footer = () => {
 
           {/* Right Section: Social */}
           <Grid item xs={12} sm={4}>
-            <Typography variant="h4" color="textPrimary" gutterBottom>
+            <Typography variant="h2" color="textPrimary" gutterBottom>
               Social
             </Typography>
             <Typography
