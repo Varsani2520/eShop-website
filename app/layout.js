@@ -5,11 +5,8 @@ import Footer from "./components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
-  title: "eShop",
-  openGraph: {
-    title: "eShop",
-    description: "e-commerce",
-  },
+  title: "eshop",
+  description: "eshop",
 };
 
 export default function RootLayout({ children }) {

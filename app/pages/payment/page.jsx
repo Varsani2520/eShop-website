@@ -1,11 +1,6 @@
 import { Container } from "@mui/material";
 import Link from "next/link";
-export const metadata = {
-  title: "Payment",
-  openGraph: {
-    title: "Payment",
-  },
-};
+
 export default function Payment() {
   return (
     <Container sx={{ mt: "10%" }}>
