@@ -4,7 +4,9 @@ import Link from "@mui/material/Link";
 
 const footer = () => {
   return (
-    <footer style={{ padding: "20px", backgroundColor: "blue" }}>
+    <footer
+      style={{ padding: "20px", backgroundColor: "#595959", color: "white" }}
+    >
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           {/* Left Section: About */}
@@ -15,7 +17,7 @@ const footer = () => {
             <Typography
               variant="body2"
               color="textSecondary"
-              sx={{ color: "white", fontWeight: "bold", padding: "5px" }}
+              sx={{ fontWeight: "bold", padding: "5px" }}
             >
               <Link href="/pages/contact" color="inherit">
                 Contact Us
@@ -24,7 +26,7 @@ const footer = () => {
             <Typography
               variant="body2"
               color="textSecondary"
-              sx={{ color: "white", fontWeight: "bold", padding: "5px" }}
+              sx={{ fontWeight: "bold", padding: "5px" }}
             >
               <Link href="/pages/about" color="inherit">
                 About Us
@@ -40,7 +42,7 @@ const footer = () => {
             <Typography
               variant="body2"
               color="textSecondary"
-              sx={{ color: "white", fontWeight: "bold", padding: "5px" }}
+              sx={{ fontWeight: "bold", padding: "5px" }}
             >
               Bhuj,Gujarat,ABC area, 370030
             </Typography>
@@ -54,7 +56,7 @@ const footer = () => {
             <Typography
               variant="body2"
               color="textSecondary"
-              sx={{ color: "white", fontWeight: "bold", padding: "5px" }}
+              sx={{ fontWeight: "bold", padding: "5px" }}
             >
               <Link href="https://www.facebook.com" color="inherit">
                 Facebook
@@ -63,7 +65,7 @@ const footer = () => {
             <Typography
               variant="body2"
               color="textSecondary"
-              sx={{ color: "white", fontWeight: "bold", padding: "5px" }}
+              sx={{ fontWeight: "bold", padding: "5px" }}
             >
               <Link href="https://www.twitter.com" color="inherit">
                 Twitter
@@ -72,7 +74,7 @@ const footer = () => {
             <Typography
               variant="body2"
               color="textSecondary"
-              sx={{ color: "white", fontWeight: "bold", padding: "5px" }}
+              sx={{ fontWeight: "bold", padding: "5px" }}
             >
               <Link href="https://www.linkedin.com" color="inherit">
                 LinkedIn
