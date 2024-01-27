@@ -4,19 +4,13 @@ import Link from "@mui/material/Link";
 
 const footer = () => {
   return (
-    <footer style={{ padding: "20px" }}>
+    <footer style={{ backgroundColor: "black", padding: "20px" }}>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           {/* Left Section: About */}
           <Grid item xs={12} sm={4}>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              sx={{ fontWeight: "bold", padding: "5px" }}
-            >
-              <Link href="/pages/about" color="inherit">
-                About Us
-              </Link>
+            <Typography variant="body1" color="textPrimary" gutterBottom>
+              About
             </Typography>
             <Typography
               variant="body2"
@@ -40,7 +34,7 @@ const footer = () => {
 
           {/* Center Section: Address */}
           <Grid item xs={12} sm={4}>
-            <Typography variant="h6" color="textPrimary" gutterBottom>
+            <Typography variant="body1" color="textPrimary" gutterBottom>
               Mail Us
             </Typography>
             <Typography
