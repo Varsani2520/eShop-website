@@ -15,6 +15,7 @@ const SwiperHome = () => {
         navigation
         autoplay={{ delay: 1000 }}
         pagination={{ clickable: true }}
+        style={{ position: "relative" }}
       >
         <SwiperSlide>
           <img
