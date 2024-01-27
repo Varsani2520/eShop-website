@@ -25,12 +25,7 @@ import {
 } from "@/app/action/action";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-export const metadata = {
-  title: "Profile",
-  openGraph: {
-    title: "Profile",
-  },
-};
+
 export default function Layout({ children }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.authUser.data);
