@@ -5,9 +5,10 @@ import Footer from "./components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
-  title: {
-    default: "eShop",
-    template: "%s | eShop",
+  title: "eShop",
+  openGraph: {
+    title: "eShop",
+    description: "e-commerce",
   },
 };
 

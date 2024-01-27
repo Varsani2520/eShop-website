@@ -58,8 +58,13 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
     ),
   },
 }));
-
-const Page = () => {
+export const metadata = {
+  title: "About",
+  openGraph: {
+    title: "About",
+  },
+};
+export default function Page() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -144,10 +149,4 @@ const Page = () => {
       </Box>
     </div>
   );
-};
-
-export default Page;
-
-export const metadata = {
-  title: "about ",
-};
+}
