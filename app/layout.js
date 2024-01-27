@@ -5,7 +5,10 @@ import Footer from "./components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
-  title: "erequirements",
+  title: {
+    default: "eShop",
+    template: "%s | eShop",
+  },
 };
 
 export default function RootLayout({ children }) {
