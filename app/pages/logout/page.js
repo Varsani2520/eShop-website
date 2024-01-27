@@ -1,8 +1,11 @@
 import LogoutPage from "@/app/components/LogoutPage";
 import React from "react";
-
-const Page = () => {
-  return <LogoutPage />;
+export const metadata = {
+  title: "Logout",
+  openGraph: {
+    title: "Logout",
+  },
 };
-
-export default Page;
+export default function Page() {
+  return <LogoutPage />;
+}

@@ -1,16 +1,15 @@
 import ContactPage from "@/app/components/ContactPage";
-import React from "react"
-
-const page = () => {
- 
- 
+import React from "react";
+export const metadata = {
+  title: "contact",
+  openGraph: {
+    title: "contact",
+  },
+};
+export default function page() {
   return (
     <div>
-      <ContactPage/>
-
-      
+      <ContactPage />
     </div>
   );
-};
-
-export default page;
+}

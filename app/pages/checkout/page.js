@@ -1,10 +1,15 @@
 import CheckOut from "@/app/components/CheckOut";
 import React from "react";
-
-const page = () => {
-  return <div >
-    <CheckOut/>
-  </div>;
+export const metadata = {
+  title: "checkout",
+  openGraph: {
+    title: "checkout",
+  },
 };
-
-export default page;
+export default function page() {
+  return (
+    <div>
+      <CheckOut />
+    </div>
+  );
+}

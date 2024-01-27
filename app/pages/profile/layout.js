@@ -25,8 +25,13 @@ import {
 } from "@/app/action/action";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-
-const Layout = ({ children }) => {
+export const metadata = {
+  title: "Profile",
+  openGraph: {
+    title: "Profile",
+  },
+};
+export default function Layout({ children }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.authUser.data);
   const router = useRouter();
@@ -167,7 +172,7 @@ const Layout = ({ children }) => {
       </Grid>
     </Container>
   );
-};
+}
 
 const linkStyle = {
   color: "#0069d9",
@@ -181,5 +186,3 @@ const linkStyle = {
     backgroundColor: "#f9f9f9", // Apply hover effect
   },
 };
-
-export default Layout;
