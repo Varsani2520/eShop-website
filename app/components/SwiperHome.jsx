@@ -10,7 +10,6 @@ import imagethird from "../images/imagethird.jpg";
 import imagefourth from "../images/imagefourth.jpg";
 
 const SwiperHome = () => {
-  console.log(imageF);
   return (
     <div>
       <Swiper
