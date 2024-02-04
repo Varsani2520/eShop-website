@@ -77,7 +77,7 @@ export default function Page() {
 
   return (
     <div>
-      <Box sx={{ background: "hotpink" }} mt={{ md: "3%", xs: "10%" }}>
+      <Box sx={{ background: "#8dbae9" }} mt={{ md: "3%", xs: "10%" }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">

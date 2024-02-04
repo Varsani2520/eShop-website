@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/navigation";
-import { Grid, TextField } from "@mui/material";
+import { Grid, Paper, TextField } from "@mui/material";
 import { signupservice } from "../service/signupservice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -44,9 +44,9 @@ const SignUp = () => {
       console.log(error);
     }
   }
-  return <div>
-    <Toast />
-    <Box sx={{ mt: "2rem" }}>
+  return (
+    <div style={{ marginTop: "130px", marginBottom: "50px" }}>
+      <Toast />
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <img
@@ -59,78 +59,98 @@ const SignUp = () => {
           item
           xs={12}
           md={6}
-          sx={{ display: "flex", alignItems: "center" }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            paddingBottom: "30px",
+          }}
         >
-          <form onSubmit={handleSubmit}>
-            <Typography component="h1" variant="h4" mb={4}>
-              Sign Up
-            </Typography>
-            <TextField
-              label="Username"
-              variant="outlined"
-              fullWidth
-              onChange={(e) =>
-                setSignup({
-                  ...signup,
-                  username: e.target.value,
-                })
-              }
-              value={signup.username}
-              margin="normal"
-            />
-            <TextField
-              label="Password"
-              fullWidth
-              type="password"
-              variant="outlined"
-              onChange={(e) =>
-                setSignup({
-                  ...signup,
-                  password: e.target.value,
-                })
-              }
-              value={signup.password}
-              margin="normal"
-            />
-            <TextField
-              label="name"
-              fullWidth
-              variant="outlined"
-              onChange={(e) =>
-                setSignup({
-                  ...signup,
-                  name: e.target.value,
-                })
-              }
-              value={signup.name}
-              margin="normal"
-            />
-            <TextField
-              label="address"
-              variant="outlined"
-              onChange={(e) =>
-                setSignup({
-                  ...signup,
-                  address: e.target.value,
-                })
-              }
-              value={signup.address}
-              margin="normal"
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              sx={{ mt: "1rem", fontSize: "1.2rem" }}
-            >
-              Create Account
-            </Button>
-            already have an Account? <Link href="/login">Login</Link>
-          </form>
+          <Paper
+            sx={{
+              padding: 4,
+              maxWidth: 400,
+              width: "100%",
+              backgroundColor: "white",
+              borderRadius: 8,
+            }}
+          >
+            <form onSubmit={handleSubmit}>
+              <Typography component="h1" variant="h4" mb={4}>
+                Create Account
+              </Typography>
+              <TextField
+                label="Username"
+                variant="outlined"
+                fullWidth
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    username: e.target.value,
+                  })
+                }
+                value={signup.username}
+                margin="normal"
+              />
+              <TextField
+                label="Password"
+                fullWidth
+                type="password"
+                variant="outlined"
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    password: e.target.value,
+                  })
+                }
+                value={signup.password}
+                margin="normal"
+              />
+              <TextField
+                label="name"
+                fullWidth
+                variant="outlined"
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    name: e.target.value,
+                  })
+                }
+                value={signup.name}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="address"
+                variant="outlined"
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    address: e.target.value,
+                  })
+                }
+                value={signup.address}
+                margin="normal"
+              />
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{ mt: 2 }}
+              >
+                Create Account
+              </Button>
+              <Typography align="center" sx={{ mt: 2 }}>
+                are you already logged in?{" "}
+                <Link href="/pages/login">Login</Link>
+              </Typography>
+            </form>
+          </Paper>
         </Grid>
       </Grid>
-    </Box>
-  </div>;
+    </div>
+  );
 };
 
 export default SignUp;

@@ -1,5 +1,5 @@
 "use client";
-import style from '../../../styles/style.css'
+import style from "../../../styles/style.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ProviderService } from "@/app/service/ProviderService";
 import {
@@ -14,7 +14,7 @@ import {
   Container,
   Grid,
   Rating,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -27,7 +27,7 @@ import { addToCartItem, incrementTotalCard } from "@/app/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Toast from "@/app/components/Toast";
-import { cartService } from '@/app/service/get-cart';
+import { cartService } from "@/app/service/get-cart";
 
 const page = () => {
   const dispatch = useDispatch();
@@ -35,22 +35,20 @@ const page = () => {
   const { providerSlug } = useParams();
   const { singleProvider } = useParams();
   const carts = useSelector((state) => state.cart.cartItems);
-  const token = useSelector((state) => state.auth.authUser)
+  const token = useSelector((state) => state.auth.authUser);
 
   function addToCart(item) {
     if (!token || !token.data) {
-      toast.warning("please log in to add to cart.")
+      toast.warning("please log in to add to cart.");
       return;
     }
-    const isItemIncart = carts.some(
-      (cartItems) => cartItems.id === item.id
-    );
+    const isItemIncart = carts.some((cartItems) => cartItems.id === item.id);
     if (isItemIncart) {
       toast.warning("Your Items is already in your cart");
     } else {
       dispatch(addToCartItem(item));
       dispatch(incrementTotalCard());
-      cartService(token.data.token, item)
+      cartService(token.data.token, item);
       toast.success("Added to cart  successfully");
     }
   }
@@ -58,7 +56,7 @@ const page = () => {
   async function Desc() {
     try {
       const response = await ProviderService(providerSlug);
-      setdesc(response)
+      setdesc(response);
     } catch (error) {
       console.log(error);
     }
@@ -84,13 +82,16 @@ const page = () => {
   });
   useEffect(() => {
     Desc();
-    document.title = "SingleProvider | eRequirements"
+    document.title = "SingleProvider | eRequirements";
   }, []);
 
   return (
     <Box>
       <Toast />
-      <Box sx={{ background: "hotpink" }} mt={{ md: '6%', xs: '10%', lg: '3%' }}>
+      <Box
+        sx={{ background: "#8dbae9" }}
+        mt={{ md: "6%", xs: "10%", lg: "3%" }}
+      >
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
@@ -101,20 +102,16 @@ const page = () => {
                 icon={<HomeIcon fontSize="small" />}
               />
               <StyledBreadcrumb component="a" href="#" label="Provider" />
-              <StyledBreadcrumb
-                label="Services"
-                icon={<ExpandMoreIcon />}
-              />
+              <StyledBreadcrumb label="Services" icon={<ExpandMoreIcon />} />
             </Breadcrumbs>
-            {
-              desc.map((response) => {
-                if (singleProvider == response.id)
-                  return (
-
-                    <Typography variant="h4" sx={{ mt: 4 }}>{response.name}</Typography>
-                  )
-              })
-            }
+            {desc.map((response) => {
+              if (singleProvider == response.id)
+                return (
+                  <Typography variant="h4" sx={{ mt: 4 }}>
+                    {response.name}
+                  </Typography>
+                );
+            })}
           </Box>
         </Container>
       </Box>
@@ -126,17 +123,16 @@ const page = () => {
               return (
                 <Box key={response.id}>
                   <Grid container spacing={2}>
-                    <Grid item xs={12} md={6} >
+                    <Grid item xs={12} md={6}>
                       <Card sx={{ maxWidth: "100%", mt: 10 }}>
                         <CardMedia
                           component="img"
-                          sx={{ objectFit: 'cover' }}
+                          sx={{ objectFit: "cover" }}
                           image={response.img}
                           alt={response.alt}
-
                         />
                       </Card>
-                      <Box sx={{ mt: 5, mb: 5, display: 'flex', gap: 2 }}>
+                      <Box sx={{ mt: 5, mb: 5, display: "flex", gap: 2 }}>
                         <Button
                           variant="outlined"
                           className="add-to-cart-btn"
@@ -145,7 +141,12 @@ const page = () => {
                           Add to Cart
                         </Button>
                         <Link href="/pages/checkout">
-                          <Button variant="outlined" className="add-to-cart-btn">Buy Now</Button>
+                          <Button
+                            variant="outlined"
+                            className="add-to-cart-btn"
+                          >
+                            Buy Now
+                          </Button>
                         </Link>
                       </Box>
                     </Grid>
@@ -192,11 +193,8 @@ const page = () => {
                       <Card sx={{ mt: "5%" }}>
                         <CardContent>
                           <Typography variant="h5">
-                            <CardHeader sx={{ background: "hotpink" }}>
-                              title={
-                              } Reviews:
+                            <CardHeader title={"reviews"} />
 
-                            </CardHeader>
                             {response.review}
                           </Typography>
                         </CardContent>

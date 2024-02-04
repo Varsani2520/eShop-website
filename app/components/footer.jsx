@@ -2,75 +2,149 @@ import React from "react";
 import { Container, Grid, Typography } from "@mui/material";
 import Link from "@mui/material/Link";
 
-const footer = () => {
+const Footer = () => {
   return (
-    <footer style={{ background: "hotpink", padding: "20px" }}>
+    <footer style={{ background: "#232F3E", padding: "20px" }}>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           {/* Left Section: About */}
           <Grid item xs={12} sm={4}>
-            <Typography variant="h6" color="#112A46" gutterBottom>
-              About
+            <Typography variant="h6" color="#fff" gutterBottom>
+              Get to Know Us
             </Typography>
             <Typography
               variant="body2"
-              sx={{ color: "#000000", fontWeight: "bold", padding: "5px" }}
+              sx={{
+                color: "#ddd",
+                fontWeight: "bold",
+                padding: "5px",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
             >
-              <Link href="/pages/contact" color="inherit">
+              <Link
+                href="/pages/contact"
+                color="inherit"
+                style={{ textDecoration: "none" }}
+              >
                 Contact Us
               </Link>
             </Typography>
             <Typography
               variant="body2"
-              sx={{ color: "#000000", fontWeight: "bold", padding: "5px" }}
+              sx={{
+                color: "#ddd",
+                fontWeight: "bold",
+                padding: "5px",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
             >
-              <Link href="/pages/about" color="inherit">
+              <Link
+                href="/pages/about"
+                color="inherit"
+                style={{ textDecoration: "none" }}
+              >
                 About Us
               </Link>
             </Typography>
           </Grid>
-
-          {/* Center Section: Address */}
+          {/* center Section: Social */}
           <Grid item xs={12} sm={4}>
-            <Typography variant="h6" color="#112A46" gutterBottom>
-              Mail Us
+            <Typography variant="h6" color="#fff" gutterBottom>
+              Connect with Us
             </Typography>
             <Typography
               variant="body2"
-              sx={{ color: "#000000", fontWeight: "bold", padding: "5px" }}
+              sx={{
+                color: "#ddd",
+                fontWeight: "bold",
+                padding: "5px",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
             >
-              Bhuj,Gujarat,ABC area, 370030
-            </Typography>
-          </Grid>
-
-          {/* Right Section: Social */}
-          <Grid item xs={12} sm={4}>
-            <Typography variant="h6" color="#112A46" gutterBottom>
-              Social
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: "#000000", fontWeight: "bold", padding: "5px" }}
-            >
-              <Link href="https://www.facebook.com" color="inherit">
+              <Link
+                href="https://www.facebook.com"
+                color="inherit"
+                style={{ textDecoration: "none" }}
+              >
                 Facebook
               </Link>
             </Typography>
             <Typography
               variant="body2"
-              sx={{ color: "#000000", fontWeight: "bold", padding: "5px" }}
+              sx={{
+                color: "#ddd",
+                fontWeight: "bold",
+                padding: "5px",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
             >
-              <Link href="https://www.twitter.com" color="inherit">
+              <Link
+                href="https://www.twitter.com"
+                color="inherit"
+                style={{
+                  textDecoration: "none",
+                }}
+              >
                 Twitter
               </Link>
             </Typography>
             <Typography
               variant="body2"
-              sx={{ color: "#000000", fontWeight: "bold", padding: "5px" }}
+              sx={{
+                color: "#ddd",
+                fontWeight: "bold",
+                padding: "5px",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
             >
-              <Link href="https://www.linkedin.com" color="inherit">
+              <Link
+                href="https://www.linkedin.com"
+                color="inherit"
+                style={{ textDecoration: "none" }}
+              >
+                Instagram
+              </Link>
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#ddd",
+                fontWeight: "bold",
+                padding: "5px",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
+              <Link
+                href="https://www.linkedin.com"
+                color="inherit"
+                style={{ textDecoration: "none" }}
+              >
                 LinkedIn
               </Link>
+            </Typography>
+          </Grid>
+          {/* right Section: Address */}
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h6" color="#fff" gutterBottom>
+              Lets us help you
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ color: "#ddd", fontWeight: "bold", padding: "5px" }}
+            >
+              Bhuj, Gujarat, ABC area, 370030
             </Typography>
           </Grid>
         </Grid>
@@ -79,4 +153,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;

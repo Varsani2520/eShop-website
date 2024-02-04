@@ -1,102 +1,128 @@
-"use client"
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { loginservice } from "../service/loginService";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import { Box, Grid } from "@mui/material";
+import { Box, Container, Grid, Typography, Paper } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { loginUserFailure, loginUserSuccess } from "../action/action";
 import Link from "next/link";
 import Lottie from "lottie-react";
-import loginAnimation from '../lottie-animation/loginAnimation.json'
+import loginAnimation from "../lottie-animation/loginAnimation.json";
 import Toast from "./Toast";
 import Cookies from "js-cookie";
+
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [login, setLogin] = useState({
     username: "",
     password: "",
   });
 
-  const router = useRouter();
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!login.username || !login.password) {
-      toast.error("please fill in all the field");
+      toast.error("Please fill in all the fields");
+      return;
     }
+
     try {
       const response = await loginservice(login.username, login.password);
       console.log(response);
-      Cookies.set('user', true)
+      Cookies.set("user", true);
       dispatch(loginUserSuccess(response));
-      toast.success("logged in success");
+      toast.success("Logged in successfully");
       router.push("/");
-    }
-    catch (error) {
-      toast.error("loggedIn fail");
-      Cookies.set('user', false)
+    } catch (error) {
+      toast.error("Login failed");
+      Cookies.set("user", false);
       dispatch(loginUserFailure);
       console.log(error);
     }
-  }
-  return <><Box sx={{ mt: "2rem" }}>
-    <Toast />
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
-        <Lottie animationData={loginAnimation} height={50} />
-      </Grid>
-      <Grid
-        item
-        xs={12}
-        md={6}
-        sx={{ display: "flex", alignItems: "center" }}
-      >
-        <form onSubmit={handleSubmit}>
-          <h2>Login</h2>
-          <TextField
-            label="Username"
-            fullWidth
-            variant="outlined"
-            onChange={(e) =>
-              setLogin({
-                ...login,
-                username: e.target.value,
-              })
-            }
-            value={login.username}
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Password"
-            type="password"
-            variant="outlined"
-            onChange={(e) =>
-              setLogin({
-                ...login,
-                password: e.target.value,
-              })
-            }
-            value={login.password}
-            margin="normal"
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            sx={{ mt: "1rem", fontSize: "1.2rem" }}
+  };
+
+  return (
+    <div style={{ marginTop: "130px", marginBottom: "50px" }}>
+      <Toast />
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Lottie animationData={loginAnimation} height={40} />
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Paper
+            sx={{
+              padding: 4,
+              maxWidth: 400,
+              width: "100%",
+              backgroundColor: "white",
+              borderRadius: 8,
+            }}
           >
-            Login
-          </Button>
-          dont have account?
-          <Link href="/pages/signup">Sign up</Link>
-        </form>
+            <form onSubmit={handleSubmit}>
+              <Typography variant="h5" align="center" gutterBottom>
+                Login
+              </Typography>
+              <TextField
+                label="Username"
+                fullWidth
+                variant="outlined"
+                onChange={(e) =>
+                  setLogin({
+                    ...login,
+                    username: e.target.value,
+                  })
+                }
+                value={login.username}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="Password"
+                type="password"
+                variant="outlined"
+                onChange={(e) =>
+                  setLogin({
+                    ...login,
+                    password: e.target.value,
+                  })
+                }
+                value={login.password}
+                margin="normal"
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                fullWidth
+                sx={{ mt: 2 }}
+              >
+                Login
+              </Button>
+              <Typography align="center" sx={{ mt: 2 }}>
+                Don't have an account? <Link href="/pages/signup">Sign up</Link>
+              </Typography>
+            </form>
+          </Paper>
+        </Grid>
       </Grid>
-    </Grid>
-  </Box></>;
+    </div>
+  );
 };
 
 export default LoginPage;

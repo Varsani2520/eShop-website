@@ -10,8 +10,7 @@ import { HomeService } from "../service/HomeService";
 
 const ProviderHeader = () => {
   const [desc, setdesc] = useState([]);
-  const { providerSlug } = useParams()
-
+  const { providerSlug } = useParams();
 
   async function Desc() {
     try {
@@ -21,7 +20,9 @@ const ProviderHeader = () => {
       console.log(error);
     }
   }
-  useEffect(() => { Desc() }, [])
+  useEffect(() => {
+    Desc();
+  }, []);
   const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
     backgroundColor:
       theme.palette.mode === "light"
@@ -48,36 +49,39 @@ const ProviderHeader = () => {
       ),
     },
   }));
-  return <div>
-    <Box sx={{ background: "hotpink" }} mt={{ md: '3%', xs: '10%' }}>
-      <Container>
-        <Box sx={{ pt: 5, pb: 5 }}>
-          <Breadcrumbs aria-label="breadcrumb">
-            <a href="/" >
+  return (
+    <div>
+      <Box sx={{ background: "#8dbae9" }} mt={{ md: "3%", xs: "10%" }}>
+        <Container>
+          <Box sx={{ pt: 5, pb: 5 }}>
+            <Breadcrumbs aria-label="breadcrumb">
+              <a href="/">
+                <StyledBreadcrumb
+                  component="a"
+                  label="Home"
+                  icon={<HomeIcon fontSize="small" />}
+                />
+              </a>
               <StyledBreadcrumb
                 component="a"
-                label="Home"
-                icon={<HomeIcon fontSize="small" />}
+                href="/about"
+                label="Providers"
+                icon={<ExpandMoreIcon />}
               />
-            </a>
-            <StyledBreadcrumb
-              component="a"
-              href="/about"
-              label="Providers"
-              icon={<ExpandMoreIcon />}
-            />
-          </Breadcrumbs>
-          {
-            desc.map((response) => {
+            </Breadcrumbs>
+            {desc.map((response) => {
               if (providerSlug == response.id)
                 return (
-                  <Typography variant="h4" sx={{ mt: 4 }}>{response.slug}</Typography>)
-            })
-          }
-        </Box>
-      </Container>
-    </Box>
-  </div>;
+                  <Typography variant="h4" sx={{ mt: 4 }}>
+                    {response.slug}
+                  </Typography>
+                );
+            })}
+          </Box>
+        </Container>
+      </Box>
+    </div>
+  );
 };
 
 export default ProviderHeader;

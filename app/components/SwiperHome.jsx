@@ -8,49 +8,36 @@ import imageF from "../images/imageF.jpg";
 import imagesecond from "../images/imagesecond.jpg";
 import imagethird from "../images/imagethird.jpg";
 import imagefourth from "../images/imagefourth.jpg";
+import { Container } from "@mui/material";
 
 const SwiperHome = () => {
+  const imageStyle = { width: "100%", maxHeight: "300px" };
+
   return (
-    <div>
+    <Container sx={{ marginTop: "100px" }}>
       <Swiper
         modules={[Navigation, Pagination, A11y]}
         spaceBetween={50}
         slidesPerView={1}
         navigation
-        autoplay={{ delay: 1000 }}
-        pagination={{ clickable: true }}
-        style={{ position: "relative" }}
+        autoplay={true}
+        delay={1000}
+        // pagination={{ clickable: true }}
       >
         <SwiperSlide>
-          <img
-            src={imageF.src}
-            alt="eshop-image"
-            style={{ width: "inherit" }}
-          />
+          <img src={imageF.src} alt="eshop-image" style={imageStyle} />
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            src={imagesecond.src}
-            style={{ width: "inherit" }}
-            alt="eshop-image"
-          />
+          <img src={imagesecond.src} style={imageStyle} alt="eshop-image" />
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            src={imagethird.src}
-            style={{ width: "inherit" }}
-            alt="eshop-image"
-          />
+          <img src={imagethird.src} style={imageStyle} alt="eshop-image" />
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            src={imagefourth.src}
-            style={{ width: "inherit" }}
-            alt="eshop-image"
-          />
+          <img src={imagefourth.src} style={imageStyle} alt="eshop-image" />
         </SwiperSlide>
       </Swiper>
-    </div>
+    </Container>
   );
 };
 

@@ -9,18 +9,19 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
-import { HomeService } from "../service/HomeService";
 import { CardContent, Container, Grid, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Skeleton from "@mui/material/Skeleton";
+import { HomeProviderService } from "../service/HomeProviderService";
 
-const HomeCard = () => {
+const HomeService = () => {
   const [card, setCard] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   async function fetchCards() {
-    const result = await HomeService();
+    const result = await HomeProviderService({ id: 1 });
+
     setCard(result);
     setLoading(false);
   }
@@ -40,7 +41,6 @@ const HomeCard = () => {
           paddingRight: "30px",
           height: "220px",
           marginBottom: "30px",
-
           position: "relative", // Add this style
         }}
       >
@@ -79,21 +79,13 @@ const HomeCard = () => {
                   <Card
                     sx={{
                       maxWidth: "100%",
-                      transition: "transform 0.3s ease-in-out",
+
                       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                      "&:hover": {
-                        transform: "scale(1.05)",
-                        boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
-                      },
                     }}
                   >
-                    <CardHeader
-                      title={response.title}
-                      sx={{ background: "#d4d5ee", fontWeight: "bold" }}
-                    />
                     <CardMedia
                       component="img"
-                      image={response.image}
+                      image={response.img}
                       alt={response.alt}
                       sx={{
                         cursor: "pointer",
@@ -101,7 +93,7 @@ const HomeCard = () => {
                         maxHeight: "100%",
                       }}
                       onClick={() =>
-                        router.push(`${response.id}/${response.slug}`)
+                        router.push(`${response.provider_id}/${response.id}`)
                       }
                     />
                   </Card>
@@ -137,4 +129,4 @@ const HomeCard = () => {
   );
 };
 
-export default HomeCard;
+export default HomeService;

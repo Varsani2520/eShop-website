@@ -22,8 +22,14 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addToCartItem, addToFavouriteItem, bookmarkitem, incrementTotalCard, incrementTotalfav } from "@/app/action/action";
-import 'react-toastify/dist/ReactToastify.css'
+import {
+  addToCartItem,
+  addToFavouriteItem,
+  bookmarkitem,
+  incrementTotalCard,
+  incrementTotalfav,
+} from "@/app/action/action";
+import "react-toastify/dist/ReactToastify.css";
 import { FavioriteService } from "@/app/service/get-faviourite";
 import { bookmarkServices } from "@/app/service/bookmark";
 import Toast from "@/app/components/Toast";
@@ -50,7 +56,7 @@ const page = () => {
   }
   function fav(item) {
     if (!token || !token.data) {
-      toast.warning("please log in to add to favorites.")
+      toast.warning("please log in to add to favorites.");
       return;
     }
     const isItemInFav = favourites.some(
@@ -62,130 +68,147 @@ const page = () => {
       // Item is not in the cart, proceed to add it
       dispatch(addToFavouriteItem(item));
       dispatch(incrementTotalfav());
-      FavioriteService(token.data.token, item)
+      FavioriteService(token.data.token, item);
       toast.success("Added to wishlist  successfully");
     }
   }
   function bookmark(item) {
     if (!token || !token.data) {
-      toast.warning("please log in to bookmark this item")
+      toast.warning("please log in to bookmark this item");
       return;
     }
-    const isItemInBook = bookmarks.some((bookmarkItems) => bookmarkItems.id === item.id)
+    const isItemInBook = bookmarks.some(
+      (bookmarkItems) => bookmarkItems.id === item.id
+    );
 
     if (isItemInBook) {
-      toast.warning("item is already in your bookmark")
-    }
-    else {
-      dispatch(bookmarkitem(item))
-      bookmarkServices(token.data.token, item)
-      toast.success("Bookmark Successfully")
+      toast.warning("item is already in your bookmark");
+    } else {
+      dispatch(bookmarkitem(item));
+      bookmarkServices(token.data.token, item);
+      toast.success("Bookmark Successfully");
     }
   }
 
   useEffect(() => {
     Desc();
-    document.title = "provider | eRequirements"
+    document.title = "provider | eRequirements";
   }, []);
   return (
-    <div >
+    <div>
       <Toast />
       <ProviderHeader />
-      <Box sx={{ display: "flex", mt: 10, justifyContent: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          mt: "30px",
+          mb: "30px",
+          position: "relative",
+        }}
+      >
         <Container>
           <Grid container spacing={2}>
             {loading
               ? Array.from({ length: 3 }).map((index) => (
-                <Grid item key={index} xs={12} sm={12} md={6} lg={4}>
-                  <Box>
-                    <Card sx={{ maxWidth: "100%" }}>
-                      <Skeleton
-                        variant="rectangular"
-                        height={194}
-                        animation="wave"
-                      />
-                      <CardContent>
-                        <Skeleton animation="wave" />
-                      </CardContent>
-                    </Card>
-                    <br />
-                  </Box>
-                </Grid>
-              ))
-              : desc.map((response, index) => {
-                if (providerSlug == response.provider_id)
-                  return (
-                    <Grid item key={response.provider_id + "_" + response.id} xs={12} sm={12} md={6} lg={4}>
-                      <Card
-                        sx={{
-                          maxWidth: "100%",
-                          transition: "transform 0.3s ease-in-out",
-                          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                          "&:hover": {
-                            transform: "scale(1.05)",
-                            boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
-                          },
-                        }}>
-                        <CardHeader
-                          title={response.name}
-                          sx={{ background: "#b7bfee" }}
+                  <Grid item key={index} xs={12} sm={12} md={6} lg={4}>
+                    <Box>
+                      <Card sx={{ maxWidth: "100%" }}>
+                        <Skeleton
+                          variant="rectangular"
+                          height={194}
+                          animation="wave"
                         />
-                        <CardMedia
-                          sx={{
-                            objectFit: 'cover',
-                            cursor: "pointer",
-                            transition: "transform 0.3s ease-in-out",
-                            "&:hover": {
-                              transform: "scale(1.1)",
-                            },
-                          }}
-                          component="img"
-                          image={response.img}
-                          alt={response.alt}
-                          onClick={(e) =>
-                            router.push(
-                              `${response.provider_id}/${response.id}`
-                            )
-                          }
-                        />
-
-                        <CardActions disableSpacing>
-                          <IconButton aria-label="add to favorites" sx={{
-                            transition: "transform 0.3s ease-in-out",
-                            "&:hover": {
-                              transform: "scale(1.2)",
-                            },
-                          }}>
-                            <Checkbox
-                              onClick={() => fav(response)}
-                              inputProps={{ "aria-label": "Favorite" }}
-                              icon={<FavoriteBorder />}
-                              checkedIcon={<Favorite color="secondary" />}
-                            />
-                          </IconButton>
-                          <IconButton aria-label="bookmark"
-                            sx={{
-                              transition: "transform 0.3s ease-in-out",
-                              "&:hover": {
-                                transform: "scale(1.2)",
-                              },
-                            }}>
-                            <Checkbox
-                              onClick={() => bookmark(response)}
-                              icon={<BookmarkBorderIcon />}
-                              checkedIcon={<BookmarkIcon />}
-                            />
-                          </IconButton>
-                        </CardActions>
+                        <CardContent>
+                          <Skeleton animation="wave" />
+                        </CardContent>
                       </Card>
                       <br />
-                    </Grid>
-                  );
-              })}
+                    </Box>
+                  </Grid>
+                ))
+              : desc.map((response, index) => {
+                  if (providerSlug == response.provider_id)
+                    return (
+                      <Grid
+                        item
+                        key={response.provider_id + "_" + response.id}
+                        xs={12}
+                        sm={12}
+                        md={6}
+                        lg={4}
+                      >
+                        <Card
+                          sx={{
+                            maxWidth: "100%",
+                            height: "100%",
+                            transition: "transform 0.3s ease-in-out",
+                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                            "&:hover": {
+                              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)", // Add a box shadow
+                            },
+                          }}
+                        >
+                          <CardHeader
+                            title={response.name}
+                            sx={{ background: "#b7bfee" }}
+                          />
+                          <CardMedia
+                            sx={{
+                              objectFit: "cover",
+                              cursor: "pointer",
+                            }}
+                            component="img"
+                            image={response.img}
+                            alt={response.alt}
+                            onClick={(e) =>
+                              router.push(
+                                `${response.provider_id}/${response.id}`
+                              )
+                            }
+                          />
+
+                          <CardActions disableSpacing>
+                            <IconButton
+                              aria-label="add to favorites"
+                              sx={{
+                                transition: "transform 0.3s ease-in-out",
+                                "&:hover": {
+                                  transform: "scale(1.2)",
+                                },
+                              }}
+                            >
+                              <Checkbox
+                                onClick={() => fav(response)}
+                                inputProps={{ "aria-label": "Favorite" }}
+                                icon={<FavoriteBorder />}
+                                checkedIcon={<Favorite color="secondary" />}
+                              />
+                            </IconButton>
+                            <IconButton
+                              aria-label="bookmark"
+                              sx={{
+                                transition: "transform 0.3s ease-in-out",
+                                "&:hover": {
+                                  transform: "scale(1.2)",
+                                },
+                              }}
+                            >
+                              <Checkbox
+                                onClick={() => bookmark(response)}
+                                icon={<BookmarkBorderIcon />}
+                                checkedIcon={<BookmarkIcon />}
+                              />
+                            </IconButton>
+                          </CardActions>
+                        </Card>
+                        <br />
+                      </Grid>
+                    );
+                })}
           </Grid>
         </Container>
       </Box>
-
     </div>
   );
 };

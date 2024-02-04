@@ -35,7 +35,7 @@ const ContactHeading = () => {
   }));
   return (
     <div>
-      <Box sx={{ background: "hotpink",mt:"5%" }}>
+      <Box sx={{ background: '#8dbae9',mt:"5%" }}>
         <Container>
           <Box sx={{ pt: 5, pb: 5 }}>
             <Breadcrumbs aria-label="breadcrumb">
