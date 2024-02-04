@@ -47,30 +47,42 @@ const HomeCard = () => {
         <Grid container spacing={2}>
           {loading ? (
             Array.from({ length: 4 }).map((_, index) => (
-              <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-                <Box>
-                  <Card sx={{ maxWidth: 345 }}>
-                    <Skeleton
-                      variant="rectangular"
-                      height={194}
-                      animation="wave"
-                    />
-                    <CardContent>
-                      <Skeleton animation="wave" />
-                    </CardContent>
-                  </Card>
-                  <br />
-                </Box>
-              </Grid>
+              <Box>
+                <Card sx={{ maxWidth: 345 }}>
+                  <Skeleton
+                    variant="rectangular"
+                    height={194}
+                    animation="wave"
+                  />
+                  <CardContent>
+                    <Skeleton animation="wave" />
+                  </CardContent>
+                </Card>
+                <br />
+              </Box>
             ))
           ) : (
             <Swiper
               modules={[Navigation, Pagination, A11y]}
               spaceBetween={50}
-              slidesPerView={4}
+              slidesPerView={1}
               navigation={{
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
+              }}
+              breakpoints={{
+                // when window width is <= 400px
+                400: {
+                  slidesPerView: 1,
+                },
+                // when window width is <= 768px
+                768: {
+                  slidesPerView: 2,
+                },
+                // when window width is <= 992px
+                992: {
+                  slidesPerView: 3,
+                },
               }}
               style={{ height: "220px" }}
             >

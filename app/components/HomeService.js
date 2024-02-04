@@ -67,7 +67,21 @@ const HomeService = () => {
             <Swiper
               modules={[Navigation, Pagination, A11y]}
               spaceBetween={50}
-              slidesPerView={4}
+              slidesPerView={1}
+              breakpoints={{
+                // when window width is <= 400px
+                400: {
+                  slidesPerView: 1,
+                },
+                // when window width is <= 768px
+                768: {
+                  slidesPerView: 2,
+                },
+                // when window width is <= 992px
+                992: {
+                  slidesPerView: 3,
+                },
+              }}
               navigation={{
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -79,7 +93,6 @@ const HomeService = () => {
                   <Card
                     sx={{
                       maxWidth: "100%",
-
                       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                     }}
                   >
@@ -90,7 +103,7 @@ const HomeService = () => {
                       sx={{
                         cursor: "pointer",
                         objectFit: "cover",
-                        maxHeight: "100%",
+                        height: "100%",
                       }}
                       onClick={() =>
                         router.push(`${response.provider_id}/${response.id}`)
