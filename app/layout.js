@@ -3,7 +3,8 @@ import Navbar from "./components/Navbar";
 import { StoreProvider } from "./storeProvider";
 import Footer from "./components/footer";
 import { Box } from "@mui/material";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from '@vercel/analytics/react';
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "eshop",
@@ -18,6 +19,8 @@ export default function RootLayout({ children }) {
           <Box sx={{ backgroundColor: "rgb(241,242,244)" }}>
             <Navbar />
             {children}
+            <SpeedInsights />
+            <Analytics />
             <Footer />
           </Box>
         </StoreProvider>
