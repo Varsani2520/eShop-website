@@ -48,73 +48,71 @@ const ContactPage = () => {
             console.log(error);
         }
     }
-    return <div>
-        <Toast/>
-        <ContactHeading/>
-        <Box sx={{ mt: "2rem",mb:'50px' }}>
-        <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-                <div style={{height:'50px'}}>
-                    <Lottie animationData={contactAnimation} style={{ width: '100%', height: 'auto' }}/>
-                </div>
+    return <div >
+        <Toast />
+        <ContactHeading />
+        <Box sx={{ mt: "2rem", mb: '50px' }}>
+            <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                    <Lottie animationData={contactAnimation} style={{height:'500px'}} />
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                    md={6}
+                    sx={{ display: "flex", alignItems: "center" }}
+                >
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            label="Name"
+                            fullWidth
+                            margin="normal"
+                            onChange={(e) =>
+                                setContact({
+                                    ...contact,
+                                    name: e.target.value,
+                                })
+                            }
+                            value={contact.name}
+                        />
+                        <TextField
+                            label="Email"
+                            fullWidth
+                            margin="normal"
+                            onChange={(e) =>
+                                setContact({
+                                    ...contact,
+                                    email: e.target.value,
+                                })
+                            }
+                            value={contact.email}
+                        />
+                        <TextField
+                            label="Message"
+                            fullWidth
+                            multiline
+                            rows={4}
+                            margin="normal"
+                            onChange={(e) =>
+                                setContact({
+                                    ...contact,
+                                    message: e.target.value,
+                                })
+                            }
+                            value={contact.message}
+                        />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            sx={{ mt: "1rem", fontSize: "1.2rem" }}
+                            type="submit"
+                        >
+                            Submit
+                        </Button>
+                    </form>
+                </Grid>
             </Grid>
-            <Grid
-                item
-                xs={12}
-                md={6}
-                sx={{ display: "flex", alignItems: "center" }}
-            >
-                <form onSubmit={handleSubmit}>
-                    <TextField
-                        label="Name"
-                        fullWidth
-                        margin="normal"
-                        onChange={(e) =>
-                            setContact({
-                                ...contact,
-                                name: e.target.value,
-                            })
-                        }
-                        value={contact.name}
-                    />
-                    <TextField
-                        label="Email"
-                        fullWidth
-                        margin="normal"
-                        onChange={(e) =>
-                            setContact({
-                                ...contact,
-                                email: e.target.value,
-                            })
-                        }
-                        value={contact.email}
-                    />
-                    <TextField
-                        label="Message"
-                        fullWidth
-                        multiline
-                        rows={4}
-                        margin="normal"
-                        onChange={(e) =>
-                            setContact({
-                                ...contact,
-                                message: e.target.value,
-                            })
-                        }
-                        value={contact.message}
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{ mt: "1rem", fontSize: "1.2rem" }}
-                        type="submit"
-                    >
-                        Submit
-                    </Button>
-                </form>
-            </Grid>
-        </Grid>
-    </Box></div>;
+        </Box></div>;
 };
 
 export default ContactPage;

@@ -47,12 +47,15 @@ const LoginPage = () => {
   };
 
   return (
-    <div style={{ marginTop: "130px", marginBottom: "50px" }}>
+    <Container>
+
+    
+    <div style={{ marginTop: "120px", marginBottom: "50px" }}>
       <Toast />
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <Box sx={{ display: { xs: "none", md: "block" } }}>
-            <Lottie animationData={loginAnimation} height={40} />
+            <Lottie animationData={loginAnimation} style={{height:'500px'}} />
           </Box>
         </Grid>
         <Grid
@@ -65,7 +68,7 @@ const LoginPage = () => {
             justifyContent: "center",
           }}
         >
-          <Paper
+          {/* <Paper
             sx={{
               padding: 4,
               maxWidth: 400,
@@ -73,7 +76,7 @@ const LoginPage = () => {
               backgroundColor: "white",
               borderRadius: 8,
             }}
-          >
+          > */}
             <form onSubmit={handleSubmit}>
               <Typography variant="h5" align="center" gutterBottom>
                 Login
@@ -118,10 +121,11 @@ const LoginPage = () => {
                 Don't have an account? <Link href="/pages/signup">Sign up</Link>
               </Typography>
             </form>
-          </Paper>
+          {/* </Paper> */}
         </Grid>
       </Grid>
     </div>
+    </Container>
   );
 };
 

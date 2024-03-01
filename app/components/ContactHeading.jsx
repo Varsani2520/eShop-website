@@ -48,7 +48,7 @@ const ContactHeading = () => {
               </Link>
               <StyledBreadcrumb
                 component="a"
-                href="/contact"
+                href="/pages/contact"
                 label="Contact Us"
                 icon={<ExpandMoreIcon />}
               />

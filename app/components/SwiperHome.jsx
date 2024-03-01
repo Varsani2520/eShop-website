@@ -11,7 +11,7 @@ import imagefourth from "../images/imagefourth.jpg";
 import { Container } from "@mui/material";
 
 const SwiperHome = () => {
-  const imageStyle = { width: "100%", maxHeight: "300px" };
+  const imageStyle = { width: "100%", maxHeight: "500px" };
 
   return (
     <Container sx={{ marginTop: "100px" }}>
