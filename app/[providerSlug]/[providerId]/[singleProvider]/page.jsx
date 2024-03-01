@@ -32,6 +32,7 @@ import { cartService } from "@/app/service/get-cart";
 const page = () => {
   const dispatch = useDispatch();
   const [desc, setdesc] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { providerSlug } = useParams();
   const { singleProvider } = useParams();
   const carts = useSelector((state) => state.cart.cartItems);
@@ -90,14 +91,14 @@ const page = () => {
       <Toast />
       <Box
         sx={{ background: "#8dbae9" }}
-        mt={{ md: "6%", xs: "10%", lg: "3%" }}
+        mt={{ md: "5%", xs: "27%" ,sm:'17%'}}
       >
         <Container>
-          <Box sx={{ pt: 5, pb: 5 }}>
+          <Box sx={{ pt: 2, pb: 2 }}>
             <Breadcrumbs aria-label="breadcrumb">
               <StyledBreadcrumb
                 component="a"
-                href="#"
+                href="/"
                 label="Home"
                 icon={<HomeIcon fontSize="small" />}
               />
@@ -107,9 +108,11 @@ const page = () => {
             {desc.map((response) => {
               if (singleProvider == response.id)
                 return (
+              <Box key={response.id}>
                   <Typography variant="h4" sx={{ mt: 4 }}>
                     {response.name}
                   </Typography>
+                  </Box>
                 );
             })}
           </Box>
@@ -117,9 +120,13 @@ const page = () => {
       </Box>
 
       <Container>
-        <Box sx={{ mt: 5, mb: 5 }}>
-          {desc.map((response) => {
-            if (singleProvider == response.id)
+        <Box >
+          {
+          
+          desc.map((response) => {
+            if (
+
+            singleProvider == response.id)
               return (
                 <Box key={response.id}>
                   <Grid container spacing={2}>
@@ -127,12 +134,12 @@ const page = () => {
                       <Card sx={{ maxWidth: "100%", mt: 10 }}>
                         <CardMedia
                           component="img"
-                          sx={{ objectFit: "cover" }}
+                          sx={{ objectFit: "cover" ,height:'100%'}}
                           image={response.img}
                           alt={response.alt}
                         />
                       </Card>
-                      <Box sx={{ mt: 5, mb: 5, display: "flex", gap: 2 }}>
+                      <Box sx={{ mt: 5, mb: '30px', display: "flex", gap: 2 }}>
                         <Button
                           variant="outlined"
                           className="add-to-cart-btn"
@@ -154,7 +161,7 @@ const page = () => {
                       <Card
                         sx={{
                           minWidth: 275,
-                          background: "#b7bfee",
+                          background: "#8dbae9",
                           mt: 10,
                         }}
                       >
@@ -193,7 +200,7 @@ const page = () => {
                       <Card sx={{ mt: "5%" }}>
                         <CardContent>
                           <Typography variant="h5">
-                            <CardHeader title={"reviews"} />
+                            <CardHeader title={"reviews"} sx={{background:'#8dbae9'}}/>
 
                             {response.review}
                           </Typography>

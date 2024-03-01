@@ -111,52 +111,58 @@ const page = () => {
           <Grid container spacing={2}>
             {loading
               ? Array.from({ length: 3 }).map((index) => (
-                  <Grid item key={index} xs={12} sm={12} md={6} lg={4}>
-                    <Box>
-                      <Card sx={{ maxWidth: "100%" }}>
-                        <Skeleton
-                          variant="rectangular"
-                          height={194}
-                          animation="wave"
-                        />
-                        <CardContent>
-                          <Skeleton animation="wave" />
-                        </CardContent>
-                      </Card>
-                      <br />
-                    </Box>
-                  </Grid>
-                ))
+                <Grid item key={index} xs={12} sm={6} md={4} lg={4}>
+                  <Box>
+                    <Card sx={{ maxWidth: "100%" }}>
+                      <Skeleton
+                        variant="rectangular"
+                        height={194}
+                        animation="wave"
+                      />
+                      <CardContent>
+                        <Skeleton animation="wave" />
+                      </CardContent>
+                    </Card>
+                    <br />
+                  </Box>
+                </Grid>
+              ))
               : desc.map((response, index) => {
-                  if (providerSlug == response.provider_id)
-                    return (
-                      <Grid
-                        item
-                        key={response.provider_id + "_" + response.id}
-                        xs={12}
-                        sm={12}
-                        md={6}
-                        lg={4}
+                if (providerSlug == response.provider_id)
+                  return (
+                    <Grid
+                      item
+                      key={response.id}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={4}
+                    >
+                      <Card
+                        sx={{
+                          maxWidth: "100%",
+
+                          transition: "transform 0.3s ease-in-out",
+                          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                          "&:hover": {
+                            boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)", // Add a box shadow
+                          },
+                        }}
                       >
-                        <Card
-                          sx={{
-                            maxWidth: "100%",
-                            height: "100%",
-                            transition: "transform 0.3s ease-in-out",
-                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                            "&:hover": {
-                              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)", // Add a box shadow
-                            },
-                          }}
-                        >
-                          <CardHeader
-                            title={response.name}
-                            sx={{ background: "#b7bfee" }}
-                          />
+                        <CardHeader
+                          title={response.name}
+                          sx={{ background: "#a4c8eb" }}
+                        />
+                        <div style={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.25%' }}>
                           <CardMedia
                             sx={{
-                              objectFit: "cover",
                               cursor: "pointer",
+                              objectFit: "cover",
+                              position: 'absolute',
+                              width: '100%',
+                              height: '100%',
+                              top: 0,
+                              left: 0,
                             }}
                             component="img"
                             image={response.img}
@@ -167,45 +173,45 @@ const page = () => {
                               )
                             }
                           />
-
-                          <CardActions disableSpacing>
-                            <IconButton
-                              aria-label="add to favorites"
-                              sx={{
-                                transition: "transform 0.3s ease-in-out",
-                                "&:hover": {
-                                  transform: "scale(1.2)",
-                                },
-                              }}
-                            >
-                              <Checkbox
-                                onClick={() => fav(response)}
-                                inputProps={{ "aria-label": "Favorite" }}
-                                icon={<FavoriteBorder />}
-                                checkedIcon={<Favorite color="secondary" />}
-                              />
-                            </IconButton>
-                            <IconButton
-                              aria-label="bookmark"
-                              sx={{
-                                transition: "transform 0.3s ease-in-out",
-                                "&:hover": {
-                                  transform: "scale(1.2)",
-                                },
-                              }}
-                            >
-                              <Checkbox
-                                onClick={() => bookmark(response)}
-                                icon={<BookmarkBorderIcon />}
-                                checkedIcon={<BookmarkIcon />}
-                              />
-                            </IconButton>
-                          </CardActions>
-                        </Card>
-                        <br />
-                      </Grid>
-                    );
-                })}
+                        </div>
+                        <CardActions disableSpacing>
+                          <IconButton
+                            aria-label="add to favorites"
+                            sx={{
+                              transition: "transform 0.3s ease-in-out",
+                              "&:hover": {
+                                transform: "scale(1.2)",
+                              },
+                            }}
+                            onClick={() => fav(response)}
+                          >
+                            <Checkbox
+                              inputProps={{ "aria-label": "Favorite" }}
+                              icon={<FavoriteBorder />}
+                              checkedIcon={<Favorite color="secondary" />}
+                            />
+                          </IconButton>
+                          <IconButton
+                            aria-label="bookmark"
+                            sx={{
+                              transition: "transform 0.3s ease-in-out",
+                              "&:hover": {
+                                transform: "scale(1.2)",
+                              },
+                            }}
+                            onClick={() => bookmark(response)}
+                          >
+                            <Checkbox
+                              icon={<BookmarkBorderIcon />}
+                              checkedIcon={<BookmarkIcon />}
+                            />
+                          </IconButton>
+                        </CardActions>
+                      </Card>
+                      <br />
+                    </Grid>
+                  );
+              })}
           </Grid>
         </Container>
       </Box>

@@ -4,7 +4,7 @@ import Link from "@mui/material/Link";
 
 const Footer = () => {
   return (
-    <footer style={{ background: "#232F3E", padding: "20px" }}>
+    <footer style={{ background: "#232F3E", padding: "20px" ,marginTop:'20px'}}>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           {/* Left Section: About */}

@@ -51,9 +51,9 @@ const ProviderHeader = () => {
   }));
   return (
     <div>
-      <Box sx={{ background: "#8dbae9" }} mt={{ md: "3%", xs: "10%" }}>
+      <Box sx={{ background: "#8dbae9" }}mt={{ md: "5%", xs: "27%" ,sm:'17%'}}>
         <Container>
-          <Box sx={{ pt: 5, pb: 5 }}>
+          <Box sx={{ pt: 2, pb: 2 }}>
             <Breadcrumbs aria-label="breadcrumb">
               <a href="/">
                 <StyledBreadcrumb

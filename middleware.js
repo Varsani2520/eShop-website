@@ -15,7 +15,7 @@ export function middleware(request) {
       pathname.startsWith("/pages/login")
     ) {
       return NextResponse.redirect(
-        new URL("https://erequirements.vercel.app/")
+        new URL("https://eshop-varsani2520.vercel.app/")
       );
     }
   }
@@ -24,12 +24,12 @@ export function middleware(request) {
     console.log("inside");
     if (pathname.startsWith("/pages/profile")) {
       return NextResponse.redirect(
-        new URL("https://erequirements.vercel.app/")
+        new URL("https://eshop-varsani2520.vercel.app/")
       );
     }
     if (pathname.startsWith("/pages/checkout")) {
       return NextResponse.redirect(
-        new URL("https://erequirements.vercel.app/")
+        new URL("https://eshop-varsani2520.vercel.app/")
       );
     }
   }

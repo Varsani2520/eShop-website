@@ -51,11 +51,11 @@ const ContactPage = () => {
     return <div>
         <Toast/>
         <ContactHeading/>
-        <Box sx={{ mt: "2rem" }}>
+        <Box sx={{ mt: "2rem",mb:'50px' }}>
         <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
-                <div>
-                    <Lottie animationData={contactAnimation} height={50} width={20} />
+                <div style={{height:'50px'}}>
+                    <Lottie animationData={contactAnimation} style={{ width: '100%', height: 'auto' }}/>
                 </div>
             </Grid>
             <Grid

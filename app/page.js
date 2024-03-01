@@ -17,12 +17,9 @@ const page = () => {
           <SwiperHome />
         </Grid>
       </Grid>
-
-      {/* <Divider1 /> */}
-      {/* <Slider1 /> */}
       <Divider2 />
       <HomeCard />
-      <HomeService />
+      {/* <HomeService /> */}
     </Container>
   );
 };
