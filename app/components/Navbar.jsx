@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,14 +16,18 @@ import Link from "next/link";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { useState, useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useDispatch, useSelector } from "react-redux";
 import { Badge, Hidden } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { getFaviorites } from "../service/getFaviourite";
 import { getCart } from "../service/getCart";
 import Cookies from "js-cookie";
 import eshopLogo from "../images/eshopLogo.jpg";
-
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useSelector } from "react-redux";
+import { useTheme } from "@mui/material";
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 const pages = [
   { label: "Home", href: "/" },
   { label: "About", href: "/pages/about" },
@@ -34,9 +38,11 @@ const settings = [
   { label: "Logout", href: "/pages/logout" },
 ];
 
-function App() {
+function App({ darkThemeFun, lightthemFun }) {
+  const theme=useTheme()
   const [cart, setCart] = useState(0);
   const [fav, setFav] = useState(0);
+  const [darkMode, setDarkMode] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const favItems = useSelector((state) => state.likes.favouriteItems);
 
@@ -56,6 +62,8 @@ function App() {
       setFav(0);
     }
   }, [tokens, cartItems, favItems]);
+
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -73,6 +81,7 @@ function App() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       right: -3,
@@ -81,13 +90,14 @@ function App() {
       padding: "0 4px",
     },
   }));
+
   return (
     <Container>
       <AppBar
         position="fixed"
         sx={{
-          background: "white",
-          color: "black",
+          background:theme.palette.background.body,
+          // color: "black",
           zIndex: 1000,
         }}
       >
@@ -141,6 +151,7 @@ function App() {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
+                  color: theme.palette.background.text,
                   display: { xs: "block", md: "none" },
                 }}
               >
@@ -152,11 +163,11 @@ function App() {
                       width: 200,
                       height: 50,
                       marginTop: 20,
-                      color: "black",
+                       color: theme.palette.background.text,
                     }}
                   >
                     <Link href={page.href} style={{ textDecoration: "none" }}>
-                      <Typography textAlign="center">{page.label}</Typography>
+                      <Typography textAlign="center" sx={{color: theme.palette.background.text,}}>{page.label}</Typography>
                     </Link>
                   </MenuItem>
                 ))}
@@ -173,7 +184,7 @@ function App() {
                   <Button
                     key={page.label}
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "black", display: "block" }}
+                    sx={{ my: 2, color: theme.palette.background.text, display: "block" }}
                   >
                     {page.label}
                   </Button>
@@ -182,6 +193,9 @@ function App() {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
+              <IconButton onClick={darkMode ? lightthemFun : darkThemeFun} sx={{ p: 0 }}>
+                {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
               {user == "true" && authenticated ? (
                 <>
                   <IconButton
@@ -209,11 +223,13 @@ function App() {
                       <Avatar />
                     </IconButton>
                   </Tooltip>
+
                 </>
               ) : (
                 <>
+
                   <Link href="/pages/login" passHref>
-                    <Button component="a" variant="contained" sx={{ mr: 4}}>
+                    <Button component="a" variant="contained" sx={{ mr: 4 }}>
                       Login
                     </Button>
                   </Link>
@@ -242,7 +258,7 @@ function App() {
                       href={setting.href}
                       style={{ textDecoration: "none" }}
                     >
-                      <Typography textAlign="center">
+                      <Typography textAlign="center" sx={{color: theme.palette.background.text,}}>
                         {setting.label}
                       </Typography>
                     </Link>

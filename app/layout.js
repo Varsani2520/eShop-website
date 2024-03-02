@@ -1,29 +1,42 @@
+"use client";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
 import { StoreProvider } from "./storeProvider";
 import Footer from "./components/footer";
-import { Box } from "@mui/material";
+import { Box, Paper, ThemeProvider, useTheme } from "@mui/material";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
+import { darkTheme, lightTheme } from "./theme";
+import { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
-export const metadata = {
-  title: "eshop",
-  description: "eshop",
-};
 
 export default function RootLayout({ children }) {
+  const [isDarkTheme, setDarkTheme] = useState(
+    typeof window !== "undefined" && localStorage.getItem("theme")
+  );
+  function toggleTheme() {
+    isDarkTheme == true ? setDarkTheme(false) : setDarkTheme(true);
+    isDarkTheme == true
+      ? localStorage.setItem("theme", false)
+      : localStorage.setItem("theme", true);
+  }
+
+  const theme = useTheme();
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>
-          <Box sx={{ backgroundColor: "rgb(241,242,244)" }}>
-            <Navbar />
-            {children}
-            <SpeedInsights />
-            <Analytics />
-            <Footer />
-          </Box>
-        </StoreProvider>
+        <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+          <StoreProvider>
+            <Paper sx={{ backgroundColor: theme.palette.background.body }}>
+              <Navbar darkThemeFun={toggleTheme} lightthemFun={toggleTheme} />{" "}
+              {/* Pass toggleTheme function as prop */}
+              {children}
+              <SpeedInsights />
+              <Analytics />
+              <Footer />
+            </Paper>
+          </StoreProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

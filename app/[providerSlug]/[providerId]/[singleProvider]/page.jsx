@@ -28,8 +28,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Toast from "@/app/components/Toast";
 import { cartService } from "@/app/service/get-cart";
+import { useTheme } from "@mui/material";
 
 const page = () => {
+  const theme=useTheme()
   const dispatch = useDispatch();
   const [desc, setdesc] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -90,7 +92,7 @@ const page = () => {
     <Box>
       <Toast />
       <Box
-        sx={{ background: "#8dbae9" }}
+         sx={{ background: theme.palette.secondary.main }}
         mt={{ md: "5%", xs: "27%" ,sm:'17%'}}
       >
         <Container>
@@ -200,7 +202,7 @@ const page = () => {
                       <Card sx={{ mt: "5%" }}>
                         <CardContent>
                           <Typography variant="h5">
-                            <CardHeader title={"reviews"} sx={{background:'#8dbae9'}}/>
+                            <CardHeader title={"reviews"} sx={{background:theme.palette.secondary.main}}/>
 
                             {response.review}
                           </Typography>

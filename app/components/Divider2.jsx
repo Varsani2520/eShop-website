@@ -3,6 +3,7 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import Container from "@mui/material/Container/Container";
+import { useTheme } from "@mui/material";
 const Root = styled("div")(({ theme }) => ({
   width: "100%",
   ...theme.typography.body2,
@@ -12,11 +13,12 @@ const Root = styled("div")(({ theme }) => ({
 }));
 
 export default function Divider2() {
+  const theme = useTheme()
   return (
     <Container>
-      <Root style={{ color: "#1976d2" }}>
+      <Root style={{ color: theme.palette.background.text }}>
         <Divider>
-          <h1>Our Top Categories</h1>
+          <h1 >Our Top Categories</h1>
         </Divider>
       </Root>
     </Container>

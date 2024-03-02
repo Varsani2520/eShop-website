@@ -19,6 +19,7 @@ import {
   Grid,
   IconButton,
   Skeleton,
+  useTheme,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -45,6 +46,7 @@ const page = () => {
   const favourites = useSelector((state) => state.likes.favouriteItems);
   const bookmarks = useSelector((state) => state.bookmark.bookmarkItems);
   const token = useSelector((state) => state.auth.authUser);
+  const theme = useTheme()
   async function Desc() {
     try {
       const response = await ProviderService(providerSlug);
@@ -151,7 +153,7 @@ const page = () => {
                       >
                         <CardHeader
                           title={response.name}
-                          sx={{ background: "#a4c8eb" }}
+                          sx={{ background: theme.palette.secondary.main }}
                         />
                         <div style={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.25%' }}>
                           <CardMedia

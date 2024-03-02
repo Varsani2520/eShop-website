@@ -1,11 +1,12 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { Card, CardHeader, CardMedia, Container, Grid } from "@mui/material";
+import { Card, CardHeader, CardMedia, Container, Grid, useTheme } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Skeleton from "@mui/material/Skeleton";
 import { HomeService } from "../service/HomeService";
 
 const HomeCard = () => {
+  const theme=useTheme()
   const [card, setCard] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -46,7 +47,7 @@ const HomeCard = () => {
                 <CardHeader
                   title={response.title}
                   sx={{
-                    background: "#a4c8eb", fontWeight: "bold", transition: "transform 0.3s ease-in-out", cursor: 'pointer', "&:hover": {
+                    background: theme.palette.secondary.main, fontWeight: "bold", transition: "transform 0.3s ease-in-out", cursor: 'pointer', "&:hover": {
                       color: '#1976d2'
                     }
                   }}
