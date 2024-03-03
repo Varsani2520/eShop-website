@@ -52,7 +52,7 @@ const ProviderHeader = () => {
   }));
   return (
     <div>
-      <Box sx={{ background: theme.palette.background.card }} mt={{ md: "4%", xs: "27%", sm: '15%' }}>
+      <Box sx={{ background: theme.palette.background.card }} mt={{ md: "4%", xs: "25%", sm: '15%' }}>
         <Container>
           <Box sx={{ pt: 2, pb: 2 }}>
             <Breadcrumbs aria-label="breadcrumb">

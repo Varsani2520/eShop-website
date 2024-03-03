@@ -16,7 +16,7 @@ export default function Divider2() {
   const theme = useTheme()
   return (
     <Container>
-      <Root style={{ color: theme.palette.background.text }}>
+      <Root style={{ color: theme.palette.background.headline }}>
         <Divider>
           <h1 >Our Top Categories</h1>
         </Divider>

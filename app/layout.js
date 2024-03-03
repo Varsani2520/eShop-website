@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   const theme = useTheme();
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} style={{marginLeft:'auto'}}>
         <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
           <StoreProvider>
             {/* <Paper> */}

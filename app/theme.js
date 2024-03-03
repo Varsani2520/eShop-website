@@ -14,11 +14,11 @@ const darkTheme = createTheme({
     background: {
       card: "#041c32",
       text: "#ffffff",
-      indicator: "#ffffff",
       icon: "#ffffff", //white icon
       button: "#0277fa",
       c1: "#fff",
       c2: "#fff",
+      headline: "#fff",
     },
   },
 });
@@ -36,11 +36,11 @@ const lightTheme = createTheme({
     background: {
       card: "#a4c8eb",
       text: "#000000",
-      indicator: "#000000",
       icon: "#2a78d4",
       button: "#0277fa",
       c1: "#333",
       c2: "#666",
+      headline: "#2a78d4",
     },
   },
 });

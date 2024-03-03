@@ -106,7 +106,7 @@ function App({ darkThemeFun, lightthemFun }) {
             <Hidden mdUp>
               {/* Display only on extra small devices */}
               <IconButton
-                size="large"
+                size="medium"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
@@ -119,7 +119,7 @@ function App({ darkThemeFun, lightthemFun }) {
             </Hidden>
             {/* Wrap the image inside a Link */}
             <Link href="/" passHref>
-              <Box sx={{ flexGrow: 1, cursor: "pointer" }}>
+              <Box sx={{ flexGrow: 0, cursor: "pointer" }}>
                 <img
                   src={eshopLogo.src}
                   style={{

@@ -93,7 +93,7 @@ const page = () => {
       <Toast />
       <Box
         sx={{ background: theme.palette.background.card }}
-        mt={{ md: "5%", xs: "27%", sm: '17%' }}
+        mt={{ md: "4%", xs: "25%", sm: '15%' }}
       >
         <Container>
           <Box sx={{ pt: 2, pb: 2 }}>
@@ -141,7 +141,7 @@ const page = () => {
                         </Card>
                         <Box sx={{ mt: 5, mb: '30px', display: "flex", gap: 2 }}>
                           <Button
-                            sx={{ background: theme.palette.background.button, color: theme.palette.background.icon }}
+                            sx={{ background: theme.palette.background.button, color: theme.palette.background.text }}
                             variant="outlined"
                             className="add-to-cart-btn"
                             onClick={() => addToCart(response)}
@@ -151,7 +151,7 @@ const page = () => {
                           <Link href="/pages/checkout">
                             <Button
                               variant="outlined"
-                              className="add-to-cart-btn" sx={{ background: theme.palette.background.button, color: theme.palette.background.icon }}
+                              className="add-to-cart-btn" sx={{ background: theme.palette.background.button, color: theme.palette.background.text }}
                             >
                               Buy Now
                             </Button>
