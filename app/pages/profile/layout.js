@@ -9,6 +9,7 @@ import {
   Typography,
   Box,
   Divider,
+  useTheme,
 } from "@mui/material";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +28,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 export default function Layout({ children }) {
+  const theme = useTheme();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.authUser.data);
   const router = useRouter();
@@ -65,8 +67,9 @@ export default function Layout({ children }) {
         <Grid item md={4} xs={12}>
           <Card
             sx={{
-              backgroundColor: "#f0f0f0",
+              background: theme.palette.background.card,
               marginTop: 4,
+              marginBottom: 1,
               position: "relative",
               padding: 3,
             }}
@@ -91,28 +94,46 @@ export default function Layout({ children }) {
                 sx={{ width: 120, height: 120, marginBottom: 2 }}
                 type="file"
               />
-              <Typography variant="h6" sx={{ fontSize: 20, color: "#333" }}>
+              <Typography
+                variant="h6"
+                sx={{ fontSize: 20, color: theme.palette.background.c1 }}
+              >
                 {user ? user.name : "guest"}
               </Typography>
 
-              <Typography variant="body2" sx={{ fontSize: 16, color: "#666" }}>
+              <Typography
+                variant="body2"
+                sx={{ fontSize: 16, color: theme.palette.background.c2 }}
+              >
                 {user ? user.username : "guest"}
               </Typography>
               <Button
                 variant="contained"
                 onClick={handleLogout}
-                color="primary"
-                sx={{ marginTop: 2, "&:hover": { backgroundColor: "#0069d9" } }}
+                color="secondary"
+                sx={{
+                  marginTop: 2,
+                  background: theme.palette.background.button,
+                  "&:hover": { backgroundColor: "#0069d9" },
+                }}
               >
                 Logout
               </Button>
             </Box>
           </Card>
           <Divider />
-          <Card sx={{ background: "#f0f0f0", padding: 3 }}>
+          <Card sx={{ background: theme.palette.background.card, padding: 3 }}>
             <div style={linkStyle}>
               <Link href="/pages/profile/bookings">
-                <Button variant="outlined" color="primary">
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  sx={{
+                    background: theme.palette.background.button,
+                    "&:hover": { backgroundColor: "#0069d9" },
+                    color: theme.palette.background.text,
+                  }}
+                >
                   Booking
                 </Button>
               </Link>
@@ -120,7 +141,15 @@ export default function Layout({ children }) {
             <Divider />
             <div style={linkStyle}>
               <Link href="/pages/profile/bookmark" passHref>
-                <Button variant="outlined" color="primary">
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  sx={{
+                    background: theme.palette.background.button,
+                    "&:hover": { backgroundColor: "#0069d9" },
+                    color: theme.palette.background.text,
+                  }}
+                >
                   Bookmark
                 </Button>
               </Link>
@@ -128,7 +157,15 @@ export default function Layout({ children }) {
             <Divider />
             <div style={linkStyle}>
               <Link href="/pages/profile/favourites" passHref>
-                <Button variant="outlined" color="primary">
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  sx={{
+                    background: theme.palette.background.button,
+                    "&:hover": { backgroundColor: "#0069d9" },
+                    color: theme.palette.background.text,
+                  }}
+                >
                   WishList
                 </Button>
               </Link>
@@ -136,7 +173,15 @@ export default function Layout({ children }) {
             <Divider />
             <div style={linkStyle}>
               <Link href="/pages/profile/notifications" passHref>
-                <Button variant="outlined" color="primary">
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  sx={{
+                    background: theme.palette.background.button,
+                    "&:hover": { backgroundColor: "#0069d9" },
+                    color: theme.palette.background.text,
+                  }}
+                >
                   Notification
                 </Button>
               </Link>
@@ -145,7 +190,10 @@ export default function Layout({ children }) {
             <div style={linkStyle}>
               <Button
                 variant="outlined"
-                color="secondary"
+                color="error"
+                sx={{
+                  background: theme.palette.background.text,
+                }}
                 onClick={deleteAccount}
               >
                 Delete Account

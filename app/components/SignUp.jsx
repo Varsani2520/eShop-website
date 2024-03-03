@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/navigation";
-import { Container, Grid, Paper, TextField } from "@mui/material";
+import { Container, Grid, Paper, TextField, useTheme } from "@mui/material";
 import { signupservice } from "../service/signupservice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +15,7 @@ import loginAnimation from "../lottie-animation/loginAnimation.json";
 
 const SignUp = () => {
   const router = useRouter();
-
+  const theme = useTheme()
   const [signup, setSignup] = useState({
     username: "",
     password: "",
@@ -49,7 +49,7 @@ const SignUp = () => {
   }
   return (
     <Container>
-      <div style={{ marginTop: "130px", marginBottom: "50px" }}>
+      <div style={{ marginTop: "100px", marginBottom: "180px", color: theme.palette.background.text, background: theme.palette.primary.main }}>
         <ToastContainer />
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
@@ -77,77 +77,81 @@ const SignUp = () => {
                 borderRadius: 8,
               }}
             > */}
-              <form onSubmit={handleSubmit}>
-                <Typography component="h1" variant="h4" mb={4}>
-                  Create Account
-                </Typography>
-                <TextField
-                  label="Username"
-                  variant="outlined"
-                  fullWidth
-                  onChange={(e) =>
-                    setSignup({
-                      ...signup,
-                      username: e.target.value,
-                    })
-                  }
-                  value={signup.username}
-                  margin="normal"
-                />
-                <TextField
-                  label="Password"
-                  fullWidth
-                  type="password"
-                  variant="outlined"
-                  onChange={(e) =>
-                    setSignup({
-                      ...signup,
-                      password: e.target.value,
-                    })
-                  }
-                  value={signup.password}
-                  margin="normal"
-                />
-                <TextField
-                  label="name"
-                  fullWidth
-                  variant="outlined"
-                  onChange={(e) =>
-                    setSignup({
-                      ...signup,
-                      name: e.target.value,
-                    })
-                  }
-                  value={signup.name}
-                  margin="normal"
-                />
-                <TextField
-                  fullWidth
-                  label="address"
-                  variant="outlined"
-                  onChange={(e) =>
-                    setSignup({
-                      ...signup,
-                      address: e.target.value,
-                    })
-                  }
-                  value={signup.address}
-                  margin="normal"
-                />
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  sx={{ mt: 2 }}
-                >
-                  Create Account
-                </Button>
-                <Typography align="center" sx={{ mt: 2 }}>
-                  are you already logged in?{" "}
-                  <Link href="/pages/login">Login</Link>
-                </Typography>
-              </form>
+            <form onSubmit={handleSubmit}>
+              <Typography component="h1" variant="h4" mb={4}>
+                Create Account
+              </Typography>
+              <TextField
+                label="Username"
+                variant="outlined"
+                fullWidth
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    username: e.target.value,
+                  })
+                }
+                value={signup.username}
+                margin="normal"
+              />
+              <TextField
+                label="Password"
+                fullWidth
+                type="password"
+                variant="outlined"
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    password: e.target.value,
+                  })
+                }
+                value={signup.password}
+                margin="normal"
+              />
+              <TextField
+                label="name"
+                fullWidth
+                variant="outlined"
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    name: e.target.value,
+                  })
+                }
+                value={signup.name}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="address"
+                variant="outlined"
+                onChange={(e) =>
+                  setSignup({
+                    ...signup,
+                    address: e.target.value,
+                  })
+                }
+                value={signup.address}
+                margin="normal"
+              />
+              <Button
+                fullWidth
+                variant="contained"
+                color="secondary"
+                type="submit"
+                sx={{
+                  mt: 2,
+                  background: theme.palette.background.button,
+                  "&:hover": { backgroundColor: "#0069d9" },
+                  color: theme.palette.background.text,
+                }}                >
+                Create Account
+              </Button>
+              <Typography align="center" sx={{ mt: 2 }}>
+                are you already logged in?{" "}
+                <Link href="/pages/login">Login</Link>
+              </Typography>
+            </form>
             {/* </Paper> */}
           </Grid>
         </Grid>

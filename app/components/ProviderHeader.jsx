@@ -7,9 +7,9 @@ import Chip from "@mui/material/Chip";
 import { useParams } from "next/navigation";
 import { ProviderService } from "../service/ProviderService";
 import { HomeService } from "../service/HomeService";
-import {useTheme} from '@mui/material'
+import { useTheme } from '@mui/material'
 const ProviderHeader = () => {
-  const theme=useTheme()
+  const theme = useTheme()
   const [desc, setdesc] = useState([]);
   const { providerSlug } = useParams();
 
@@ -52,7 +52,7 @@ const ProviderHeader = () => {
   }));
   return (
     <div>
-      <Box  sx={{ background: theme.palette.secondary.main }}mt={{ md: "5%", xs: "27%" ,sm:'17%'}}>
+      <Box sx={{ background: theme.palette.background.card }} mt={{ md: "4%", xs: "27%", sm: '15%' }}>
         <Container>
           <Box sx={{ pt: 2, pb: 2 }}>
             <Breadcrumbs aria-label="breadcrumb">
@@ -65,7 +65,7 @@ const ProviderHeader = () => {
               </a>
               <StyledBreadcrumb
                 component="a"
-                
+
                 label="Providers"
                 icon={<ExpandMoreIcon />}
               />
@@ -73,7 +73,7 @@ const ProviderHeader = () => {
             {desc.map((response) => {
               if (providerSlug == response.id)
                 return (
-                  <Typography variant="h4" sx={{ mt: 4 }}>
+                  <Typography variant="h4" sx={{ mt: 4, color: theme.palette.background.text }}>
                     {response.slug}
                   </Typography>
                 );

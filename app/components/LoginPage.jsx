@@ -6,7 +6,7 @@ import { loginservice } from "../service/loginService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import { Box, Container, Grid, Typography, Paper } from "@mui/material";
+import { Box, Container, Grid, Typography, Paper, useTheme } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { loginUserFailure, loginUserSuccess } from "../action/action";
 import Link from "next/link";
@@ -18,6 +18,7 @@ import Cookies from "js-cookie";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const theme = useTheme()
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -48,27 +49,25 @@ const LoginPage = () => {
 
   return (
     <Container>
-
-    
-    <div style={{ marginTop: "120px", marginBottom: "50px" }}>
-      <Toast />
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Box sx={{ display: { xs: "none", md: "block" } }}>
-            <Lottie animationData={loginAnimation} style={{height:'500px'}} />
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {/* <Paper
+      <div style={{ marginTop: "100px", marginBottom: "180px", background: theme.palette.primary.main, color: theme.palette.background.text }}>
+        <Toast />
+        <Grid container spacing={2} sx={{justifyContent:'center'}}>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ display: { xs: "none", md: "block" } }}>
+              <Lottie animationData={loginAnimation} style={{ height: '500px' }} />
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {/* <Paper
             sx={{
               padding: 4,
               maxWidth: 400,
@@ -78,7 +77,7 @@ const LoginPage = () => {
             }}
           > */}
             <form onSubmit={handleSubmit}>
-              <Typography variant="h5" align="center" gutterBottom>
+              <Typography variant="h5" align="center" gutterBottom sx={{ color: theme.palette.background.text }}>
                 Login
               </Typography>
               <TextField
@@ -110,21 +109,26 @@ const LoginPage = () => {
               />
               <Button
                 variant="contained"
-                color="primary"
                 type="submit"
                 fullWidth
-                sx={{ mt: 2 }}
+                sx={{
+                  mt: 2,
+
+                  background: theme.palette.background.button,
+                  "&:hover": { backgroundColor: "#0069d9" },
+                  color: theme.palette.background.text,
+                }}
               >
                 Login
               </Button>
-              <Typography align="center" sx={{ mt: 2 }}>
+              <Typography align="center" sx={{mt:2,mr:2}}>
                 Don't have an account? <Link href="/pages/signup">Sign up</Link>
               </Typography>
             </form>
-          {/* </Paper> */}
+            {/* </Paper> */}
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
+      </div>
     </Container>
   );
 };

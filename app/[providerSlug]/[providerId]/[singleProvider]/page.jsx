@@ -31,7 +31,7 @@ import { cartService } from "@/app/service/get-cart";
 import { useTheme } from "@mui/material";
 
 const page = () => {
-  const theme=useTheme()
+  const theme = useTheme()
   const dispatch = useDispatch();
   const [desc, setdesc] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -92,8 +92,8 @@ const page = () => {
     <Box>
       <Toast />
       <Box
-         sx={{ background: theme.palette.secondary.main }}
-        mt={{ md: "5%", xs: "27%" ,sm:'17%'}}
+        sx={{ background: theme.palette.background.card }}
+        mt={{ md: "5%", xs: "27%", sm: '17%' }}
       >
         <Container>
           <Box sx={{ pt: 2, pb: 2 }}>
@@ -110,10 +110,10 @@ const page = () => {
             {desc.map((response) => {
               if (singleProvider == response.id)
                 return (
-              <Box key={response.id}>
-                  <Typography variant="h4" sx={{ mt: 4 }}>
-                    {response.name}
-                  </Typography>
+                  <Box key={response.id}>
+                    <Typography variant="h4" sx={{ mt: 4, color: theme.palette.background.text }}>
+                      {response.name}
+                    </Typography>
                   </Box>
                 );
             })}
@@ -124,95 +124,94 @@ const page = () => {
       <Container>
         <Box >
           {
-          
-          desc.map((response) => {
-            if (
-
-            singleProvider == response.id)
-              return (
-                <Box key={response.id}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
-                      <Card sx={{ maxWidth: "100%", mt: 10 }}>
-                        <CardMedia
-                          component="img"
-                          sx={{ objectFit: "cover" ,height:'100%'}}
-                          image={response.img}
-                          alt={response.alt}
-                        />
-                      </Card>
-                      <Box sx={{ mt: 5, mb: '30px', display: "flex", gap: 2 }}>
-                        <Button
-                          variant="outlined"
-                          className="add-to-cart-btn"
-                          onClick={() => addToCart(response)}
-                        >
-                          Add to Cart
-                        </Button>
-                        <Link href="/pages/checkout">
+            desc.map((response) => {
+              if (
+                singleProvider == response.id)
+                return (
+                  <Box key={response.id}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} md={6}>
+                        <Card sx={{ maxWidth: "100%", mt: 10 }}>
+                          <CardMedia
+                            component="img"
+                            sx={{ objectFit: "cover", height: '100%' }}
+                            image={response.img}
+                            alt={response.alt}
+                          />
+                        </Card>
+                        <Box sx={{ mt: 5, mb: '30px', display: "flex", gap: 2 }}>
                           <Button
+                            sx={{ background: theme.palette.background.button, color: theme.palette.background.icon }}
                             variant="outlined"
                             className="add-to-cart-btn"
+                            onClick={() => addToCart(response)}
                           >
-                            Buy Now
+                            Add to Cart
                           </Button>
-                        </Link>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Card
-                        sx={{
-                          minWidth: 275,
-                          background: "#8dbae9",
-                          mt: 10,
-                        }}
-                      >
-                        <CardContent>
-                          <Typography
-                            sx={{ fontSize: 14 }}
-                            color="text.secondary"
-                            gutterBottom
-                          >
-                            {response.slug}
-                          </Typography>
-                          <Typography variant="h5" component="div">
-                            {response.name}
-                          </Typography>
-                          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            descriptions:{response.description}
-                          </Typography>
-                          <Typography variant="primary">
-                            Price: {response.price}
+                          <Link href="/pages/checkout">
+                            <Button
+                              variant="outlined"
+                              className="add-to-cart-btn" sx={{ background: theme.palette.background.button, color: theme.palette.background.icon }}
+                            >
+                              Buy Now
+                            </Button>
+                          </Link>
+                        </Box>
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Card
+                          sx={{
+                            minWidth: 275,
+                            mt: 10,
+                            background: theme.palette.background.card
+                          }}
+                        >
+                          <CardContent>
+                            <Typography
+                              sx={{ fontSize: 14 }}
+                              color="text.secondary"
+                              gutterBottom
+                            >
+                              {response.slug}
+                            </Typography>
+                            <Typography variant="h5" component="div">
+                              {response.name}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                              descriptions:{response.description}
+                            </Typography>
+                            <Typography variant="primary">
+                              Price: {response.price}
+                              <br />
+                              offer:{response.offer}
+                            </Typography>
                             <br />
-                            offer:{response.offer}
-                          </Typography>
-                          <br />
-                          rating:{" "}
-                          <Rating
-                            value={response.rating}
-                            emptyIcon={
-                              <StarIcon
-                                style={{ opacity: 0.55 }}
-                                fontSize="inherit"
-                              />
-                            }
-                          />
-                        </CardContent>
-                      </Card>
-                      <Card sx={{ mt: "5%" }}>
-                        <CardContent>
-                          <Typography variant="h5">
-                            <CardHeader title={"reviews"} sx={{background:theme.palette.secondary.main}}/>
+                            rating:{" "}
+                            <Rating
+                              value={response.rating}
+                              emptyIcon={
+                                <StarIcon
+                                  style={{ opacity: 0.55 }}
+                                  fontSize="inherit"
+                                />
+                              }
+                            />
+                          </CardContent>
+                        </Card>
+                        <Card sx={{ mt: "5%", background: theme.palette.background.card }}>
+                          <CardContent>
+                            <Typography variant="h5">
+                              <CardHeader title={"reviews"} sx={{ background: theme.palette.secondary.main }} />
 
-                            {response.review}
-                          </Typography>
-                        </CardContent>
-                      </Card>
+                              {response.review}
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </Grid>
                     </Grid>
-                  </Grid>
-                </Box>
-              );
-          })}
+                  </Box>
+                );
+            })}
         </Box>
       </Container>
     </Box>

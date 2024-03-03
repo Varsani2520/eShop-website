@@ -153,7 +153,7 @@ const page = () => {
                       >
                         <CardHeader
                           title={response.name}
-                          sx={{ background: theme.palette.secondary.main }}
+                          sx={{ background: theme.palette.background.card }}
                         />
                         <div style={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.25%' }}>
                           <CardMedia
@@ -176,7 +176,7 @@ const page = () => {
                             }
                           />
                         </div>
-                        <CardActions disableSpacing>
+                        <CardActions sx={{ background: theme.palette.background.card }} disableSpacing>
                           <IconButton
                             aria-label="add to favorites"
                             sx={{
@@ -184,6 +184,7 @@ const page = () => {
                               "&:hover": {
                                 transform: "scale(1.2)",
                               },
+                              
                             }}
                             onClick={() => fav(response)}
                           >

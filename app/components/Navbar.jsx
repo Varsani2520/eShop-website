@@ -21,7 +21,7 @@ import { styled } from "@mui/material/styles";
 import { getFaviorites } from "../service/getFaviourite";
 import { getCart } from "../service/getCart";
 import Cookies from "js-cookie";
-import eshopLogo from "../images/eshopLogo.jpg";
+import eshopLogo from "../images/eshopLogo.png";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useSelector } from "react-redux";
@@ -39,7 +39,7 @@ const settings = [
 ];
 
 function App({ darkThemeFun, lightthemFun }) {
-  const theme=useTheme()
+  const theme = useTheme()
   const [cart, setCart] = useState(0);
   const [fav, setFav] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
@@ -96,7 +96,7 @@ function App({ darkThemeFun, lightthemFun }) {
       <AppBar
         position="fixed"
         sx={{
-          background:theme.palette.background.body,
+          background: theme.palette.secondary.main,
           // color: "black",
           zIndex: 1000,
         }}
@@ -112,6 +112,7 @@ function App({ darkThemeFun, lightthemFun }) {
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 color="inherit"
+
               >
                 <MenuIcon />
               </IconButton>
@@ -163,11 +164,11 @@ function App({ darkThemeFun, lightthemFun }) {
                       width: 200,
                       height: 50,
                       marginTop: 20,
-                       color: theme.palette.background.text,
+                      color: theme.palette.background.text,
                     }}
                   >
                     <Link href={page.href} style={{ textDecoration: "none" }}>
-                      <Typography textAlign="center" sx={{color: theme.palette.background.text,}}>{page.label}</Typography>
+                      <Typography textAlign="center" sx={{ color: theme.palette.background.text, }}>{page.label}</Typography>
                     </Link>
                   </MenuItem>
                 ))}
@@ -193,13 +194,14 @@ function App({ darkThemeFun, lightthemFun }) {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <IconButton onClick={darkMode ? lightthemFun : darkThemeFun} sx={{ p: 0 }}>
+
+              <IconButton onClick={darkMode ? lightthemFun : darkThemeFun} sx={{ p: 0, mr: 2 ,color:theme.palette.background.icon}}>
                 {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
               {user == "true" && authenticated ? (
                 <>
                   <IconButton
-                    color="primary"
+                    sx={{ color: theme.palette.background.icon }}
                     aria-label="add to shopping cart"
                     href="/pages/checkout"
                   >
@@ -209,10 +211,9 @@ function App({ darkThemeFun, lightthemFun }) {
                   </IconButton>
 
                   <IconButton
-                    color="primary"
                     aria-label="add to shopping cart"
                     href="/pages/profile/favourites"
-                    sx={{ marginRight: 2 }}
+                    sx={{ marginRight: 2, color: theme.palette.background.icon }}
                   >
                     <StyledBadge badgeContent={fav} color="secondary">
                       <FavoriteBorderOutlinedIcon />
@@ -229,7 +230,12 @@ function App({ darkThemeFun, lightthemFun }) {
                 <>
 
                   <Link href="/pages/login" passHref>
-                    <Button component="a" variant="contained" sx={{ mr: 4 }}>
+                    <Button component="a" variant="contained" sx={{
+                      mr: 4,
+                      background: theme.palette.background.button,
+                      "&:hover": { backgroundColor: "#0069d9" },
+                      color: theme.palette.background.text,
+                    }}>
                       Login
                     </Button>
                   </Link>
@@ -258,7 +264,7 @@ function App({ darkThemeFun, lightthemFun }) {
                       href={setting.href}
                       style={{ textDecoration: "none" }}
                     >
-                      <Typography textAlign="center" sx={{color: theme.palette.background.text,}}>
+                      <Typography textAlign="center" sx={{ color: theme.palette.background.text, }}>
                         {setting.label}
                       </Typography>
                     </Link>

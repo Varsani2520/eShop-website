@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { darkTheme, lightTheme } from "./theme";
 import { useState } from "react";
+import MyBox from "./MyBox";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
@@ -27,14 +28,16 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
           <StoreProvider>
-            <Paper sx={{ backgroundColor: theme.palette.background.body }}>
+            {/* <Paper> */}
+            <MyBox>
               <Navbar darkThemeFun={toggleTheme} lightthemFun={toggleTheme} />{" "}
               {/* Pass toggleTheme function as prop */}
               {children}
               <SpeedInsights />
               <Analytics />
               <Footer />
-            </Paper>
+            </MyBox>
+            {/* </Paper> */}
           </StoreProvider>
         </ThemeProvider>
       </body>

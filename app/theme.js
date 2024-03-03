@@ -6,21 +6,20 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#90CAF9",
+      main: "#11283d",
     },
     secondary: {
-      main: "#0d1b2a", // Dark mode secondary color
+      main: "#1b3145", // Dark mode secondary color
     },
     background: {
-      body: "#0d1b2a",
+      card: "#041c32",
       text: "#ffffff",
       indicator: "#ffffff",
-      icon: "#ffffff",
-      button: "#2f80f0",
+      icon: "#ffffff", //white icon
+      button: "#0277fa",
+      c1: "#fff",
+      c2: "#fff",
     },
-    // icon: {
-    //   color: "#277ed4",
-    // },
   },
 });
 
@@ -29,21 +28,20 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#1976D2", // Light mode primary color
+      main: "#ffffff", // Light mode primary color
     },
     secondary: {
-      main: "#a4c8eb", // Light mode secondary color
+      main: "#ffffff", // Light mode secondary color
     },
     background: {
-      body: "#ffffff",
+      card: "#a4c8eb",
       text: "#000000",
       indicator: "#000000",
-      icon: "#000000",
-      button: "#2f80f0",
+      icon: "#2a78d4",
+      button: "#0277fa",
+      c1: "#333",
+      c2: "#666",
     },
-    // icon: {
-    //   color: "#277ed4",
-    // },
   },
 });
 

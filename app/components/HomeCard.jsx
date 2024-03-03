@@ -47,7 +47,7 @@ const HomeCard = () => {
                 <CardHeader
                   title={response.title}
                   sx={{
-                    background: theme.palette.secondary.main, fontWeight: "bold", transition: "transform 0.3s ease-in-out", cursor: 'pointer', "&:hover": {
+                    background: theme.palette.background.card, fontWeight: "bold", transition: "transform 0.3s ease-in-out", cursor: 'pointer', "&:hover": {
                       color: '#1976d2'
                     }
                   }}
