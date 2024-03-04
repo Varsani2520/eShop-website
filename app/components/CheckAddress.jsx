@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from "react";
-import { Button, Container, Grid, TextField, Typography } from "@mui/material";
+import { Button, Container, Grid, TextField, Typography, useTheme } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { contactAddress } from "@/app/service/contactAddress";
@@ -9,10 +9,11 @@ import { useSelector } from "react-redux";
 import Toast from "./Toast";
 const CheckAddress = () => {
   const router = useRouter()
+  const theme = useTheme()
   const [contact, setContact] = useState({
     name: '', contactNo: '', house: '', area: '', pin: '', city: '', state: ''
   })
-  const tokens=useSelector((state)=>state.auth.authUser.data.token)
+  const tokens = useSelector((state) => state.auth.authUser.data.token)
   async function handleSubmit(e) {
     e.preventDefault();
     if (!contact.name || !contact.contactNo || !contact.house || !contact.area || !contact.pin || !contact.city || !contact.state) {
@@ -20,7 +21,7 @@ const CheckAddress = () => {
       return;
     }
     try {
-      const response = await contactAddress(tokens,contact.name, contact.contactNo, contact.house, contact.area, contact.pin, contact.city, contact.state);
+      const response = await contactAddress(tokens, contact.name, contact.contactNo, contact.house, contact.area, contact.pin, contact.city, contact.state);
       console.log(response)
       toast.success("order delivered at this address");
       router.push('/')
@@ -33,10 +34,12 @@ const CheckAddress = () => {
   return (
     <Container>
       <Toast />
-      <Typography variant="h5" gutterBottom sx={{ mt: '10%' }}>
+      <Typography variant="h5" gutterBottom sx={{
+        text: theme.palette.background.text, pt: '10%'
+      }}>
         Contact Details
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
@@ -144,7 +147,11 @@ const CheckAddress = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary"sx={{mb:'10%'}} >
+            <Button type="submit" variant="contained"  sx={{
+              mb: '10%', background: theme.palette.background.button,
+              "&:hover": { backgroundColor: "#0069d9" },
+              color: theme.palette.background.text,
+            }} >
               Save Address and Continue
             </Button>
           </Grid>

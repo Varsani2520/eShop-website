@@ -10,6 +10,7 @@ import {
   CardMedia,
   Grid,
   Typography,
+  useTheme,
 } from "@mui/material";
 import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
@@ -38,11 +39,11 @@ const ProfileBookmark = () => {
   useEffect(() => {
     books();
   }, []);
-
+  const theme = useTheme()
   return (
-    <div>
+    <div style={{ background: theme.palette.background.card }}>
       <Toast />
-      <Box>
+      <Box sx={{ mt: '5%' }}>
         {book.length === 0 ? (
           <><Lottie animationData={emptyProfile} style={{ height: '200px' }} /></>
         ) : (
@@ -51,7 +52,7 @@ const ProfileBookmark = () => {
             return (<>
               {response.data.map((singleBook) => {
                 return (
-                  <Card key={singleBook.id}>
+                  <Card key={singleBook.id} sx={{ background: theme.palette.background.card }}>
                     <Grid container spacing={2} mt={5}>
                       <Grid item xs={6} md={4}>
                         <CardMedia

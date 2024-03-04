@@ -13,6 +13,7 @@ import {
   Container,
   Grid,
   Skeleton,
+  useTheme,
 } from "@mui/material";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -74,11 +75,11 @@ const CheckOut = () => {
     dispatch(clearCart())
   };
 
-
+  const theme = useTheme()
   return (
     <Container>
       <Toast />
-      <Box sx={{ mt: '10%', mb: '10%' }}>
+      <Box sx={{ mt: '10%', mb: '10%', background: theme.palette.background.card }}>
         {
           carts.length > 0 && (
 
@@ -95,14 +96,14 @@ const CheckOut = () => {
           carts.map((singleCart) => {
             return (
               <>
-                <Card key={singleCart.id} sx={{ background: '#f0f0f0' }}>
+                <Card key={singleCart.id} sx={{ background: theme.palette.background.card, color: theme.palette.background.text }}>
                   {carts.length === 0 ? (
                     <img
                       src="https://w7.pngwing.com/pngs/277/965/png-transparent-empty-cart-illustration-thumbnail.png"
                       alt="empty cart img"
                     />
                   ) : (
-                    <Grid container spacing={2} mt={5}>
+                    <Grid container spacing={2} >
                       <Grid item xs={6} md={4}>
                         <CardMedia
                           image={singleCart.img}
@@ -114,25 +115,37 @@ const CheckOut = () => {
                         {/* <Button onClick={() => router.push('/pages/address')}>Continue </Button> */}
                       </Grid>
                       <Grid item xs={6} md={2}>
-                        <CardHeader>Name:{singleCart.name}</CardHeader>
                         <CardContent>
+                          <Typography>Name:{singleCart.name}</Typography>
                           <Typography>
                             Price:{singleCart.price && singleCart.quantity ? singleCart.price * singleCart.quantity : singleCart.price}
                           </Typography>
                           <Typography>
                             Quantity:
-                            <Button onClick={() => handleDecrement(singleCart)}>-</Button>
+                            <Button onClick={() => handleDecrement(singleCart)} sx={{
+                              background: theme.palette.background.button,
+                              "&:hover": { backgroundColor: "#0069d9" },
+                              color: theme.palette.background.text,
+                            }}>-</Button>
                             {singleCart.quantity}
-                            <Button onClick={() => handleIncrement(singleCart)}>+</Button>
+                            <Button onClick={() => handleIncrement(singleCart)} sx={{
+                              background: theme.palette.background.button,
+                              "&:hover": { backgroundColor: "#0069d9" },
+                              color: theme.palette.background.text,
+                            }}>+</Button>
                           </Typography>
-                          <Button onClick={() => rmv(singleCart)}>REMOVE</Button>
+                          <Button onClick={() => rmv(singleCart)} sx={{
+                            background: theme.palette.background.button,
+                            "&:hover": { backgroundColor: "#0069d9" },
+                            color: theme.palette.background.text,
+                          }}>REMOVE</Button>
                         </CardContent>
                       </Grid>
                     </Grid>
                   )}
 
                   {/* option */}
-                </Card>
+                </Card >
               </>
             );
           })
@@ -146,7 +159,7 @@ const CheckOut = () => {
           )
         }
       </Box>
-    </Container>
+    </Container >
   );
 };
 

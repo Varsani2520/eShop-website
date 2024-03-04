@@ -42,7 +42,7 @@ const LoginPage = () => {
     } catch (error) {
       toast.error("Login failed");
       Cookies.set("user", false);
-      dispatch(loginUserFailure);
+      dispatch(loginUserFailure());
       console.log(error);
     }
   };
@@ -51,7 +51,7 @@ const LoginPage = () => {
     <Container>
       <div style={{ marginTop: "100px", marginBottom: "180px", background: theme.palette.primary.main, color: theme.palette.background.text }}>
         <Toast />
-        <Grid container spacing={2} sx={{justifyContent:'center'}}>
+        <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
           <Grid item xs={12} md={6}>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
               <Lottie animationData={loginAnimation} style={{ height: '500px' }} />
@@ -121,7 +121,7 @@ const LoginPage = () => {
               >
                 Login
               </Button>
-              <Typography align="center" sx={{mt:2,mr:2}}>
+              <Typography align="center" sx={{ mt: 2, mr: 2 }}>
                 Don't have an account? <Link href="/pages/signup">Sign up</Link>
               </Typography>
             </form>

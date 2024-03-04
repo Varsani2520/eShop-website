@@ -10,6 +10,7 @@ import {
   CardMedia,
   Grid,
   Typography,
+  useTheme,
 } from "@mui/material";
 import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
@@ -39,10 +40,11 @@ const ProfileFavourites = () => {
     dispatch(decrementTotalfav())
     toast.success("remove item success");
   }
+  const theme = useTheme()
   return (
-    <div>
+    <div style={{ background: theme.palette.background.card, }}>
       <Toast />
-      <div>
+      <div >
         {fav.length === 0 ? (
           <Lottie animationData={emptyProfile} style={{ height: '200px' }} />
         ) : (
@@ -51,12 +53,12 @@ const ProfileFavourites = () => {
               <>
                 {response.data.map((singleFav) => {
                   return (
-                    <Card key={singleFav.id}>
+                    <Card key={singleFav.id} sx={{ background: theme.palette.background.card, color: theme.palette.background.text }}>
                       <Grid container spacing={2} mt={5}>
                         <Grid item xs={6} md={4}>
                           <CardMedia
                             image={singleFav.img}
-                            sx={{objectFit:'cover'}}
+                            sx={{ objectFit: 'cover' }}
                             component="img"
                             alt="img"
                           />

@@ -4,13 +4,14 @@ import { ProviderService } from "@/app/service/ProviderService";
 import { NextResponse } from "next/server";
 
 //get provider
+connectDatabase();
 export async function GET(request) {
   console.log("provide success");
   try {
-    connectDatabase();
     //   const provider=await ProviderService.find()
     //   return NextResponse.json(provider)
-    const providerData = await provider.find();
+    const providerData = await provider.find({});
+    console.log("my providers", providerData);
     return NextResponse.json(providerData);
   } catch (error) {
     console.log(error, "provider error");

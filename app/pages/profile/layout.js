@@ -202,15 +202,15 @@ export default function Layout({ children }) {
           </Card>
         </Grid>
         <Grid item md={8} xs={12}>
-          <Card
+          {/* <Card
             sx={{
               backgroundColor: "#f0f0f0",
               marginTop: 4,
               padding: 3,
             }}
-          >
-            {children}
-          </Card>
+          > */}
+          {children}
+          {/* </Card> */}
         </Grid>
       </Grid>
     </Container>

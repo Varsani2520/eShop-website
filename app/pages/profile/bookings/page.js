@@ -9,6 +9,7 @@ import {
   Grid,
   ListItem,
   Typography,
+  useTheme,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -30,9 +31,14 @@ const page = () => {
   useEffect(() => {
     Booking();
   }, []);
-
+  const theme = useTheme();
   return (
-    <div>
+    <div
+      style={{
+        background: theme.palette.background.card,
+        color: theme.palette.background.text,
+      }}
+    >
       <h1>Your Bookings !</h1>
       {booking.slice(0, 501).map((response) => {
         return (

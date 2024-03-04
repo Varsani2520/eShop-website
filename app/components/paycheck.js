@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { clearCart } from "../action/action";
 import { summaryServices } from "../service/summary";
+import { useTheme } from "@mui/material";
 const Paycheck = ({ total, onPaymentSuccess }) => {
   const carts = useSelector((state) => state.cart.cartItems);
   const tokens = useSelector((state) => state.auth.authUser.data.token);
   const date = new Date();
   const dispatch = useDispatch();
-
+  const theme = useTheme();
   async function paymentSuccess() {
     try {
       const response = await summaryServices(tokens, carts, "pending", date);
