@@ -96,7 +96,7 @@ const CheckOut = () => {
           carts.map((singleCart) => {
             return (
               <>
-                <Card key={singleCart.id} sx={{ background: theme.palette.background.card, color: theme.palette.background.text }}>
+                <Card key={singleCart.id} sx={{ background: theme.palette.background.card, color: theme.palette.background.text, mb: 2 }}>
                   {carts.length === 0 ? (
                     <img
                       src="https://w7.pngwing.com/pngs/277/965/png-transparent-empty-cart-illustration-thumbnail.png"
@@ -105,13 +105,16 @@ const CheckOut = () => {
                   ) : (
                     <Grid container spacing={2} >
                       <Grid item xs={6} md={4}>
-                        <CardMedia
-                          image={singleCart.img}
-                          width={300}
-                          height={540}
-                          component="img"
-                          alt="img"
-                        />
+                        <div style={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.25%' }}>
+
+                          <CardMedia
+                            image={singleCart.img}
+                            width={'100%'}
+                            height={'100%'}
+                            component="img"
+                            alt="img"
+                          />
+                        </div>
                         {/* <Button onClick={() => router.push('/pages/address')}>Continue </Button> */}
                       </Grid>
                       <Grid item xs={6} md={2}>
@@ -135,7 +138,7 @@ const CheckOut = () => {
                             }}>+</Button>
                           </Typography>
                           <Button onClick={() => rmv(singleCart)} sx={{
-                            background: theme.palette.background.button,
+                            mt: 5, background: theme.palette.background.button,
                             "&:hover": { backgroundColor: "#0069d9" },
                             color: theme.palette.background.text,
                           }}>REMOVE</Button>
