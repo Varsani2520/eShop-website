@@ -79,7 +79,7 @@ const CheckOut = () => {
   return (
     <Container>
       <Toast />
-      <Box sx={{ mt: '10%', mb: '10%', background: theme.palette.background.card }}>
+      <Box sx={{ mt: '10%', mb: '10%', height: '15vh', background: theme.palette.background.card }}>
         {
           carts.length > 0 && (
 
@@ -120,7 +120,7 @@ const CheckOut = () => {
                           <Typography>
                             Price:{singleCart.price && singleCart.quantity ? singleCart.price * singleCart.quantity : singleCart.price}
                           </Typography>
-                          <Typography>
+                          <Typography display='flex' alignItems='center'>
                             Quantity:
                             <Button onClick={() => handleDecrement(singleCart)} sx={{
                               background: theme.palette.background.button,

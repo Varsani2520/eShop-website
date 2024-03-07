@@ -92,7 +92,7 @@ const page = () => {
     <Box>
       <Toast />
       <Box
-        sx={{ background: theme.palette.background.card }}
+        sx={{ background: theme.palette.background.card, height: '15vh' }}
         mt={{ md: "4%", xs: "25%", sm: '15%' }}
       >
         <Container>
@@ -122,7 +122,7 @@ const page = () => {
       </Box>
 
       <Container>
-        <Box >
+        <Box sx={{ height: '100vh' }}>
           {
             desc.map((response) => {
               if (
