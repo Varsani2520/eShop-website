@@ -180,18 +180,19 @@ const page = () => {
                           <IconButton
                             aria-label="add to favorites"
                             sx={{
+
                               transition: "transform 0.3s ease-in-out",
                               "&:hover": {
                                 transform: "scale(1.2)",
                               },
-                              
+
                             }}
                             onClick={() => fav(response)}
                           >
-                            <Checkbox
+                            <Checkbox sx={{ color: theme.palette.background.icon }}
                               inputProps={{ "aria-label": "Favorite" }}
                               icon={<FavoriteBorder />}
-                              checkedIcon={<Favorite color="secondary" />}
+                              checkedIcon={<Favorite color="error" />}
                             />
                           </IconButton>
                           <IconButton
@@ -204,9 +205,9 @@ const page = () => {
                             }}
                             onClick={() => bookmark(response)}
                           >
-                            <Checkbox
+                            <Checkbox sx={{ color: theme.palette.background.icon }}
                               icon={<BookmarkBorderIcon />}
-                              checkedIcon={<BookmarkIcon />}
+                              checkedIcon={<BookmarkIcon color="info" />}
                             />
                           </IconButton>
                         </CardActions>
