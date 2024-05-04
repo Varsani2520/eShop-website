@@ -2,7 +2,7 @@
  <img src="https://res.cloudinary.com/dxxeks4o5/image/upload/v1690038166/icons8-shirt-58_telfkv.png" alt="logo"/>
 <h1>eShop-website</h1>
 
-![](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&color=blue)
+![](https://img.shields.io/badge/NexxtJS-61DAFB?style=for-the-badge&logo=react&color=blue)
 ![](https://img.shields.io/badge/Three.js-8A2BE2?style=for-the-badge&logo=three.js&color=black)
 ![](https://img.shields.io/badge/javascript-8A2BE2?style=for-the-badge&logo=javascript&labelcolor=yellow)
 ![](https://img.shields.io/badge/Node.js-8A2BE2?style=for-the-badge&logo=Node.js&color=orange)
@@ -59,20 +59,7 @@ Contributions are welcome! If you have any ideas, suggestions, or bug fixes, ple
 
 ## 🤠 Project Admin 
 
-<a href="https://github.com/amanjaiman1"><img src="https://imgur.com/av7nYpM.png" height="80px"/></a>
-
-# Contributors <a name="contributors"></a>
-
-### Thank you for contribution ✨
-
-Thank you for your interest in contributing to our project! We appreciate any contributions, whether it's bug fixes, new features, or documentation improvements.
-
-We value the time and effort you put into contributing, and we look forward to reviewing and merging your contributions. Join us on this exciting journey of creativity and collaboration, and let your projects shine on Product_3D!
-<br/>
-
-<a href="https://github.com/amanjaiman1/Product_3D/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=amanjaiman1/Product_3D" />
-</a>
+<a href="https://github.com/Varsani2520"><img src="https://imgur.com/av7nYpM.png" height="80px"/></a>
 
 <br/>
 
