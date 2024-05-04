@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+ <div align="center">
+ <img src="https://res.cloudinary.com/dxxeks4o5/image/upload/v1690038166/icons8-shirt-58_telfkv.png" alt="logo"/>
+<h1>eShop-website</h1>
 
-## Getting Started
+![](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&color=blue)
+![](https://img.shields.io/badge/Three.js-8A2BE2?style=for-the-badge&logo=three.js&color=black)
+![](https://img.shields.io/badge/javascript-8A2BE2?style=for-the-badge&logo=javascript&labelcolor=yellow)
+![](https://img.shields.io/badge/Node.js-8A2BE2?style=for-the-badge&logo=Node.js&color=orange)
+![](https://img.shields.io/badge/Tailwindcss-8A2BE2?style=for-the-badge&logo=Tailwind&color=yellow)
 
-First, run the development server:
+</div>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Table of Contents 📒
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Introduction 👋](#introduction-)
+- [Features 🌟](#features-)
+- [Quick Start 🚀](#quickstart-)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# Introduction <a name="introduction"></a>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Welcome👋
 
-## Learn More
+<p> 
+Welcome to the 3D Product Customization Website! 🌟 This innovative web application empowers users to personalize their very own t-shirts with ease. With a wide range of customization options at their fingertips, users can unleash their creativity and design unique garments that reflect their individuality. Get ready to embark on a journey of self-expression and style! 🎉
+</p>
+<center><img src="https://imgur.com/DvEZnW7.png" /></center>
+<center><img src="https://imgur.com/B1yHPt2.png" /></center>
+<br/>
 
-To learn more about Next.js, take a look at the following resources:
+# Features🌟 <a name="features"></a>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This application boasts an array of impressive features to enhance your t-shirt customization experience:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Color Selection**: Choose from a delightful range of t-shirt colors to suit your style and mood.
 
-## Deploy on Vercel
+**Image/Logo Upload**: Personalize your t-shirt by uploading your own logos or images to be applied seamlessly.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Remove Functionality**: Enjoy the freedom to remove any applied logos or images with a simple click of the "remove" button.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Download Option**: Capture your masterpiece by downloading your completed t-shirt design as an image file.
+
+# Quick Start🚀 <a name="quickstart"></a>
+
+Contributions are welcome! If you have any ideas, suggestions, or bug fixes, please open an
+[issue](https://github.com/amanjaiman1/Product_3D/issues/new/choose) or submit a pull request. Make sure to follow the project's code of conduct.
+
+> **Note**: If you are new to open source contributions, you can refer to [this](https://opensource.guide/how-to-contribute/) guide by GitHub.
+
+> **Warning**: Please do not spam the repository with unnecessary PRs. Make sure to follow the project's [code of conduct](https://github.com/amanjaiman1/Product_3D/blob/main/CODE_OF_CONDUCT.md).
+
+- Go through the [CONTRIBUTING.md](https://github.com/amanjaiman1/Product_3D/blob/main/CONTRIBUTING.md) file, where all the guidelines have been mentioned that will guide you to make your contribution.
+- Do check out the [project issue tracker](https://github.com/amanjaiman1/Product_3D/issues) section.
+
+### Do join our discord :
+
+<a href="https://discord.gg/JW9K58FBfs">
+  <img src="https://img.icons8.com/color/2x/discord--v2.png" height="50px"></img>
+</a>
+
+## 🤠 Project Admin 
+
+<a href="https://github.com/amanjaiman1"><img src="https://imgur.com/av7nYpM.png" height="80px"/></a>
+
+# Contributors <a name="contributors"></a>
+
+### Thank you for contribution ✨
+
+Thank you for your interest in contributing to our project! We appreciate any contributions, whether it's bug fixes, new features, or documentation improvements.
+
+We value the time and effort you put into contributing, and we look forward to reviewing and merging your contributions. Join us on this exciting journey of creativity and collaboration, and let your projects shine on Product_3D!
+<br/>
+
+<a href="https://github.com/amanjaiman1/Product_3D/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=amanjaiman1/Product_3D" />
+</a>
+
+<br/>
+
+Thank you for using our 3D Product Customization Website!
+
+---
+
+
+
+
+
+<p align="right">(<a href="#top">Back to top</a>)</p>
