@@ -2,7 +2,7 @@
  <img src="https://res.cloudinary.com/dxxeks4o5/image/upload/v1690038166/icons8-shirt-58_telfkv.png" alt="logo"/>
 <h1>eShop-website</h1>
 
-![](https://img.shields.io/badge/NexxtJS-61DAFB?style=for-the-badge&logo=react&color=blue)
+![](https://img.shields.io/badge/ReactJS-61DAFB?style=for-the-badge&logo=react&color=blue)
 ![](https://img.shields.io/badge/Three.js-8A2BE2?style=for-the-badge&logo=three.js&color=black)
 ![](https://img.shields.io/badge/javascript-8A2BE2?style=for-the-badge&logo=javascript&labelcolor=yellow)
 ![](https://img.shields.io/badge/Node.js-8A2BE2?style=for-the-badge&logo=Node.js&color=orange)
