@@ -1,8 +1,31 @@
 
 # eShop-website
 
-This directory contains the codebase for an e-commerce website. This website allows users to browse, select, and purchase products online.
+Welcome to eShop-Website, your ultimate destination for seamless online shopping experiences!
+<img src="https://github.com/Varsani2520/eShop-website/assets/137641079/3dac3447-fa40-4760-909f-edf5d0336bc3" height="300px" width="1000px" />
 
+## Table of Contents
+- About
+- API Reference
+- Admin
+- Color Reference
+- Installation
+- Run Locally
+- Demo
+- Usage/Examples
+- Tech Stack
+- Screenshots
+- Skills
+- Features
+- Documentation
+- Environment Variables
+- FAQ
+- Website Functionality
+- Account and Profile
+- Lessons Learned
+
+## About
+This directory contains the codebase for an e-commerce website where users can explore, select, and purchase products conveniently from the comfort of their homes.
 
 ## API Reference
 
@@ -26,9 +49,6 @@ This directory contains the codebase for an e-commerce website. This website all
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
-
-
-
 ## Admin
 
 - [@Varsani2520](https://www.github.com/Varsani2520)
@@ -45,15 +65,12 @@ This directory contains the codebase for an e-commerce website. This website all
 
 ## Installation
 
-Install my-project with npm
+Install eShop-website with npm
 
 ```bash
-  npm install my-project
-  cd my-project
+  npm install eShop-website
+  cd eShop-website
 ```
-    
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
 
 ## Run Locally
 
@@ -102,6 +119,12 @@ function App() {
 ## Screenshots
 
 ![image](https://github.com/Varsani2520/eShop-website/assets/137641079/7527663e-ca64-474f-818c-dd5f612630bb)
+
+![image](https://github.com/Varsani2520/eShop-website/assets/137641079/451b3c63-1663-452a-899e-816c3aac8681)
+
+
+![image](https://github.com/Varsani2520/eShop-website/assets/137641079/910781da-3866-427b-b8c0-1375327aecf7)
+
 
 
 ## 🛠 Skills
