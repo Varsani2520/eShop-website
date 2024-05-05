@@ -101,8 +101,7 @@ function App() {
 
 ## Screenshots
 
-  ![Uploading image.png…]()
-
+![image](https://github.com/Varsani2520/eShop-website/assets/137641079/7527663e-ca64-474f-818c-dd5f612630bb)
 
 
 ## 🛠 Skills
