@@ -51,7 +51,10 @@ This directory contains the codebase for an e-commerce website where users can e
 
 ## Admin
 
-- [@Varsani2520](https://www.github.com/Varsani2520)
+<a href="https://github.com/Varsani2520/eShop-website/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Varsani2520/eShop-website" />
+</a>
+<br/>
 
 ## Color Reference
 
