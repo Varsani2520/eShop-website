@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
-const providerModal = Schema({
+const providerModal = new mongoose.Schema({
   name: String,
   title: String,
   img: String,
