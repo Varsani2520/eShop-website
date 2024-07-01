@@ -8,6 +8,8 @@ import imageF from "../images/imageF.jpg";
 import imagesecond from "../images/imagesecond.jpg";
 import imagethird from "../images/imagethird.jpg";
 import imagefourth from "../images/imagefourth.jpg";
+import imagefifth from "../images/imagefifth.jpg";
+import imagesixth from "../images/imagesixth.jpg";
 import { Container } from "@mui/material";
 
 const SwiperHome = () => {
@@ -35,6 +37,12 @@ const SwiperHome = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img src={imagefourth.src} style={imageStyle} alt="eshop-image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={imagefifth.src} style={imageStyle} alt="eshop-image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={imagesixth.src} style={imageStyle} alt="eshop-image" />
         </SwiperSlide>
       </Swiper>
     </Container>
