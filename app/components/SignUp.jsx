@@ -1,43 +1,54 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client'
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useRouter } from "next/navigation";
-import { Container, Grid, Paper, TextField, useTheme } from "@mui/material";
+import { Container, Grid, TextField, useTheme } from "@mui/material";
 import { signupservice } from "../service/signupservice";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
-import Toast from "./Toast";
 import Lottie from "lottie-react";
 import loginAnimation from "../lottie-animation/loginAnimation.json";
+import { toast } from "react-toastify";
+import Toast from "./Toast";
 
 const SignUp = () => {
-  const router = useRouter();
-  const theme = useTheme()
+  const theme = useTheme();
   const [signup, setSignup] = useState({
     username: "",
     password: "",
     name: "",
     address: "",
   });
-  async function handleSubmit(e) {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !signup.username ||
-      !signup.password ||
-      !signup.name ||
-      !signup.address
-    ) {
-      toast.error("please fill in all the field");
+
+    // Validate if all fields are filled
+    if (!signup.username || !signup.password || !signup.name || !signup.address ) {
+      toast.error("Please fill in all fields");
+      return;
     }
+
+    // Validate password length
+    if (signup.password.length < 8) {
+      toast.error("Password must be at least 8 characters long");
+      return;
+    }
+
+    // Validate email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(signup.username)) {
+      toast.error("Invalid email format");
+      return;
+    }
+
     try {
       const response = await signupservice(
         signup.username,
         signup.password,
         signup.name,
-        signup.address
+        signup.address,
       );
       console.log(response);
       toast.success("Account Created Successfully");
@@ -46,11 +57,12 @@ const SignUp = () => {
       toast.error("Failed to Create Account");
       console.log(error);
     }
-  }
+  };
+
   return (
     <Container>
       <div style={{ marginTop: "100px", marginBottom: "180px", color: theme.palette.background.text, background: theme.palette.primary.main }}>
-        <ToastContainer />
+        <Toast />
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
@@ -68,15 +80,6 @@ const SignUp = () => {
               paddingBottom: "30px",
             }}
           >
-            {/* <Paper
-              sx={{
-                padding: 4,
-                maxWidth: 400,
-                width: "100%",
-                backgroundColor: "white",
-                borderRadius: 8,
-              }}
-            > */}
             <form onSubmit={handleSubmit}>
               <Typography component="h1" variant="h4" mb={4}>
                 Create Account
@@ -109,7 +112,7 @@ const SignUp = () => {
                 margin="normal"
               />
               <TextField
-                label="name"
+                label="Name"
                 fullWidth
                 variant="outlined"
                 onChange={(e) =>
@@ -123,7 +126,7 @@ const SignUp = () => {
               />
               <TextField
                 fullWidth
-                label="address"
+                label="Address"
                 variant="outlined"
                 onChange={(e) =>
                   setSignup({
@@ -134,6 +137,7 @@ const SignUp = () => {
                 value={signup.address}
                 margin="normal"
               />
+             
               <Button
                 fullWidth
                 variant="contained"
@@ -144,15 +148,15 @@ const SignUp = () => {
                   background: theme.palette.background.button,
                   "&:hover": { backgroundColor: "#0069d9" },
                   color: theme.palette.background.text,
-                }}                >
+                }}
+              >
                 Create Account
               </Button>
               <Typography align="center" sx={{ mt: 2 }}>
-                are you already logged in?{" "}
+                Already have an account?{" "}
                 <Link href="/pages/login">Login</Link>
               </Typography>
             </form>
-            {/* </Paper> */}
           </Grid>
         </Grid>
       </div>
