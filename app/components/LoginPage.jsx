@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { loginservice } from "../service/loginService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import { Box, Container, Grid, Typography, Paper, useTheme } from "@mui/material";
+import { Box, Container, Grid, Typography, useTheme } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { loginUserFailure, loginUserSuccess } from "../action/action";
 import Link from "next/link";
@@ -18,7 +17,7 @@ import Cookies from "js-cookie";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const theme = useTheme()
+  const theme = useTheme();
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -49,12 +48,19 @@ const LoginPage = () => {
 
   return (
     <Container>
-      <div style={{ marginTop: "100px", marginBottom: "180px", background: theme.palette.primary.main, color: theme.palette.background.text }}>
+      <div
+        style={{
+          marginTop: "100px",
+          marginBottom: "180px",
+          color: theme.palette.background.text,
+          background: theme.palette.primary.main,
+        }}
+      >
         <Toast />
-        <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
+        <Grid container spacing={2} sx={{ justifyContent: "center" }}>
           <Grid item xs={12} md={6}>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <Lottie animationData={loginAnimation} style={{ height: '500px' }} />
+              <Lottie animationData={loginAnimation} style={{ height: "500px" }} />
             </Box>
           </Grid>
           <Grid
@@ -67,23 +73,26 @@ const LoginPage = () => {
               justifyContent: "center",
             }}
           >
-            {/* <Paper
-            sx={{
-              padding: 4,
-              maxWidth: 400,
-              width: "100%",
-              backgroundColor: "white",
-              borderRadius: 8,
-            }}
-          > */}
             <form onSubmit={handleSubmit}>
-              <Typography variant="h5" align="center" gutterBottom sx={{ color: theme.palette.background.text }}>
+              <Typography
+                variant="h5"
+                align="center"
+                gutterBottom
+                sx={{ color: theme.palette.background.text }}
+              >
                 Login
               </Typography>
-              <TextField
-                label="Username"
-                fullWidth
-                variant="outlined"
+              <input
+                type="text"
+                placeholder="Username"
+                style={{
+                  width: "80%",
+                  padding: "10px",
+                  marginBottom: "15px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  outline: "none",
+                }}
                 onChange={(e) =>
                   setLogin({
                     ...login,
@@ -91,13 +100,18 @@ const LoginPage = () => {
                   })
                 }
                 value={login.username}
-                margin="normal"
               />
-              <TextField
-                fullWidth
-                label="Password"
+              <input
                 type="password"
-                variant="outlined"
+                placeholder="Password"
+                style={{
+                  width: "80%",
+                  padding: "10px",
+                  marginBottom: "15px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  outline: "none",
+                }}
                 onChange={(e) =>
                   setLogin({
                     ...login,
@@ -105,7 +119,6 @@ const LoginPage = () => {
                   })
                 }
                 value={login.password}
-                margin="normal"
               />
               <Button
                 variant="contained"
@@ -113,7 +126,7 @@ const LoginPage = () => {
                 fullWidth
                 sx={{
                   mt: 2,
-
+                  width:"85%",
                   background: theme.palette.background.button,
                   "&:hover": { backgroundColor: "#0069d9" },
                   color: theme.palette.background.text,
@@ -125,7 +138,6 @@ const LoginPage = () => {
                 Don't have an account? <Link href="/pages/signup">Sign up</Link>
               </Typography>
             </form>
-            {/* </Paper> */}
           </Grid>
         </Grid>
       </div>

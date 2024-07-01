@@ -1,16 +1,15 @@
-'use client'
+"use client"
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Container, Grid, TextField, useTheme } from "@mui/material";
+import { Container, Grid, useTheme } from "@mui/material";
 import { signupservice } from "../service/signupservice";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Lottie from "lottie-react";
 import loginAnimation from "../lottie-animation/loginAnimation.json";
-import { toast } from "react-toastify";
-import Toast from "./Toast";
 
 const SignUp = () => {
   const theme = useTheme();
@@ -25,7 +24,7 @@ const SignUp = () => {
     e.preventDefault();
 
     // Validate if all fields are filled
-    if (!signup.username || !signup.password || !signup.name || !signup.address ) {
+    if (!signup.username || !signup.password || !signup.name || !signup.address) {
       toast.error("Please fill in all fields");
       return;
     }
@@ -48,10 +47,11 @@ const SignUp = () => {
         signup.username,
         signup.password,
         signup.name,
-        signup.address,
+        signup.address
       );
       console.log(response);
       toast.success("Account Created Successfully");
+      // Assuming `router` is properly set up with useRouter() from Next.js
       router.push("/pages/login");
     } catch (error) {
       toast.error("Failed to Create Account");
@@ -61,12 +61,18 @@ const SignUp = () => {
 
   return (
     <Container>
-      <div style={{ marginTop: "100px", marginBottom: "180px", color: theme.palette.background.text, background: theme.palette.primary.main }}>
-        <Toast />
+      <div
+        style={{
+          marginTop: "100px",
+          marginBottom: "180px",
+          color: theme.palette.background.text,
+          background: theme.palette.primary.main,
+        }}
+      >
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <Lottie animationData={loginAnimation} style={{ height: '500px' }} />
+              <Lottie animationData={loginAnimation} style={{ height: "500px" }} />
             </Box>
           </Grid>
           <Grid
@@ -84,67 +90,69 @@ const SignUp = () => {
               <Typography component="h1" variant="h4" mb={4}>
                 Create Account
               </Typography>
-              <TextField
-                label="Username"
-                variant="outlined"
-                fullWidth
-                onChange={(e) =>
-                  setSignup({
-                    ...signup,
-                    username: e.target.value,
-                  })
-                }
+              <input
+                type="text"
+                placeholder="Username"
                 value={signup.username}
-                margin="normal"
+                onChange={(e) => setSignup({ ...signup, username: e.target.value })}
+                style={{
+                  width: "80%",
+                  padding: "10px",
+                  marginBottom: "15px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  outline: "none",
+                }}
               />
-              <TextField
-                label="Password"
-                fullWidth
+              <input
                 type="password"
-                variant="outlined"
-                onChange={(e) =>
-                  setSignup({
-                    ...signup,
-                    password: e.target.value,
-                  })
-                }
+                placeholder="Password"
                 value={signup.password}
-                margin="normal"
+                onChange={(e) => setSignup({ ...signup, password: e.target.value })}
+                style={{
+                  width: "80%",
+                  padding: "10px",
+                  marginBottom: "15px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  outline: "none",
+                }}
               />
-              <TextField
-                label="Name"
-                fullWidth
-                variant="outlined"
-                onChange={(e) =>
-                  setSignup({
-                    ...signup,
-                    name: e.target.value,
-                  })
-                }
+              <input
+                type="text"
+                placeholder="Name"
                 value={signup.name}
-                margin="normal"
+                onChange={(e) => setSignup({ ...signup, name: e.target.value })}
+                style={{
+                  width: "80%",
+                  padding: "10px",
+                  marginBottom: "15px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  outline: "none",
+                }}
               />
-              <TextField
-                fullWidth
-                label="Address"
-                variant="outlined"
-                onChange={(e) =>
-                  setSignup({
-                    ...signup,
-                    address: e.target.value,
-                  })
-                }
+              <input
+                type="text"
+                placeholder="Address"
                 value={signup.address}
-                margin="normal"
+                onChange={(e) => setSignup({ ...signup, address: e.target.value })}
+                style={{
+                  width: "80%",
+                  padding: "10px",
+                  marginBottom: "15px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  outline: "none",
+                }}
               />
-             
               <Button
-                fullWidth
                 variant="contained"
                 color="secondary"
                 type="submit"
                 sx={{
                   mt: 2,
+                  width: "85%",
                   background: theme.palette.background.button,
                   "&:hover": { backgroundColor: "#0069d9" },
                   color: theme.palette.background.text,
