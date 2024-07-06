@@ -1,22 +1,24 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { Card, CardHeader, CardMedia, Container, Grid, useTheme } from "@mui/material";
+import { Card, CardContent, CardHeader, CardMedia, Container, Grid, Typography, useTheme } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Skeleton from "@mui/material/Skeleton";
 import { HomeService } from "../service/HomeService";
 
 const HomeCard = () => {
-  const theme=useTheme()
+  const theme = useTheme();
   const [card, setCard] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  // Function to fetch card data
   async function fetchCards() {
     const result = await HomeService();
     setCard(result);
     setLoading(false);
   }
 
+  // Fetch data on component mount
   useEffect(() => {
     fetchCards();
   }, []);
@@ -25,6 +27,7 @@ const HomeCard = () => {
     <Container>
       <Grid container spacing={2}>
         {loading ? (
+          // Show skeletons while loading
           Array.from({ length: 3 }).map((_, index) => (
             <Grid item key={index} xs={12} md={6} lg={4}>
               <Card sx={{ maxWidth: 345 }}>
@@ -34,6 +37,7 @@ const HomeCard = () => {
             </Grid>
           ))
         ) : (
+          // Render cards once data is loaded
           card.map((response) => (
             <Grid item key={response.id} xs={12} md={4} lg={4} sm={6}>
               <Card
@@ -41,17 +45,10 @@ const HomeCard = () => {
                   maxWidth: "100%",
                   transition: "transform 0.3s ease-in-out",
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-
+                  position: 'relative',
+                  overflow: 'hidden'
                 }}
               >
-                <CardHeader
-                  title={response.title}
-                  sx={{
-                    background: theme.palette.background.card, fontWeight: "bold", transition: "transform 0.3s ease-in-out", cursor: 'pointer', "&:hover": {
-                      color: '#1976d2'
-                    }
-                  }}
-                />
                 <div
                   style={{
                     width: '100%',
@@ -78,6 +75,23 @@ const HomeCard = () => {
                         left: 0,
                       }}
                     />
+                    <div 
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        color: 'white',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        opacity: 0,
+                        transition: 'opacity 0.3s ease-in-out'
+                      }}
+                      className="hover-title"
+                    >
+                      <Typography variant="h6">{response.title}</Typography>
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -85,6 +99,11 @@ const HomeCard = () => {
           ))
         )}
       </Grid>
+      <style jsx>{`
+        .hover-title:hover {
+          opacity: 1;
+        }
+      `}</style>
     </Container>
   );
 };
