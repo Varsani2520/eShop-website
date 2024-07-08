@@ -8,8 +8,6 @@ import imageF from "../images/imageF.jpg";
 import imagesecond from "../images/imagesecond.jpg";
 import imagethird from "../images/imagethird.jpg";
 import imagefourth from "../images/imagefourth.jpg";
-import imagefifth from "../images/imagefifth.jpg";
-import imagesixth from "../images/imagesixth.jpg";
 import { Container } from "@mui/material";
 
 const SwiperHome = () => {
