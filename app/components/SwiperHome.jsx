@@ -36,12 +36,6 @@ const SwiperHome = () => {
         <SwiperSlide>
           <img src={imagefourth.src} style={imageStyle} alt="eshop-image" />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src={imagefifth.src} style={imageStyle} alt="eshop-image" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={imagesixth.src} style={imageStyle} alt="eshop-image" />
-        </SwiperSlide>
       </Swiper>
     </Container>
   );
