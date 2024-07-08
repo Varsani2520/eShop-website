@@ -7,8 +7,9 @@ import { Box, Paper, ThemeProvider, useTheme } from "@mui/material";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { darkTheme, lightTheme } from "./theme";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import MyBox from "./MyBox";
+import Loading from "./loading";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
@@ -32,7 +33,9 @@ export default function RootLayout({ children }) {
             <MyBox>
               <Navbar darkThemeFun={toggleTheme} lightthemFun={toggleTheme} />{" "}
               {/* Pass toggleTheme function as prop */}
+              <Suspense fallback={<Loading/>}>
               {children}
+              </Suspense>
               <SpeedInsights />
               <Analytics />
               <Footer />

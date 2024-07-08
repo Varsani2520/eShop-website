@@ -190,13 +190,14 @@ const Page = () => {
                         >
                           <Box sx={{ display: "block" }}>
                             <Typography>{response.title}</Typography>
+                            <Typography sx={{fontWeight:'bold'}}>free delivery</Typography>
                             <Rating
                               name="customized-icons"
                               defaultValue={response.rating}
                               readOnly
                             />
                           </Box>
-                          <Typography>${response.price}</Typography>
+                          <Typography sx={{fontWeight:'bold',fontSize:'24px'}}>&#8377;{response.price}</Typography>
                         </CardContent>
                       </Grid>
                     );

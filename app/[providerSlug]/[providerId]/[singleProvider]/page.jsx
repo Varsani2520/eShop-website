@@ -41,7 +41,6 @@ const Page = () => {
   const dispatch = useDispatch();
   const [desc, setDesc] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [quantity, setQuantity] = useState(1);
   const { providerSlug } = useParams();
   const { singleProvider } = useParams();
   const carts = useSelector((state) => state.cart.cartItems);
@@ -56,16 +55,14 @@ const router=useRouter()
     if (isItemInCart) {
       toast.warning("Your item is already in your cart");
     } else {
-      dispatch(addToCartItem({ ...item, quantity }));
+      dispatch(addToCartItem);
       dispatch(incrementTotalCard());
       cartService(token.data.token, item);
       toast.success("Added to cart successfully");
     }
   }
 
-  function handleQuantityChange(increment) {
-    setQuantity((prevQuantity) => Math.max(1, prevQuantity + increment));
-  }
+ 
 
   async function fetchDesc() {
     try {
@@ -206,17 +203,7 @@ const router=useRouter()
                             <Typography variant="h6" sx={{ color: 'orange', fontSize: '24px' }}>
                               Discounted Price: ${discountedPrice.toFixed(2)}
                             </Typography>
-                            <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-                              <IconButton onClick={() => handleQuantityChange(-1)}>
-                                <RemoveIcon />
-                              </IconButton>
-                              <Typography variant="h6" sx={{ mx: 2 }}>
-                                {quantity}
-                              </Typography>
-                              <IconButton onClick={() => handleQuantityChange(1)}>
-                                <AddIcon />
-                              </IconButton>
-                            </Box>
+                           
                             <br />
                             <Rating
                               value={response.rating}
