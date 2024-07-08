@@ -9,6 +9,7 @@ const HomeCard = () => {
   const theme = useTheme();
   const [card, setCard] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedData, setSelectedData] = useState(null); // State to hold selected data
   const router = useRouter();
 
   // Function to fetch card data
@@ -28,34 +29,38 @@ const HomeCard = () => {
     fetchCards();
   }, []);
 
+  // Handle click on title to display related data
+  const handleClickTitle = (result) => {
+    setSelectedData(result);
+  };
+
   return (
     <Container>
       <Grid container spacing={2}>
-       {/* Render titles */}
-{card.slice(0, 6).map((result) => (
-  <ButtonGroup key={result.id} sx={{ mb: 2 }} size="small">
-    <Button
-      sx={{
-        color: theme.palette.background.text,
-        borderColor: theme.palette.background.text,
-        '&:hover': {
-          borderColor: theme.palette.primary.main,
-        },
-        [theme.breakpoints.down('sm')]: {
-          fontSize: '0.75rem', // Adjust font size for smaller screens
-          padding: '8px 12px', // Adjust padding for smaller screens
-        },
-      }}
-      variant="outlined"
-    >
-      {result.title}
-    </Button>
-  </ButtonGroup>
-))}
+        {/* Render titles */}
+        {card.slice(0, 6).map((result) => (
+          <ButtonGroup key={result.id} sx={{ mb: 2 }} size="small">
+            <Button
+              onClick={() => handleClickTitle(result)}
+              sx={{
+                color: theme.palette.background.text,
+                borderColor: theme.palette.background.text,
+                '&:hover': {
+                  borderColor: theme.palette.primary.main,
+                },
+                [theme.breakpoints.down('sm')]: {
+                  fontSize: '0.75rem', // Adjust font size for smaller screens
+                  padding: '8px 12px', // Adjust padding for smaller screens
+                },
+              }}
+              variant="outlined"
+            >
+              {result.title}
+            </Button>
+          </ButtonGroup>
+        ))}
 
-
-
-        {/* Render cards or skeletons */}
+        {/* Render selected data or cards/skeletons */}
         {loading ? (
           // Show skeletons while loading
           Array.from({ length: 3 }).map((_, index) => (
@@ -66,8 +71,66 @@ const HomeCard = () => {
               </Card>
             </Grid>
           ))
+        ) : selectedData ? (
+          // Render selected data
+          <Grid item xs={12} md={6} lg={4}>
+            <Card
+              sx={{
+                maxWidth: "100%",
+                transition: "transform 0.3s ease-in-out",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                position: 'relative',
+                overflow: 'hidden'
+              }}
+            >
+              <div
+                style={{
+                  width: '100%',
+                  height: 0,
+                  paddingBottom: '56.25%',
+                  overflow: 'hidden',
+                  transition: "transform 0.3s ease-in-out"
+                }}
+                onClick={() => router.push(`${selectedData.id}/${selectedData.slug}`)}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                <CardMedia
+                  component="img"
+                  image={selectedData.image}
+                  alt={selectedData.alt}
+                  sx={{
+                    cursor: "pointer",
+                    objectFit: "cover",
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    top: 0,
+                    left: 0,
+                  }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    color: 'white',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    padding: '10px',
+                    borderRadius: '5px',
+                    opacity: 0,
+                    transition: 'opacity 0.3s ease-in-out'
+                  }}
+                  className="hover-title"
+                >
+                  <Typography variant="h6">{selectedData.title}</Typography>
+                </div>
+              </div>
+            </Card>
+          </Grid>
         ) : (
-          // Render cards once data is loaded
+          // Render default cards once data is loaded
           card.map((response) => (
             <Grid item key={response.id} xs={12} md={4} lg={4} sm={6}>
               <Card
